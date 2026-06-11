@@ -1,254 +1,193 @@
 /**
- * scraper.js
- * Her Pazartesi çalışır. İzleme listesindeki kaynak siteleri kontrol eder,
- * önceki hafta ile karşılaştırır, değişiklik varsa e-posta gönderir.
+ * scraper.js - AI Agent Destekli Hibe & Teşvik Motoru
+ * Her Pazartesi çalışır. Kaynak sitelerdeki yeni/güncel ilanları AI ile analiz eder,
+ * data.json dosyasını otomatik besler ve günceller.
  */
 
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const http  = require('http');
+const { GoogleGenAI } = require('@google/genai');
+const cheerio = require('cheerio');
 
-// ─── İzleme listesi ──────────────────────────────────────────────────────────
-// Her kaynak için: url + kontrol edilecek anahtar kelimeler
+// GitHub Actions üzerinde tanımlayacağınız Gemini API Key
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const DATA_PATH = path.join(__dirname, '../data.json');
+
 const KAYNAKLAR = [
-  {
-    id: 'kosgeb',
-    ad: 'KOSGEB',
-    url: 'https://www.kosgeb.gov.tr/site/tr/genel/destekler/3/destek-programlari',
-    anahtar: ['başvuru', 'destek', 'hibe', 'program', 'çağrı']
-  },
-  {
-    id: 'tubitak',
-    ad: 'TÜBİTAK TEYDEB',
-    url: 'https://www.tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari',
-    anahtar: ['çağrı', 'başvuru', 'program', 'destek']
-  },
-  {
-    id: 'tkdk',
-    ad: 'TKDK / IPARD',
-    url: 'https://www.tkdk.gov.tr/Sayfa/Duyurular',
-    anahtar: ['çağrı', 'başvuru', 'dönem', 'ipard']
-  },
-  {
-    id: 'trakyaka',
-    ad: 'TRAKYAKA',
-    url: 'https://www.trakyaka.org.tr/tr/duyuru',
-    anahtar: ['mali destek', 'hibe', 'çağrı', 'başvuru']
-  },
-  {
-    id: 'ticaret',
-    ad: 'Ticaret Bakanlığı İhracat Destekleri',
-    url: 'https://ticaret.gov.tr/destekler/ihracat-destekleri',
-    anahtar: ['destek', 'hibe', 'başvuru', 'program']
-  },
-  {
-    id: 'sanayi',
-    ad: 'Sanayi Bakanlığı Yatırım Teşvik',
-    url: 'https://www.sanayi.gov.tr/belgeler-ve-veriler/yatirim-tesvik-istatistikleri',
-    anahtar: ['teşvik', 'yatırım', 'belge']
-  },
-  {
-    id: 'istka',
-    ad: 'İSTKA Mali Destek',
-    url: 'https://www.istka.org.tr/mali-destek/',
-    anahtar: ['çağrı', 'başvuru', 'hibe', 'mali destek']
-  },
-  {
-    id: 'yatirimadestek',
-    ad: 'yatirimadestek.gov.tr (Tüm Ajanslar)',
-    url: 'https://www.yatirimadestek.gov.tr',
-    anahtar: ['yeni', 'duyuru', 'hibe', 'teşvik', 'çağrı']
-  }
+  { id: 'kosgeb', ad: 'KOSGEB', url: 'https://www.kosgeb.gov.tr/site/tr/genel/destekler/3/destek-programlari' },
+  { id: 'tubitak', ad: 'TÜBİTAK TEYDEB', url: 'https://www.tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari' },
+  { id: 'tkdk', ad: 'TKDK / IPARD', url: 'https://www.tkdk.gov.tr/Sayfa/Duyurular' },
+  { id: 'trakyaka', ad: 'TRAKYA KA', url: 'https://www.trakyaka.org.tr/tr/destekler/acik-destek-programlari' },
+  { id: 'ticaret', ad: 'Ticaret Bakanlığı', url: 'https://www.ticaret.gov.tr/destekler' },
+  { id: 'sanayi', ad: 'Sanayi ve Teknoloji Bakanlığı', url: 'https://www.sanayi.gov.tr/destekler-ve-teşvikler' }
 ];
 
-const SNAPSHOT_PATH = path.join(__dirname, 'snapshot.json');
-const RAPOR_PATH    = path.join(__dirname, 'rapor.json');
-
-// ─── Yardımcı: URL'yi indir ───────────────────────────────────────────────────
-function fetchUrl(url, timeoutMs = 15000) {
+// Güvenli URL Fetch Fonksiyonu
+function fetchUrl(url) {
   return new Promise((resolve, reject) => {
-    const mod = url.startsWith('https') ? https : http;
-    const req = mod.get(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; CorlutsoHibeBot/1.0; +https://hibeler.corlutso.org.tr)',
-        'Accept-Language': 'tr-TR,tr;q=0.9'
-      },
-      timeout: timeoutMs
-    }, res => {
-      // Yönlendirmeleri takip et
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return fetchUrl(res.headers.location, timeoutMs).then(resolve).catch(reject);
+    const options = {
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) HibeMotoru/2.0' },
+      timeout: 15000
+    };
+    const req = https.get(url, options, (res) => {
+      if (res.statusCode === 301 || res.statusCode === 302) {
+        return fetchUrl(res.headers.location).then(resolve).catch(reject);
       }
-      let body = '';
-      res.setEncoding('utf8');
-      res.on('data', chunk => body += chunk);
-      res.on('end', () => resolve({ status: res.statusCode, body }));
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve({ status: res.statusCode, body: data }));
     });
     req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error('Zaman aşımı')); });
+    req.on('timeout', () => { req.destroy(); reject(new Error('Timeout')); });
   });
 }
 
-// ─── Sayfa özetini çıkar (hash yerine metin bazlı) ───────────────────────────
-function ozetCikar(html, anahtarlar) {
-  // HTML etiketlerini temizle
-  const metin = html
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?<\/style>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .toLowerCase()
-    .trim();
-
-  // Anahtar kelimelerin geçtiği cümleleri topla
-  const cumleler = metin.split(/[.!?]\s+/);
-  const ilgili = cumleler.filter(c =>
-    anahtarlar.some(a => c.includes(a.toLowerCase()))
-  ).slice(0, 20); // ilk 20 ilgili cümle
-
-  return ilgili.join(' | ').substring(0, 3000);
+// Sayfadaki saf metinleri ve olası linkleri temizleme
+function temizMetinCikar(html) {
+  const $ = cheerio.load(html);
+  // Script, style ve nav gibi gereksiz alanları uçur
+  $('script, style, nav, footer, header, iframe').remove();
+  return $('body').text().replace(/\s+/g, ' ').trim().substring(0, 15000); // İlk 15k karakter yeterli
 }
 
-// ─── Resend ile e-posta gönder ────────────────────────────────────────────────
-async function epostaGonder(degisiklikler) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const hedef  = process.env.BILDIRIM_EMAIL || 'cihan@corlutso.org.tr';
+// Gemini AI Agent İstek Motoru
+async function aiIleIlanlariCoz(kaynakAd, kaynakUrl, sayfaMetni) {
+  const prompt = `
+    Sen bir TSO (Ticaret ve Sanayi Odası) hibe ve teşvik uzmanı yapay zekasısın.
+    Aşağıda sana "${kaynakAd}" kurumuna ait resmi web sitesinin güncel metin içeriği verilecek.
+    Bu metni incele ve şu an BAŞVURUYA AÇIK olan veya YENİ DUYURULAN hibe, teşvik, destek programlarını veya çağrılarını tespit et.
 
-  if (!apiKey) {
-    console.warn('⚠️  RESEND_API_KEY tanımlı değil, e-posta gönderilmedi.');
-    return;
+    Senden SADECE aşağıdaki JSON formatında bir array (liste) döndürmeni istiyorum. Başka hiçbir açıklama yazma.
+    
+    Her bir ilan için çıkarmalısın:
+    - baslik: İlanın tam adı
+    - tur: "Hibe", "Yatırım Teşviki", "Kredi/Finansman", "Vergi/SGK Teşviki" ya da "Ödül/Yarışma" değerlerinden biri olmalı.
+    - grup: Genel kategori adı (Örn: "KOBİ Destekleri", "Ar-Ge ve İnovasyon", "Bölgesel Destekler")
+    - sektor: Bu destekten yararlanabilecek sektörler listesi array olarak. Her sektöre uygunsa ["Tüm Sektörler"] yaz.
+    - tutar: Destek bütçesi veya oranı (Örn: "2.000.000 ₺'ye kadar" veya "%75 Destek"). Bulamazsan "Belirtilmemiş" yaz.
+    - son: Son başvuru tarihi. Eğer metinden net bir tarih çıkıyorsa YYYY-MM-DD formatında yaz (Örn: "2026-08-15"). Eğer süre sınırı yoksa veya sürekli açıksa "Süresiz" yaz.
+    - aciklama: Programın amacını ve kimlerin başvurabileceğini anlatan maksimum 2 cümlelik kısa özet.
+    - url: İlanın detayına giden link. Eğer metinde spesifik link yoksa direkt ana kaynağın linkini yaz: "${kaynakUrl}"
+
+    DÖNDÜRECEĞİN FORMAT SADECE BU OLMALI (Markdown kod bloğu olmadan, düz metin JSON):
+    [
+      {
+        "baslik": "Örnek Program",
+        "tur": "Hibe",
+        "grup": "KOBİ Destekleri",
+        "sektor": ["Üretim", "Teknoloji"],
+        "tutar": "1.000.000 ₺",
+        "son": "2026-12-31",
+        "aciklama": "Açıklama cümlesi.",
+        "url": "${kaynakUrl}"
+      }
+    ]
+
+    Eğer sayfada şu an aktif/yeni hiçbir ilan yoksa sadece boş bir liste döndür: []
+
+    İNCELENECEK WEB SİTESİ METNİ:
+    ${sayfaMetni}
+  `;
+
+  try {
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash', // Hızlı, ucuz ve yapısal çıktı yeteneği yüksek model
+      contents: prompt
+    });
+
+    const temizJsonText = response.text.replace(/```json|```/g, '').trim();
+    return JSON.parse(temizJsonText);
+  } catch (error) {
+    console.error(`    ❌ AI Analiz Hatası (${kaynakAd}):`, error.message);
+    return [];
+  }
+}
+
+async function anaMotor() {
+  console.log('🤖 AI Agent Hibe Tarama Motoru Başlatıldı...');
+  
+  let mevcutVeri = [];
+  if (fs.existsSync(DATA_PATH)) {
+    mevcutVeri = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
   }
 
-  const satirlar = degisiklikler.map(d =>
-    `<tr>
-      <td style="padding:8px;border-bottom:1px solid #eee"><strong>${d.ad}</strong></td>
-      <td style="padding:8px;border-bottom:1px solid #eee;color:#666;font-size:13px">${d.not}</td>
-      <td style="padding:8px;border-bottom:1px solid #eee"><a href="${d.url}" style="color:#1a3a5c">Siteye git →</a></td>
-    </tr>`
-  ).join('');
-
-  const html = `
-  <div style="font-family:sans-serif;max-width:700px;margin:0 auto">
-    <div style="background:#1a3a5c;padding:20px;border-radius:8px 8px 0 0">
-      <h2 style="color:#fff;margin:0">🔔 Çorlu TSO Hibe Motoru — Haftalık Güncelleme</h2>
-      <p style="color:#93b8d8;margin:6px 0 0">${new Date().toLocaleDateString('tr-TR', {weekday:'long',year:'numeric',month:'long',day:'numeric'})}</p>
-    </div>
-    <div style="background:#fff;padding:20px;border:1px solid #eee;border-top:none">
-      <p style="color:#555">Aşağıdaki kaynak sitelerde <strong>${degisiklikler.length} değişiklik</strong> tespit edildi. Lütfen kontrol edin ve gerekirse <code>data.json</code> dosyasını güncelleyin.</p>
-      <table style="width:100%;border-collapse:collapse;margin-top:16px">
-        <thead>
-          <tr style="background:#f5f5f3">
-            <th style="padding:10px;text-align:left;font-size:13px">Kaynak</th>
-            <th style="padding:10px;text-align:left;font-size:13px">Not</th>
-            <th style="padding:10px;text-align:left;font-size:13px">Link</th>
-          </tr>
-        </thead>
-        <tbody>${satirlar}</tbody>
-      </table>
-      <div style="margin-top:24px;padding:14px;background:#fffbeb;border-left:3px solid #fcd34d;border-radius:4px">
-        <strong>Sonraki adım:</strong> Yeni bir program açıldıysa <code>data.json</code> dosyasına ekle ve commit at. Site otomatik güncellenir.
-      </div>
-    </div>
-    <div style="padding:12px;text-align:center;font-size:12px;color:#999">
-      Çorlu TSO Hibe Motoru · hibeler.corlutso.org.tr · Bu e-posta otomatik gönderilmiştir.
-    </div>
-  </div>`;
-
-  const payload = JSON.stringify({
-    from: 'Hibe Motor Bot <bot@corlutso.org.tr>',
-    to: [hedef],
-    subject: `🔔 Hibe Motoru: ${degisiklikler.length} kaynakta değişiklik tespit edildi`,
-    html
-  });
-
-  return new Promise((resolve, reject) => {
-    const req = https.request({
-      hostname: 'api.resend.com',
-      path: '/emails',
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(payload)
-      }
-    }, res => {
-      let body = '';
-      res.on('data', c => body += c);
-      res.on('end', () => {
-        if (res.statusCode === 200 || res.statusCode === 201) {
-          console.log(`✉️  E-posta gönderildi → ${hedef}`);
-          resolve();
-        } else {
-          console.error('E-posta hatası:', res.statusCode, body);
-          reject(new Error(`Resend HTTP ${res.statusCode}`));
-        }
-      });
-    });
-    req.on('error', reject);
-    req.write(payload);
-    req.end();
-  });
-}
-
-// ─── Ana fonksiyon ────────────────────────────────────────────────────────────
-async function main() {
-  console.log(`\n🔍 Haftalık tarama başladı — ${new Date().toLocaleString('tr-TR')}\n`);
-
-  // Önceki snapshot'ı yükle
-  const eskiSnapshot = fs.existsSync(SNAPSHOT_PATH)
-    ? JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'))
-    : {};
-
-  const yeniSnapshot = {};
-  const degisiklikler = [];
-  const rapor = { tarih: new Date().toISOString(), kaynaklar: [] };
+  let yeniEklendiSayisi = 0;
+  let guncellendiSayisi = 0;
+  
+  // Bulunan tüm ilanların URL'lerini bu turda aktif tutmak için kaydedeceğiz
+  const buTurdaBulunanUrlListesi = [];
 
   for (const kaynak of KAYNAKLAR) {
-    process.stdout.write(`  ⏳ ${kaynak.ad} taranıyor...`);
+    console.log(`\n🌐 ${kaynak.ad} taranıyor... (${kaynak.url})`);
     try {
-      const { status, body } = await fetchUrl(kaynak.url);
-      const ozet = ozetCikar(body, kaynak.anahtar);
-      yeniSnapshot[kaynak.id] = ozet;
+      const { body } = await fetchUrl(kaynak.url);
+      const ayiklanmisMetin = temizMetinCikar(body);
+      
+      console.log(`  🧠 AI Agent içeriği analiz ediyor...`);
+      const aiIlanlari = await aiIleIlanlariCoz(kaynak.ad, kaynak.url, ayiklanmisMetin);
+      
+      console.log(`  📊 AI sayfada ${aiIlanlari.length} aktif program tespit etti.`);
 
-      const eski = eskiSnapshot[kaynak.id] || '';
-      const degisti = eski && ozet !== eski;
+      aiIlanlari.forEach(yeniIlan => {
+        buTurdaBulunanUrlListesi.push(yeniIlan.url);
+        
+        // Bu ilan veritabanımızda zaten var mı? (Başlık veya URL kontrolü)
+        const eskiIndeks = mevcutVeri.findIndex(p => p.url === yeniIlan.url || p.baslik === yeniIlan.baslik);
 
-      const durum = degisti ? '🟡 DEĞİŞTİ' : (eski ? '✅ Aynı' : '🆕 İlk tarama');
-      console.log(` ${durum} (HTTP ${status})`);
+        if (eskiIndeks === -1) {
+          // TAMAMEN YENİ İLAN DETECT EDİLDİ
+          const yeniId = mevcutVeri.length > 0 ? Math.max(...mevcutVeri.map(p => p.id)) + 1 : 1;
+          const eklenecekIlan = {
+            id: yeniId,
+            ...yeniIlan,
+            kaynak: kaynak.ad,
+            durum: yeniIlan.son === 'Süresiz' ? 'açık' : 'açık' // İlk açılışta açık
+          };
+          
+          // Listenin en başına ekle (yeni duyurular üstte görünsün)
+          mevcutVeri.unshift(eklenecekIlan);
+          yeniEklendiSayisi++;
+          console.log(`    🆕 YENİ DETECTED: ${yeniIlan.baslik}`);
+        } else {
+          // İLAN ZATEN VAR, AI VERİSİNE GÖRE GÜNCELLE (Örn: Tarih veya açıklama değişmiş olabilir)
+          mevcutVeri[eskiIndeks] = {
+            ...mevcutVeri[eskiIndeks],
+            son: yeniIlan.son,
+            tutar: yeniIlan.tutar,
+            aciklama: yeniIlan.aciklama,
+            durum: 'açık' // Sitede hala listelendiği için durumunu açık tut
+          };
+          guncellendiSayisi++;
+        }
+      });
 
-      rapor.kaynaklar.push({ id: kaynak.id, ad: kaynak.ad, durum, status });
-
-      if (degisti) {
-        degisiklikler.push({
-          ad: kaynak.ad,
-          url: kaynak.url,
-          not: 'Sayfa içeriği geçen haftaya göre farklı — yeni duyuru olabilir.'
-        });
-      }
     } catch (err) {
-      console.log(` ❌ Hata: ${err.message}`);
-      rapor.kaynaklar.push({ id: kaynak.id, ad: kaynak.ad, durum: `HATA: ${err.message}` });
+      console.error(`  ❌ Kaynak tarama hatası (${kaynak.ad}):`, err.message);
     }
-
-    // Sunuculara aşırı yük bindirme
-    await new Promise(r => setTimeout(r, 1500));
+    
+    // Bloklanmamak için kaynaklar arası kısa bekleme
+    await new Promise(r => setTimeout(r, 2000));
   }
 
-  // Snapshot'ı güncelle
-  fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify(yeniSnapshot, null, 2), 'utf8');
-  fs.writeFileSync(RAPOR_PATH, JSON.stringify(rapor, null, 2), 'utf8');
+  // ─── OTOMATİK KAPANANLARI TESPİT ETME (KAYBOLAN İLANLAR) ───────────────────
+  // Eğer data.json içinde durumu "açık" olan bir ilan, bu tarama turunda 
+  // ilgili kurumun sayfasında HİÇ listelenmediyse, o ilan muhtemelen yayından kalkmıştır (kapanmıştır).
+  mevcutVeri = mevcutVeri.map(p => {
+    // Sadece taradığımız kaynaklara ait olan ve şu an açık görünen ilanları kontrol et
+    const kaynakTarananlardanMi = KAYNAKLAR.some(k => k.ad === p.kaynak);
+    if (kaynakTarananlardanMi && p.durum === 'açık' && !buTurdaBulunanUrlListesi.includes(p.url)) {
+      console.log(`  🗑️  Siteden kaldırıldığı için kapandı olarak işaretlendi: ${p.baslik}`);
+      return { ...p, durum: 'kapandı' };
+    }
+    return p;
+  });
 
-  console.log(`\n📊 Sonuç: ${degisiklikler.length} değişiklik tespit edildi.\n`);
+  // Güncel veriyi data.json dosyasına yaz
+  fs.writeFileSync(DATA_PATH, JSON.stringify(mevcutVeri, null, 2), 'utf8');
 
-  if (degisiklikler.length > 0) {
-    await epostaGonder(degisiklikler);
-  } else {
-    console.log('📭 Değişiklik yok, e-posta gönderilmedi.');
-  }
+  console.log(`\n✅ Tarama Raporu: ${yeniEklendiSayisi} yeni ilan eklendi, ${guncellendiSayisi} ilan güncellendi.`);
 }
 
-main().catch(err => {
-  console.error('❌ Kritik hata:', err);
-  process.exit(1);
-});
+anaMotor();
