@@ -1,0 +1,46 @@
+name: AI Agent İlan Tarama ve Veritabanı Güncelleme
+
+on:
+  schedule:
+    # Her Pazartesi Türkiye saati ile sabah 09:00'da çalışır
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # Manuel tetikleme butonu sağlar
+
+jobs:
+  ai-scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repoyu çek
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bağımlılıkları yükle
+        run: |
+          cd scripts
+          npm install
+
+      - name: AI Agent ile Siteleri Tara ve Analiz Et
+        run: |
+          cd scripts
+          node scraper.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Değişiklikleri Algıla ve Push Et
+        run: |
+          git config user.name "Çorlu TSO AI Agent"
+          git config user.email "ai-bot@corlutso.org.tr"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "Herhangi bir değişiklik tespit edilemedi."
+          else
+            git commit -m "🤖 AI Agent: Yeni açık ilanlar veritabanına otomatik eklendi"
+            git push
+          fi
