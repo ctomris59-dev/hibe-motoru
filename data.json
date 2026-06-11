@@ -1,5 +1,20 @@
 [
   {
+    "id": 93,
+    "baslik": "Girişim Sermayesi Yatırım Fonları Yatırımları",
+    "tur": "Yatırım Teşviki",
+    "grup": "Finansman Destekleri",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "Belirtilmemiş",
+    "son": "Süresiz",
+    "aciklama": "KOBİ'lerin ilk Ar-Ge projelerini destekleyerek yenilik kapasitelerini geliştirmelerini ve Ar-Ge kültürü oluşturmalarını sağlar.",
+    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekler/3/destek-programlari",
+    "kaynak": "KOSGEB",
+    "durum": "açık"
+  },
+  {
     "id": 9,
     "baslik": "KOSGEB TEKMER Vergi ve SGK Avantajları",
     "tur": "Vergi/SGK Teşviki",
@@ -11,7 +26,7 @@
       "Üretim"
     ],
     "tutar": "Gelir vergisi muafiyeti + SGK desteği",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "KOSGEB bünyesindeki Teknoloji Geliştirme Merkezleri'nde faaliyet gösteren Ar-Ge firmalarına vergisel avantajlar.",
     "url": "https://www.kosgeb.gov.tr"
@@ -93,7 +108,7 @@
       "Tarım"
     ],
     "tutar": "Vergi indirimi + SGK + gümrük muafiyeti",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Yatırım tutarına göre kademeli vergi indirimi, SGK işveren payı desteği ve gümrük muafiyeti.",
     "url": "https://www.sanayi.gov.tr"
@@ -108,7 +123,7 @@
       "Üretim"
     ],
     "tutar": "Artırımlı destek oranları + arazi tahsisi",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Organize Sanayi Bölgelerinde yapılan yatırımlara artırımlı vergi indirimi ve arazi tahsisi.",
     "url": "https://www.sanayi.gov.tr"
@@ -126,7 +141,7 @@
       "Üretim"
     ],
     "tutar": "%50 vergi indirimi + faiz desteği + arazi",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Yurt içi üretimi artıracak stratejik önemdeki yatırımlara üst düzey teşvik paketi.",
     "url": "https://www.sanayi.gov.tr"
@@ -142,7 +157,7 @@
       "Yazılım"
     ],
     "tutar": "1.000.000 ₺'ye kadar",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Teknoloji tabanlı genç girişimcilere iş planı karşılığı geri ödemesiz sermaye desteği.",
     "url": "https://www.sanayi.gov.tr"
@@ -160,7 +175,7 @@
       "Kimya"
     ],
     "tutar": "Ar-Ge harcamalarının %100 + prim desteği",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "50+ Ar-Ge personeli istihdam eden firmalara Ar-Ge merkezi belgesi ve kapsamlı vergi avantajı.",
     "url": "https://www.sanayi.gov.tr"
@@ -175,7 +190,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Harcamaların %50–75'i (5 yıl)",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Türk markalarının küresel piyasalarda bilinirliğini artırmaya yönelik en kapsamlı marka hibesi.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -190,7 +205,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Harcamaların %50'si (max 200.000 ₺/fuar)",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "İhracatçı firmaların yurt dışı fuarlara katılım, stand ve tanıtım giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -205,7 +220,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Kira giderlerinin %60'ı (4 yıl)",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Firmaların yurt dışında ofis, showroom veya depo açma giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -220,7 +235,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Giderlerin %60'ı (max 200.000 ₺)",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Hedef pazarlara yönelik pazar araştırması ve pazara giriş raporu hazırlama giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -235,7 +250,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Giderlerin %50'si",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Firmaların markalarını yurt dışında tescil ettirme başvuru ve danışmanlık giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -250,7 +265,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Platform/yazılım giderlerinin %50'si",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "KOBİ'lerin uluslararası e-ticaret platformlarında yer alması için platform üyelik ve pazarlama desteği.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -265,7 +280,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Harcamaların %60'ı",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Yurt dışı medya, dijital pazarlama ve tanıtım giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -280,7 +295,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Danışmanlık/hukuk giderlerinin %60'ı",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Yurt dışındaki şirket, marka veya pay satın alımlarında danışmanlık, denetim ve değerleme gideri desteği.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -647,7 +662,7 @@
       "Üretim"
     ],
     "tutar": "Vergi indirimi + SGK + gümrük muafiyeti",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Güneş enerjisi santrali yatırımları için bölgesel teşvik kapsamında yatırım teşvik belgesi.",
     "url": "https://www.sanayi.gov.tr"
@@ -815,7 +830,7 @@
       "Taşımacılık"
     ],
     "tutar": "Bölgesel vergi indirimi + SGK desteği",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Lojistik merkezi ve depolama yatırımları için bölgesel teşvik uygulaması.",
     "url": "https://www.sanayi.gov.tr"
@@ -845,7 +860,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Tasarım giderlerinin %70'i",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Ürün tasarımı, endüstriyel tasarım ve ambalaj tasarımı projelerine destek.",
     "url": "https://www.sanayi.gov.tr"
@@ -862,7 +877,7 @@
       "Sağlık"
     ],
     "tutar": "Ar-Ge merkezi belgesi + vergi avantajı",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Kimya ve ilaç firmalarının Ar-Ge merkezi kurmasına yönelik vergi teşviki ve prim desteği.",
     "url": "https://www.sanayi.gov.tr"
@@ -877,7 +892,7 @@
       "Sağlık"
     ],
     "tutar": "Artırımlı vergi indirimi + SGK desteği",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Hastane, klinik ve tıbbi cihaz üretim yatırımlarına artırımlı teşvik belgesi.",
     "url": "https://www.sanayi.gov.tr"
@@ -893,7 +908,7 @@
       "Tarım"
     ],
     "tutar": "Bölgesel artırımlı destek",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Gıda işleme ve ambalajlama yatırımlarına bölgesel yatırım teşviki.",
     "url": "https://www.sanayi.gov.tr"
@@ -908,7 +923,7 @@
       "İnşaat"
     ],
     "tutar": "Bölgesel teşvik kapsamında",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "Süresiz",
     "aciklama": "Altyapı, konut ve ticari yapı yatırımları için bölgesel yatırım teşviki.",
     "url": "https://www.sanayi.gov.tr"
