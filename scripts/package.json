@@ -7,7 +7,7 @@
     "scrape": "node scraper.js"
   },
   "dependencies": {
-    "@google/genai": "^0.1.2",
-    "cheerio": "^1.0.0"
+    "@google/genai": "latest",
+    "cheerio": "latest"
   }
 }
