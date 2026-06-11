@@ -1,10 +1,13 @@
 {
   "name": "hibe-motor-scripts",
   "version": "1.0.0",
-  "description": "Çorlu TSO Hibe Motoru otomasyon scriptleri",
+  "description": "Çorlu TSO Hibe Motoru AI Agent Otomasyon Scriptleri",
   "scripts": {
     "check-dates": "node check-dates.js",
     "scrape": "node scraper.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@google/genai": "^0.1.1",
+    "cheerio": "^1.0.0"
+  }
 }
