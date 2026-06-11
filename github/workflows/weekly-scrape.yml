@@ -1,0 +1,38 @@
+name: Haftalık Kaynak Tarama – Değişiklik Bildirimi
+
+on:
+  schedule:
+    # Her Pazartesi 06:00 UTC (Türkiye 09:00) çalışır
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # Manuel tetikleme
+
+jobs:
+  scrape-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repoyu çek
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bağımlılıkları yükle
+        run: |
+          cd scripts
+          npm install
+
+      - name: Kaynakları tara
+        run: node scripts/scraper.js
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          BILDIRIM_EMAIL: ${{ secrets.BILDIRIM_EMAIL }}
+
+      - name: Tarama raporunu kaydet
+        uses: actions/upload-artifact@v4
+        with:
+          name: tarama-raporu
+          path: scripts/rapor.json
+          retention-days: 30
