@@ -1,0 +1,10 @@
+{
+  "name": "hibe-motor-scripts",
+  "version": "1.0.0",
+  "description": "Çorlu TSO Hibe Motoru otomasyon scriptleri",
+  "scripts": {
+    "check-dates": "node check-dates.js",
+    "scrape": "node scraper.js"
+  },
+  "dependencies": {}
+}
