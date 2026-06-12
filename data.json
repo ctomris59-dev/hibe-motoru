@@ -938,25 +938,10 @@
       "Tüm Sektörler"
     ],
     "tutar": "KOBİ başı değişken (2025'te 3.395 firmaya 54,7 mlr ₺)",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "KOBİ'lerin verimliliğini, üretim kapasitesini ve kurumsal yapısını güçlendirmeye yönelik ölçek büyütme yatırımları. 6 Haziran 2026 itibarıyla 2. dönem başvuruları açıldı.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9391/ureten-kobilere-guclu-destek-yeni-basvuru-donemi-basladi"
-  },
-  {
-    "id": 94,
-    "baslik": "KOSGEB Girişimci Destek Programı – İş Geliştirme Çağrısı 2026/2",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "2.000.000 ₺'ye kadar (kadın/genç: +150.000 ₺)",
-    "durum": "kapandı",
-    "son": "2026-05-08",
-    "aciklama": "20 Nisan – 8 Mayıs 2026 tarihleri arasında alınan 2026/2 dönemi başvuruları kapandı. 2026/3 dönemi bekleniyor.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9374/girisimci-destek-programi-is-gelistirme-cagrisi-2026-yili-2-donem-basvurulari-basladi"
   },
   {
     "id": 95,
@@ -1038,7 +1023,7 @@
       "Gıda"
     ],
     "tutar": "%50–70 hibe, 100 bin – 30 milyon TL proje",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "Tarımsal üretim, işleme, depolama, hayvancılık, sulama ve yenilenebilir enerji yatırımlarına hibe. Yoğun ilgi üzerine başvuru süresi 30 Haziran'a uzatıldı.",
     "url": "https://www.tarimorman.gov.tr"
@@ -1053,7 +1038,7 @@
       "Tarım"
     ],
     "tutar": "%50–70 hibe",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "Damla sulama, yağmurlama, güneş enerjili sulama, akıllı sulama ve otomasyon sistemleri yatırımlarına hibe desteği. Başvuru süresi 30 Haziran'a uzatıldı.",
     "url": "https://www.tarimorman.gov.tr"
@@ -1071,7 +1056,7 @@
       "Mobilya"
     ],
     "tutar": "3.500 ₺/çalışan/ay geri ödemesiz + kredi",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "Tekstil, giyim, deri ve mobilya imalatında 2025 yılı istihdam düzeyini koruyanlara performans desteği. Kredi kullanımı için son tarih Haziran 2026.",
     "url": "https://kosgeb.gov.tr/site/tr/genel/destekdetay/9224/istihdami-koruma-destek-programi"
