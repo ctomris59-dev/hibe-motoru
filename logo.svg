@@ -1,0 +1,47 @@
+<svg width="100%" viewBox="0 0 520 64" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Hibe Teşvik Radar — Çorlu TSO</title>
+<desc>Radar ve finansman ikonlarıyla Hibe Teşvik Radar logosu</desc>
+<defs>
+  <style>
+    .ring1{fill:none;stroke:rgba(255,255,255,0.12);stroke-width:1}
+    .ring2{fill:none;stroke:rgba(255,255,255,0.22);stroke-width:1}
+    .ring3{fill:none;stroke:rgba(255,255,255,0.38);stroke-width:1.5}
+    .sweep{fill:rgba(0,210,140,0.18)}
+    .gl{stroke:rgba(255,255,255,0.15);stroke-width:0.5;fill:none}
+    .dc{fill:#00d28c}
+    .dp{fill:none;stroke:#00d28c;stroke-width:1.5}
+    .coin{fill:#f5c842;stroke:#c49a00;stroke-width:0.8}
+    .csym{font-family:-apple-system,sans-serif;font-size:8px;font-weight:700;fill:#9a7100}
+    .bm{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:22px;font-weight:700;fill:#ffffff;letter-spacing:-0.3px}
+    .bs{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:9px;font-weight:400;fill:rgba(255,255,255,0.5);letter-spacing:2px}
+    .ba{fill:#00d28c}
+  </style>
+</defs>
+<!-- Radar merkez: 32,32 r:28 -->
+<circle cx="32" cy="32" r="10" class="ring1"/>
+<circle cx="32" cy="32" r="19" class="ring2"/>
+<circle cx="32" cy="32" r="28" class="ring3"/>
+<line x1="4" y1="32" x2="60" y2="32" class="gl"/>
+<line x1="32" y1="4" x2="32" y2="60" class="gl"/>
+<path d="M32,32 L32,4 A28,28 0 0,1 56,46 Z" class="sweep"/>
+<line x1="32" y1="32" x2="32" y2="4" stroke="#00d28c" stroke-width="1.2" stroke-opacity="0.6"/>
+<line x1="32" y1="32" x2="56" y2="46" stroke="#00d28c" stroke-width="1.2" stroke-opacity="0.6"/>
+<circle cx="32" cy="32" r="3" class="dc"/>
+<circle cx="32" cy="32" r="6" class="dp"/>
+<circle cx="46" cy="18" r="2.5" fill="#00d28c" opacity="0.9"/>
+<circle cx="46" cy="18" r="5" fill="none" stroke="#00d28c" stroke-width="0.8" opacity="0.35"/>
+<circle cx="42" cy="38" r="1.8" fill="#00d28c" opacity="0.55"/>
+<!-- Para ikonları -->
+<circle cx="490" cy="16" r="12" class="coin"/>
+<text x="490" y="21" text-anchor="middle" class="csym" font-size="10">₺</text>
+<circle cx="507" cy="26" r="8" class="coin" opacity="0.7"/>
+<text x="507" y="31" text-anchor="middle" class="csym" font-size="8">$</text>
+<circle cx="498" cy="40" r="6" class="coin" opacity="0.45"/>
+<text x="498" y="45" text-anchor="middle" class="csym" font-size="7">€</text>
+<!-- Trend çizgisi -->
+<polyline points="468,58 476,52 482,55 490,48 498,42 506,36" fill="none" stroke="#00d28c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="502,32 506,36 502,40" fill="none" stroke="#00d28c" stroke-width="1.5" stroke-linecap="round"/>
+<!-- Yazılar -->
+<text x="72" y="30" class="bm">Hibe Teşvik <tspan class="ba">Radar</tspan></text>
+<text x="74" y="46" class="bs">ÇORLU TİCARET VE SANAYİ ODASI — TÜRKİYE HİBE MOTORU</text>
+</svg>
