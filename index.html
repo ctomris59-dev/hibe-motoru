@@ -162,7 +162,7 @@ function App(){
   return <div style={{minHeight:"100vh",background:"var(--page)"}}>
 
     {/* ── HEADER ── */}
-    <div style={{background:"linear-gradient(135deg, #0f1f45 0%, #1a3a6e 100%)",borderBottom:"1px solid rgba(255,255,255,0.08)",position:"relative",overflow:"hidden"}}>
+    <div style={{background:"linear-gradient(to right, #0f1f45 0%, #1a3a6e 55%, #3a6aae 75%, #ffffff 100%)",borderBottom:"1px solid rgba(200,210,230,0.5)",position:"relative",overflow:"hidden"}}>
       <svg style={{position:"absolute",right:0,top:0,width:320,height:"100%",pointerEvents:"none",opacity:0.35}} viewBox="0 0 320 120" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
         <circle cx="280" cy="20" r="80" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
         <circle cx="280" cy="20" r="55" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
@@ -193,7 +193,7 @@ function App(){
             </div>
           </div>
           <img src="ctso-logo.png" alt="Çorlu TSO logosu" className="hide-mobile"
-            style={{width:72,height:72,borderRadius:8,objectFit:"contain",flexShrink:0}}
+            style={{width:72,height:72,borderRadius:8,objectFit:"contain",flexShrink:0,filter:"drop-shadow(0 2px 6px rgba(0,0,0,0.15))"}}
             onError={e=>e.target.style.display="none"}/>
         </div>
 
