@@ -70,13 +70,22 @@ function App(){
     return ["Tüm Sektörler",...new Set(data.flatMap(h=>h.sektor).filter(s=>s!=="Tüm Sektörler"))].sort((a,b)=>a==="Tüm Sektörler"?-1:a.localeCompare(b,"tr"));
   },[data]);
 
-  const filtered=useMemo(()=>data.filter(h=>{
-    if(sektor!=="Tüm Sektörler"&&!h.sektor.includes(sektor)&&!h.sektor.includes("Tüm Sektörler"))return false;
-    if(grup!=="Tümü"&&h.grup!==grup)return false;
-    if(durum!=="Tümü"&&h.durum!==durum)return false;
-    if(arama){const q=arama.toLowerCase();if(!h.baslik.toLowerCase().includes(q)&&!h.kaynak.toLowerCase().includes(q)&&!h.aciklama.toLowerCase().includes(q)&&!h.grup.toLowerCase().includes(q))return false;}
-    return true;
-  }),[data,sektor,grup,durum,arama]);
+  const filtered=useMemo(()=>{
+    const durumSira={"kapanmak üzere":0,"açık":1,"kapandı":2};
+    return data.filter(h=>{
+      if(sektor!=="Tüm Sektörler"&&!h.sektor.includes(sektor)&&!h.sektor.includes("Tüm Sektörler"))return false;
+      if(grup!=="Tümü"&&h.grup!==grup)return false;
+      if(durum!=="Tümü"&&h.durum!==durum)return false;
+      if(arama){const q=arama.toLowerCase();if(!h.baslik.toLowerCase().includes(q)&&!h.kaynak.toLowerCase().includes(q)&&!h.aciklama.toLowerCase().includes(q)&&!h.grup.toLowerCase().includes(q))return false;}
+      return true;
+    }).sort((a,b)=>{
+      const ds=(durumSira[a.durum]??1)-(durumSira[b.durum]??1);
+      if(ds!==0) return ds;
+      const aSon=a.son==="Süresiz"?new Date("2099-12-31"):new Date(a.son);
+      const bSon=b.son==="Süresiz"?new Date("2099-12-31"):new Date(b.son);
+      return aSon-bSon;
+    });
+  },[data,sektor,grup,durum,arama]);
 
   const acik=data.filter(h=>h.durum==="açık").length;
   const yakin=data.filter(h=>h.durum==="kapanmak üzere").length;
