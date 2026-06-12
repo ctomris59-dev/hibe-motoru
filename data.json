@@ -1,20 +1,5 @@
 [
   {
-    "id": 93,
-    "baslik": "Girişim Sermayesi Yatırım Fonları Yatırımları",
-    "tur": "Yatırım Teşviki",
-    "grup": "Finansman Destekleri",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "son": "Süresiz",
-    "aciklama": "KOBİ'lerin ilk Ar-Ge projelerini destekleyerek yenilik kapasitelerini geliştirmelerini ve Ar-Ge kültürü oluşturmalarını sağlar.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekler/3/destek-programlari",
-    "kaynak": "KOSGEB",
-    "durum": "açık"
-  },
-  {
     "id": 9,
     "baslik": "KOSGEB TEKMER Vergi ve SGK Avantajları",
     "tur": "Vergi/SGK Teşviki",
@@ -26,7 +11,7 @@
       "Üretim"
     ],
     "tutar": "Gelir vergisi muafiyeti + SGK desteği",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "KOSGEB bünyesindeki Teknoloji Geliştirme Merkezleri'nde faaliyet gösteren Ar-Ge firmalarına vergisel avantajlar.",
     "url": "https://www.kosgeb.gov.tr"
@@ -108,7 +93,7 @@
       "Tarım"
     ],
     "tutar": "Vergi indirimi + SGK + gümrük muafiyeti",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Yatırım tutarına göre kademeli vergi indirimi, SGK işveren payı desteği ve gümrük muafiyeti.",
     "url": "https://www.sanayi.gov.tr"
@@ -123,7 +108,7 @@
       "Üretim"
     ],
     "tutar": "Artırımlı destek oranları + arazi tahsisi",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Organize Sanayi Bölgelerinde yapılan yatırımlara artırımlı vergi indirimi ve arazi tahsisi.",
     "url": "https://www.sanayi.gov.tr"
@@ -141,7 +126,7 @@
       "Üretim"
     ],
     "tutar": "%50 vergi indirimi + faiz desteği + arazi",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Yurt içi üretimi artıracak stratejik önemdeki yatırımlara üst düzey teşvik paketi.",
     "url": "https://www.sanayi.gov.tr"
@@ -157,7 +142,7 @@
       "Yazılım"
     ],
     "tutar": "1.000.000 ₺'ye kadar",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Teknoloji tabanlı genç girişimcilere iş planı karşılığı geri ödemesiz sermaye desteği.",
     "url": "https://www.sanayi.gov.tr"
@@ -175,7 +160,7 @@
       "Kimya"
     ],
     "tutar": "Ar-Ge harcamalarının %100 + prim desteği",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "50+ Ar-Ge personeli istihdam eden firmalara Ar-Ge merkezi belgesi ve kapsamlı vergi avantajı.",
     "url": "https://www.sanayi.gov.tr"
@@ -190,7 +175,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Harcamaların %50–75'i (5 yıl)",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Türk markalarının küresel piyasalarda bilinirliğini artırmaya yönelik en kapsamlı marka hibesi.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -205,7 +190,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Harcamaların %50'si (max 200.000 ₺/fuar)",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "İhracatçı firmaların yurt dışı fuarlara katılım, stand ve tanıtım giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -220,7 +205,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Kira giderlerinin %60'ı (4 yıl)",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Firmaların yurt dışında ofis, showroom veya depo açma giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -235,7 +220,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Giderlerin %60'ı (max 200.000 ₺)",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Hedef pazarlara yönelik pazar araştırması ve pazara giriş raporu hazırlama giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -250,7 +235,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Giderlerin %50'si",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Firmaların markalarını yurt dışında tescil ettirme başvuru ve danışmanlık giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -265,7 +250,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Platform/yazılım giderlerinin %50'si",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "KOBİ'lerin uluslararası e-ticaret platformlarında yer alması için platform üyelik ve pazarlama desteği.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -280,7 +265,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Harcamaların %60'ı",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Yurt dışı medya, dijital pazarlama ve tanıtım giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -295,7 +280,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Danışmanlık/hukuk giderlerinin %60'ı",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Yurt dışındaki şirket, marka veya pay satın alımlarında danışmanlık, denetim ve değerleme gideri desteği.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
@@ -662,7 +647,7 @@
       "Üretim"
     ],
     "tutar": "Vergi indirimi + SGK + gümrük muafiyeti",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Güneş enerjisi santrali yatırımları için bölgesel teşvik kapsamında yatırım teşvik belgesi.",
     "url": "https://www.sanayi.gov.tr"
@@ -830,7 +815,7 @@
       "Taşımacılık"
     ],
     "tutar": "Bölgesel vergi indirimi + SGK desteği",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Lojistik merkezi ve depolama yatırımları için bölgesel teşvik uygulaması.",
     "url": "https://www.sanayi.gov.tr"
@@ -860,7 +845,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "Tasarım giderlerinin %70'i",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Ürün tasarımı, endüstriyel tasarım ve ambalaj tasarımı projelerine destek.",
     "url": "https://www.sanayi.gov.tr"
@@ -877,7 +862,7 @@
       "Sağlık"
     ],
     "tutar": "Ar-Ge merkezi belgesi + vergi avantajı",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Kimya ve ilaç firmalarının Ar-Ge merkezi kurmasına yönelik vergi teşviki ve prim desteği.",
     "url": "https://www.sanayi.gov.tr"
@@ -892,7 +877,7 @@
       "Sağlık"
     ],
     "tutar": "Artırımlı vergi indirimi + SGK desteği",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Hastane, klinik ve tıbbi cihaz üretim yatırımlarına artırımlı teşvik belgesi.",
     "url": "https://www.sanayi.gov.tr"
@@ -908,7 +893,7 @@
       "Tarım"
     ],
     "tutar": "Bölgesel artırımlı destek",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Gıda işleme ve ambalajlama yatırımlarına bölgesel yatırım teşviki.",
     "url": "https://www.sanayi.gov.tr"
@@ -923,7 +908,7 @@
       "İnşaat"
     ],
     "tutar": "Bölgesel teşvik kapsamında",
-    "durum": "kapandı",
+    "durum": "açık",
     "son": "Süresiz",
     "aciklama": "Altyapı, konut ve ticari yapı yatırımları için bölgesel yatırım teşviki.",
     "url": "https://www.sanayi.gov.tr"
@@ -942,5 +927,88 @@
     "son": "Süresiz",
     "aciklama": "Sanayi kuruluşları ile araştırma kurumlarının Ar-Ge işbirliği kurmasını sağlayan proje pazarlarına destek.",
     "url": "https://www.tubitak.gov.tr"
+  },
+  {
+    "id": 93,
+    "baslik": "KOSGEB Kapasite Geliştirme Destek Programı – 2026 Yılı 2. Dönem",
+    "tur": "Hibe",
+    "kaynak": "KOSGEB",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "KOBİ başı değişken (2025'te 3.395 firmaya 54,7 mlr ₺)",
+    "durum": "kapanmak üzere",
+    "son": "2026-06-30",
+    "aciklama": "KOBİ'lerin verimliliğini, üretim kapasitesini ve kurumsal yapısını güçlendirmeye yönelik ölçek büyütme yatırımları. 6 Haziran 2026 itibarıyla 2. dönem başvuruları açıldı.",
+    "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9391/ureten-kobilere-guclu-destek-yeni-basvuru-donemi-basladi"
+  },
+  {
+    "id": 94,
+    "baslik": "KOSGEB Girişimci Destek Programı – İş Geliştirme Çağrısı 2026/2",
+    "tur": "Hibe",
+    "kaynak": "KOSGEB",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "2.000.000 ₺'ye kadar (kadın/genç: +150.000 ₺)",
+    "durum": "kapandı",
+    "son": "2026-05-08",
+    "aciklama": "20 Nisan – 8 Mayıs 2026 tarihleri arasında alınan 2026/2 dönemi başvuruları kapandı. 2026/3 dönemi bekleniyor.",
+    "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9374/girisimci-destek-programi-is-gelistirme-cagrisi-2026-yili-2-donem-basvurulari-basladi"
+  },
+  {
+    "id": 95,
+    "baslik": "TÜBİTAK 1501 Sanayi Ar-Ge Destek Programı – 2026/2 Çağrı (Temmuz)",
+    "tur": "Hibe",
+    "kaynak": "TÜBİTAK",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Üretim",
+      "Teknoloji",
+      "Kimya",
+      "Savunma",
+      "Yazılım"
+    ],
+    "tutar": "Proje maliyetinin %75'i; bütçe üst sınırı yok",
+    "durum": "açık",
+    "son": "Süresiz",
+    "aciklama": "Her yıl Ocak ve Temmuz aylarında iki çağrı açılır. 2026/1 çağrısı kapandı (30 Mart). 2026/2 çağrısının Temmuz 2026'da açılması bekleniyor.",
+    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501"
+  },
+  {
+    "id": 96,
+    "baslik": "TÜBİTAK 1507 KOBİ Ar-Ge Başlangıç Destek Programı – 2026/2 Çağrı (Temmuz)",
+    "tur": "Hibe",
+    "kaynak": "TÜBİTAK",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Üretim",
+      "Teknoloji",
+      "Yazılım"
+    ],
+    "tutar": "Proje maliyetinin %75'i; KOBİ'lere özel",
+    "durum": "açık",
+    "son": "Süresiz",
+    "aciklama": "KOBİ ölçeğindeki firmaların Ar-Ge projelerine hibe. 2026/1 çağrısı kapandı (13 Nisan). 2026/2 çağrısının Temmuz 2026'da açılması bekleniyor.",
+    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1507"
+  },
+  {
+    "id": 97,
+    "baslik": "TÜBİTAK 1512 BiGG – 2026 Yılı 1. Tohum Öncesi Yatırım Çağrısı",
+    "tur": "Hibe",
+    "kaynak": "TÜBİTAK",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Üretim"
+    ],
+    "tutar": "Tohum öncesi yatırım + mentörlük",
+    "durum": "açık",
+    "son": "Süresiz",
+    "aciklama": "Yatırım Tabanlı Girişimcilik Destek Programı (1812) kapsamında 2026/1 Tohum Öncesi Yatırım Çağrısı açık.",
+    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1512"
   }
 ]
