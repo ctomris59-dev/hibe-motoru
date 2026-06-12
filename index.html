@@ -11,30 +11,68 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#e8edf7;color:#1a1a2e;-webkit-font-smoothing:antialiased;}
+
+:root {
+  --bg-main: #e8edf7;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --text-main: #1a1a2e;
+  --text-muted: #555;
+  --text-light: #888;
+  --navy: #0f1f45;
+  --navy2: #1a2f5e;
+  --green: #00d28c;
+  --gold: #f5c842;
+  --red: #e8404a;
+  --amber: #f59820;
+  --border: rgba(15, 31, 69, 0.1);
+  --input-bg: #f8f9fc;
+  --bg-dot: #b0bdd4;
+  --wizard-bg: #f0f4fc;
+}
+
+body.dark-mode {
+  --bg-main: #0b111e;
+  --bg-card: rgba(21, 31, 50, 0.94);
+  --text-main: #f1f5f9;
+  --text-muted: #cbd5e1;
+  --text-light: #94a3b8;
+  --navy: #0f172a;
+  --navy2: #38bdf8;
+  --border: rgba(255, 255, 255, 0.1);
+  --input-bg: #1e293b;
+  --bg-dot: #334155;
+  --wizard-bg: #1e293b;
+}
+
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg-main);color:var(--text-main);-webkit-font-smoothing:antialiased;transition:background 0.3s, color 0.3s;}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='1.2' fill='%23b0bdd4'/%3E%3C/svg%3E");
-  background-size:24px 24px;opacity:0.55;}
-body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse at 8% 50%,rgba(15,31,69,0.06) 0%,transparent 55%),
-             radial-gradient(ellipse at 92% 20%,rgba(0,210,140,0.05) 0%,transparent 50%);}
+  background-size:24px 24px;opacity:0.3;}
+body.dark-mode::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='1.2' fill='%23334155'/%3E%3C/svg%3E");
+}
+
 #root{position:relative;z-index:1;}
-:root{--navy:#0f1f45;--navy2:#1a2f5e;--green:#00d28c;--gold:#f5c842;--red:#e8404a;--amber:#f59820;--border:rgba(15,31,69,0.1);}
 select,input{outline:none;font-family:inherit;}
-select:focus,input:focus{border-color:var(--navy2)!important;box-shadow:0 0 0 3px rgba(26,47,94,0.1);}
+select:focus,input:focus{border-color:var(--navy2)!important;box-shadow:0 0 0 3px rgba(56,189,248,0.2);}
+
 .chip{padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid transparent;white-space:nowrap;font-weight:500;font-family:inherit;transition:all .15s;}
 .chip-active{background:var(--navy2);color:#fff;border-color:var(--navy2);}
-.chip-inactive{background:#fff;color:#555;border-color:var(--border);}
+.chip-inactive{background:var(--bg-card);color:var(--text-muted);border-color:var(--border);}
 .chip-inactive:hover{border-color:var(--navy2);color:var(--navy2);}
+
 .fchip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid transparent;white-space:nowrap;font-weight:500;font-family:inherit;transition:all .15s;}
 .fchip-active{background:#7c3aed;color:#fff;border-color:#7c3aed;}
-.fchip-inactive{background:#fff;color:#666;border-color:var(--border);}
+.fchip-inactive{background:var(--bg-card);color:var(--text-muted);border-color:var(--border);}
 .fchip-inactive:hover{border-color:#7c3aed;color:#7c3aed;}
+
 button{font-family:inherit;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skeleton{background:linear-gradient(90deg,#e8eaf0 25%,#d8dae4 50%,#e8eaf0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:12px;height:80px;margin-bottom:8px;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-.pulse{animation:pulse 1.8s infinite;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(1.03);}}
+.pulse{animation:pulse 1.5s infinite;}
+
 @media(max-width:640px){
   .hide-mobile{display:none!important;}
   .filter-cols{grid-template-columns:1fr!important;}
@@ -48,8 +86,8 @@ button{font-family:inherit;}
 <script type="text/babel">
 const {useState,useMemo,useCallback,useEffect}=React;
 
-const GRUPLAR=["Hibe Programları","Yatırım Teşvikleri","İhracat ve Uluslararasılaşma","İhracat Finansmanı (Eximbank)","Kredi Garantisi (KGF)","Uygun Faizli Krediler","AB ve Uluslararası Hibeler","Bölgesel Kalkınma (Ajanslar)","Vergi ve SGK Avantajları","İstihdam ve Personel Destekleri","Tarım Destekleri","Enerji ve Yeşil Dönüşüm","Turizm Destekleri","Savunma Sektörü"];
-const GRUP_ICONS={"Hibe Programları":"ti-gift","Yatırım Teşvikleri":"ti-trending-up","İhracat ve Uluslararasılaşma":"ti-world","İhracat Finansmanı (Eximbank)":"ti-ship","Kredi Garantisi (KGF)":"ti-shield-check","Uygun Faizli Krediler":"ti-cash","AB ve Uluslararası Hibeler":"ti-flag","Bölgesel Kalkınma (Ajanslar)":"ti-map-pin","Vergi ve SGK Avantajları":"ti-receipt-tax","İstihdam ve Personel Destekleri":"ti-users","Tarım Destekleri":"ti-plant","Enerji ve Yeşil Dönüşüm":"ti-leaf","Turizm Destekleri":"ti-beach","Savunma Sektörü":"ti-shield"};
+const GRUPLAR=["Tümü","Çorlu'ya Özel (Bölgesel)","Hibe Programları","Yatırım Teşvikleri","İhracat ve Uluslararasılaşma","İhracat Finansmanı (Eximbank)","Kredi Garantisi (KGF)","Uygun Faizli Krediler","AB ve Uluslararası Hibeler","Bölgesel Kalkınma (Ajanslar)","Vergi ve SGK Avantajları","İstihdam ve Personel Destekleri","Tarım Destekleri","Enerji ve Yeşil Dönüşüm","Turizm Destekleri","Savunma Sektörü"];
+const GRUP_ICONS={"Çorlu'ya Özel (Bölgesel)":"ti-map-pin-filled","Hibe Programları":"ti-gift","Yatırım Teşvikleri":"ti-trending-up","İhracat ve Uluslararasılaşma":"ti-world","İhracat Finansmanı (Eximbank)":"ti-ship","Kredi Garantisi (KGF)":"ti-shield-check","Uygun Faizli Krediler":"ti-cash","AB ve Uluslararası Hibeler":"ti-flag","Bölgesel Kalkınma (Ajanslar)":"ti-map-pin","Vergi ve SGK Avantajları":"ti-receipt-tax","İstihdam ve Personel Destekleri":"ti-users","Tarım Destekleri":"ti-plant","Enerji ve Yeşil Dönüşüm":"ti-leaf","Turizm Destekleri":"ti-beach","Savunma Sektörü":"ti-shield"};
 const DURUMLAR=["Tümü","Açık","Kapanmak üzere","Kapandı"];
 const TUTAR_FILTRELER=[
   {label:"Tümü",key:"tumu"},
@@ -70,17 +108,23 @@ const DURUM_CFG={
   "kapandı":{bg:"#fef2f2",color:"#991b1b",border:"#fecaca",icon:"ti-circle-x",label:"Kapandı"},
 };
 
+// ── 1. KAPANMAYA KAÇ GÜN KALDI SAYAÇ BADGE ──────────────────────────────────
 function GeriSayim({son}){
   if(!son||son==="Süresiz") return null;
   const bugun=new Date(); bugun.setHours(0,0,0,0);
   const kalan=Math.ceil((new Date(son)-bugun)/86400000);
-  if(kalan>14||kalan<0) return null;
-  const renk=kalan<=3?"#e8404a":kalan<=7?"#f59820":"#b45309";
-  const bg=kalan<=3?"#fef2f2":kalan<=7?"#fff7e6":"#fffbeb";
-  const border=kalan<=3?"#fecaca":kalan<=7?"#fcd77a":"#fde68a";
-  return <span className={kalan<=3?"pulse":""} style={{display:"inline-flex",alignItems:"center",gap:3,background:bg,color:renk,border:`1px solid ${border}`,borderRadius:20,padding:"2px 9px",fontSize:11,fontWeight:700}}>
-    <i className="ti ti-alarm" style={{fontSize:11}} aria-hidden="true"/>
-    {kalan===0?"Bugün son gün!":kalan===1?"Son 1 gün!":`Son ${kalan} gün!`}
+  if(kalan<0) return <span style={{background:"#f1f5f9",color:"#64748b",borderRadius:20,padding:"2px 9px",fontSize:11,fontWeight:600}}>Süre Doldu</span>;
+  
+  const isAcil = kalan <= 5;
+  return <span className={isAcil ? "pulse" : ""} style={{
+    display:"inline-flex",alignItems:"center",gap:3,
+    background: isAcil ? "#fef2f2" : "#fff7e6",
+    color: isAcil ? "#e8404a" : "#b45309",
+    border: `1px solid ${isAcil ? "#fecaca" : "#fcd77a"}`,
+    borderRadius:20,padding:"2px 9px",fontSize:11,fontWeight:700
+  }}>
+    <i className="ti ti-hourglass-high" style={{fontSize:11}} aria-hidden="true"/>
+    {kalan===0 ? "Bugün Son Gün!" : kalan===1 ? "Yarın Kapanıyor!" : `Son ${kalan} Gün!`}
   </span>;
 }
 
@@ -93,13 +137,13 @@ function DurumBadge({durum}){
 }
 
 function StatCard({icon,value,label,color}){
-  return <div style={{background:"rgba(255,255,255,0.92)",border:"1px solid var(--border)",borderRadius:12,padding:"14px 18px",display:"flex",alignItems:"center",gap:12,flex:1,minWidth:0}}>
+  return <div style={{background:"var(--bg-card)",border:"1px solid var(--border)",borderRadius:12,padding:"14px 18px",display:"flex",alignItems:"center",gap:12,flex:1,minWidth:0}}>
     <div style={{width:40,height:40,borderRadius:10,background:color+"22",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
       <i className={`ti ${icon}`} style={{fontSize:20,color}} aria-hidden="true"/>
     </div>
     <div style={{minWidth:0}}>
-      <div style={{fontSize:22,fontWeight:700,color:"var(--navy)",lineHeight:1}}>{value}</div>
-      <div style={{fontSize:12,color:"#888",marginTop:2}}>{label}</div>
+      <div style={{fontSize:22,fontWeight:700,color:"var(--text-main)",lineHeight:1}}>{value}</div>
+      <div style={{fontSize:12,color:"var(--text-light)",marginTop:2}}>{label}</div>
     </div>
   </div>;
 }
@@ -109,16 +153,10 @@ function RadarLogo(){
     <circle cx="22" cy="22" r="7" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
     <circle cx="22" cy="22" r="14" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
     <circle cx="22" cy="22" r="20" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5"/>
-    <line x1="2" y1="22" x2="42" y2="22" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
-    <line x1="22" y1="2" x2="22" y2="42" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5"/>
     <path d="M22,22 L22,2 A20,20 0 0,1 39,33 Z" fill="rgba(0,210,140,0.2)"/>
     <line x1="22" y1="22" x2="22" y2="2" stroke="#00d28c" strokeWidth="1.2" strokeOpacity="0.7"/>
-    <line x1="22" y1="22" x2="39" y2="33" stroke="#00d28c" strokeWidth="1.2" strokeOpacity="0.7"/>
     <circle cx="22" cy="22" r="3" fill="#00d28c"/>
-    <circle cx="22" cy="22" r="5.5" fill="none" stroke="#00d28c" strokeWidth="1.2"/>
     <circle cx="33" cy="11" r="2.5" fill="#00d28c" opacity="0.9"/>
-    <circle cx="33" cy="11" r="5" fill="none" stroke="#00d28c" strokeWidth="0.8" opacity="0.3"/>
-    <circle cx="30" cy="28" r="1.8" fill="#00d28c" opacity="0.5"/>
   </svg>;
 }
 
@@ -126,10 +164,10 @@ function PaylasBtnleri({program, onClose}){
   const metin=`${program.baslik}\nKaynak: ${program.kaynak}\nTutar: ${program.tutar}\nSon başvuru: ${program.son==="Süresiz"?"Süresiz":new Date(program.son).toLocaleDateString("tr-TR")}\nDetay: ${program.url}`;
   const waUrl=`https://wa.me/?text=${encodeURIComponent(metin)}`;
   const mailUrl=`mailto:?subject=${encodeURIComponent(program.baslik)}&body=${encodeURIComponent(metin)}`;
-  return <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:"1rem"}/* safe */} onClick={onClose}>
-    <div style={{background:"#fff",borderRadius:16,padding:"1.5rem",maxWidth:360,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,0.2)"}} onClick={e=>e.stopPropagation()}>
-      <div style={{fontWeight:600,fontSize:15,color:"var(--navy)",marginBottom:4}}>Programı Paylaş</div>
-      <div style={{fontSize:13,color:"#888",marginBottom:"1rem"}}>{program.baslik}</div>
+  return <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.55)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:"1rem"}/* safe */} onClick={onClose}>
+    <div style={{background:"var(--bg-card)",borderRadius:16,padding:"1.5rem",maxWidth:360,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,0.3)"}} onClick={e=>e.stopPropagation()}>
+      <div style={{fontWeight:600,fontSize:15,color:"var(--text-main)",marginBottom:4}}>Programı Paylaş</div>
+      <div style={{fontSize:13,color:"var(--text-light)",marginBottom:"1rem"}}>{program.baslik}</div>
       <div style={{display:"flex",flexDirection:"column",gap:8}}>
         <a href={waUrl} target="_blank" rel="noopener noreferrer"
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#e7f9ef",border:"1px solid #b2e8c8",borderRadius:10,textDecoration:"none",color:"#1a6e3a",fontWeight:500,fontSize:14}}>
@@ -140,11 +178,11 @@ function PaylasBtnleri({program, onClose}){
           <i className="ti ti-mail" style={{fontSize:20,color:"#4f46e5"}} aria-hidden="true"/>E-posta ile Paylaş
         </a>
         <button onClick={()=>{navigator.clipboard?.writeText(program.url);onClose();}}
-          style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#f8f9fc",border:"1px solid var(--border)",borderRadius:10,cursor:"pointer",color:"#555",fontWeight:500,fontSize:14}}>
+          style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"var(--input-bg)",border:"1px solid var(--border)",borderRadius:10,cursor:"pointer",color:"var(--text-main)",fontWeight:500,fontSize:14}}>
           <i className="ti ti-link" style={{fontSize:20,color:"#888"}} aria-hidden="true"/>Linki Kopyala
         </button>
       </div>
-      <button onClick={onClose} style={{marginTop:"0.75rem",width:"100%",padding:"8px",background:"transparent",border:"none",cursor:"pointer",color:"#aaa",fontSize:13}}>Kapat</button>
+      <button onClick={onClose} style={{marginTop:"0.75rem",width:"100%",padding:"8px",background:"transparent",border:"none",cursor:"pointer",color:"var(--text-light)",fontSize:13}}>Kapat</button>
     </div>
   </div>;
 }
@@ -153,6 +191,18 @@ function App(){
   const [data,setData]=useState([]);
   const [yukleniyor,setYukleniyor]=useState(true);
   const [hata,setHata]=useState(null);
+  
+  // ── 2. KARANLIK MOD STATE BAŞLANGICI ──────────────────────────────────────
+  const [darkMode, setDarkMode] = useState(()=>{
+    return localStorage.getItem("htr_theme") === "dark";
+  });
+
+  // ── 4. SİHİRBAZ STATE YAPISI ──────────────────────────────────────────────
+  const [wizardSektor, setWizardSektor] = useState("");
+  const [wizardOlcek, setWizardOlcek] = useState("");
+  const [wizardHedef, setWizardHedef] = useState("");
+  const [isWizardActive, setIsWizardActive] = useState(false);
+
   const [sektor,setSektor]=useState("Tüm Sektörler");
   const [grup,setGrup]=useState("Tümü");
   const [durum,setDurum]=useState("Tümü");
@@ -165,6 +215,16 @@ function App(){
   });
   const [sadeceFavori,setSadeceFavori]=useState(false);
   const [paylasMod,setPaylasMod]=useState(null);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("htr_theme", "dark");
+    } else {
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("htr_theme", "light");
+    }
+  }, [darkMode]);
 
   useEffect(()=>{
     const urls=['./data.json','../data.json','/data.json'];
@@ -200,12 +260,32 @@ function App(){
     return["Tüm Sektörler",...new Set(data.flatMap(h=>h.sektor).filter(s=>s!=="Tüm Sektörler"))].sort((a,b)=>a==="Tüm Sektörler"?-1:a.localeCompare(b,"tr"));
   },[data]);
 
+  // Sihirbaz Eşleşme Oranı Hesaplayıcı Mantık Katsayısı
+  const matchScore = useCallback((h) => {
+    if (!isWizardActive) return 0;
+    let score = 0;
+    const hSektor = h.sektor.map(s => s.toLocaleLowerCase("tr-TR"));
+    const hDesc = (h.baslik + " " + h.aciklama + " " + h.grup).toLocaleLowerCase("tr-TR");
+
+    if (wizardSektor && (hSektor.includes(wizardSektor.toLocaleLowerCase("tr-TR")) || hSektor.includes("tüm sektörler"))) score += 40;
+    if (wizardOlcek && (hDesc.includes(wizardOlcek.toLocaleLowerCase("tr-TR")) || hDesc.includes("kob") || hDesc.includes("esnaf") || hDesc.includes("firma"))) score += 30;
+    if (wizardHedef && hDesc.includes(wizardHedef.toLocaleLowerCase("tr-TR"))) score += 30;
+
+    return score;
+  }, [wizardSektor, wizardOlcek, wizardHedef, isWizardActive]);
+
   const filtered=useMemo(()=>{
     const durumSira={"kapanmak üzere":0,"açık":1,"kapandı":2};
     return data.filter(h=>{
       if(sadeceFavori&&!favoriler.includes(h.id))return false;
-      if(sektor!=="Tüm Sektörler"&&!h.sektor.includes(sektor)&&!h.sektor.includes("Tüm Sektörler"))return false;
-      if(grup!=="Tümü"&&h.grup!==grup)return false;
+      
+      // Sihirbaz aktifse genel filtreleri ezmesin, sihirbaza göre süzsün
+      if (isWizardActive) {
+        if (matchScore(h) < 40) return false;
+      } else {
+        if(sektor!=="Tüm Sektörler"&&!h.sektor.includes(sektor)&&!h.sektor.includes("Tüm Sektörler"))return false;
+        if(grup!=="Tümü"&&h.grup!==grup)return false;
+      }
       
       if(durum!=="Tümü"){
         const itemDurum = (h.durum || "").toLocaleLowerCase("tr-TR").trim();
@@ -217,14 +297,13 @@ function App(){
       if(tutarFiltre==="ab"&&!h.grup.includes("AB")&&!h.kaynak.includes("AB")&&!h.kaynak.includes("Avrupa"))return false;
       if(tutarFiltre==="kgf"&&!h.grup.includes("KGF")&&!h.kaynak.includes("KGF"))return false;
       
-      // Akıllı Sayısal Bütçe Filtresi
-      const hedefButce = BUTCELER[seciliButceIdx];
-      if (hedefButce && (hedefButce.min > 0 || hedefButce.max < Infinity)) {
+      const hedonButce = BUTCELER[seciliButceIdx];
+      if (hedonButce && (hedonButce.min > 0 || hedonButce.max < Infinity)) {
         const hibeTutari = tutariSayiyaCevir(h.tutar);
         if (hibeTutari > 0) {
-          if (hibeTutari < hedefButce.min || hibeTutari > hedefButce.max) return false;
+          if (hibeTutari < hedonButce.min || hibeTutari > hedonButce.max) return false;
         } else {
-          if (hedefButce.min > 5000000) return false; 
+          if (hedonButce.min > 5000000) return false; 
         }
       }
       
@@ -238,6 +317,10 @@ function App(){
       }
       return true;
     }).sort((a,b)=>{
+      // Sihirbaz aktifse en yüksek puan alanı en tepeye yerleştir
+      if (isWizardActive) {
+        return matchScore(b) - matchScore(a);
+      }
       const dStrA = (a.durum || "").toLocaleLowerCase("tr-TR").trim();
       const dStrB = (b.durum || "").toLocaleLowerCase("tr-TR").trim();
       const ds=(durumSira[dStrA]??1)-(durumSira[dStrB]??1);
@@ -246,15 +329,13 @@ function App(){
       const bSon=b.son==="Süresiz"?new Date("2099-12-31"):new Date(b.son);
       return aSon-bSon;
     });
-  },[data,sektor,grup,durum,tutarFiltre,seciliButceIdx,arama,sadeceFavori,favoriler]);
+  },[data,sektor,grup,durum,tutarFiltre,seciliButceIdx,arama,sadeceFavori,favoriler,isWizardActive,matchScore]);
 
   const acik=data.filter(h=>(h.durum || "").toLocaleLowerCase("tr-TR").trim()==="açık").length;
   const yakin=data.filter(h=>(h.durum || "").toLocaleLowerCase("tr-TR").trim()==="kapanmak üzere").length;
   
-  const aktif=sektor!=="Tüm Sektörler"||grup!=="Tümü"||durum!=="Tümü"||tutarFiltre!=="tumu"||seciliButceIdx!==0||arama||sadeceFavori;
-  const sifirla=()=>{setSektor("Tüm Sektörler");setGrup("Tümü");setDurum("Tümü");setTutarFiltre("tumu");setSeciliButceIdx(0);setArama("");setSadeceFavori(false);};
-  const toggle=useCallback(id=>setExpanded(p=>p===id?null:id),[]);
-  
+  const aktif=sektor!=="Tüm Sektörler"||grup!=="Tümü"||durum!=="Tümü"||tutarFiltre!=="tumu"||seciliButceIdx!==0||arama||sadeceFavori||isWizardActive;
+  const sifirla=()=>{setSektor("Tüm Sektörler");setGrup("Tümü");setDurum("Tümü");setTutarFiltre("tumu");setSeciliButceIdx(0);setArama("");setSadeceFavori(false);setIsWizardActive(false);setWizardSektor("");setWizardOlcek("");setWizardHedef("");};
   const borderFor=d=>{
     const dStr = (d || "").toLocaleLowerCase("tr-TR").trim();
     return dStr==="açık"?"#00d28c":dStr==="kapanmak üzere"?"#f59820":"#e8404a";
@@ -263,16 +344,15 @@ function App(){
   return <div style={{minHeight:"100vh",background:"transparent"}}>
 
     {/* ── HEADER ── */}
-    <div style={{background:"linear-gradient(to right, #0f1f45 0%, #1a3a6e 55%, #3a6aae 75%, #ffffff 100%)",borderBottom:"1px solid rgba(200,210,230,0.5)",position:"relative",overflow:"hidden"}}>
-      <svg style={{position:"absolute",right:0,top:0,width:320,height:"100%",pointerEvents:"none",opacity:0.35}} viewBox="0 0 320 120" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-        <circle cx="280" cy="20" r="80" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-        <circle cx="280" cy="20" r="55" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
-        <circle cx="280" cy="20" r="30" fill="none" stroke="rgba(0,210,140,0.3)" strokeWidth="1"/>
-        <circle cx="60" cy="100" r="60" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8"/>
-      </svg>
+    <div style={{background:"linear-gradient(to right, #0f1f45 0%, #1a3a6e 55%, #3a6aae 75%)",borderBottom:"1px solid var(--border)",position:"relative",overflow:"hidden"}}>
       <div style={{maxWidth:1000,margin:"0 auto",padding:"0 1rem"}}>
-        <div style={{display:"flex",alignItems:"center",padding:"10px 0",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
           <span style={{color:"rgba(255,255,255,0.55)",fontSize:12,letterSpacing:"0.5px"}}>Çorlu Ticaret ve Sanayi Odası</span>
+          
+          {/* 🌓 TEMALAR ARASI GEÇİŞ BUTONU */}
+          <button onClick={() => setDarkMode(!darkMode)} style={{background:"rgba(255,255,255,0.15)",border:"none",color:"#fff",padding:"4px 10px",borderRadius:6,cursor:"pointer",fontSize:13,display:"flex",alignItems:"center",gap:5}}>
+            <i className={`ti ${darkMode ? "ti-sun" : "ti-moon"}`}/> {darkMode ? "Aydınlık Mod" : "Karanlık Mod"}
+          </button>
         </div>
         <div style={{padding:"16px 0 20px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:16}}>
           <div style={{display:"flex",alignItems:"center",gap:16}}>
@@ -282,21 +362,51 @@ function App(){
                 <h1 style={{color:"#fff",fontSize:26,fontWeight:700,letterSpacing:"-0.5px",lineHeight:1}}>
                   Hibe Teşvik <span style={{color:"#00d28c"}}>Radar</span>
                 </h1>
-                <span style={{background:"rgba(245,200,66,0.18)",color:"#f5c842",border:"1px solid rgba(245,200,66,0.3)",borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:600,letterSpacing:"0.5px"}}>
-                  <i className="ti ti-coin" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>FİNANSMAN & HİBE
+                <span style={{background:"rgba(245,200,66,0.18)",color:"#f5c842",border:"1px solid rgba(245,200,66,0.3)",borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:600}}>
+                  FİNANSMAN & HİBE
                 </span>
               </div>
               <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,marginTop:5}}>Türkiye'deki tüm hibe, teşvik ve yatırım finansmanı fırsatları</p>
             </div>
           </div>
-          <img src="ctso-logo.png" alt="Çorlu TSO logosu" className="hide-mobile"
-            style={{width:72,height:72,borderRadius:8,objectFit:"contain",flexShrink:0,filter:"drop-shadow(0 2px 6px rgba(0,0,0,0.15))"}}
-            onError={e=>e.target.style.display="none"}/>
+          <img src="ctso-logo.png" alt="Çorlu TSO" className="hide-mobile" style={{width:72,height:72,borderRadius:8}} onError={e=>e.target.style.display="none"}/>
         </div>
       </div>
     </div>
 
     <div style={{maxWidth:1000,margin:"0 auto",padding:"1.5rem 1rem"}}>
+
+      {/* ── 4. AKILLI PROJE EŞLEŞTİRME SİHİRBAZI ────────────────────────────────── */}
+      <div style={{background:"var(--wizard-bg)",border:"1px solid var(--navy2)",borderRadius:14,padding:"1.25rem",marginBottom:"1rem",boxShadow:"0 4px 12px rgba(0,0,0,0.05)"}}>
+        <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:10}}>
+          <i className="ti ti-wand" style={{color:"var(--green)",fontSize:18}}/>
+          <span style={{fontWeight:700,fontSize:15,color:"var(--text-main)"}}>Hızlı Eşleştirme Sihirbazı (Öneri Motoru)</span>
+        </div>
+        <div className="filter-cols" style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,marginBottom:12}}>
+          <select value={wizardSektor} onChange={e=>setWizardSektor(e.target.value)} style={{padding:"8px 10px",borderRadius:8,border:"1px solid var(--border)",background:"var(--bg-card)",color:"var(--text-main)",fontSize:13}}>
+            <option value="">1. Sektörünüzü Seçin</option>
+            {sektorler.filter(s=>s!=="Tüm Sektörler").map(s=><option key={s} value={s}>{s}</option>)}
+          </select>
+          <select value={wizardOlcek} onChange={e=>setWizardOlcek(e.target.value)} style={{padding:"8px 10px",borderRadius:8,border:"1px solid var(--border)",background:"var(--bg-card)",color:"var(--text-main)",fontSize:13}}>
+            <option value="">2. Şirket Ölçeği</option>
+            <option value="KOBİ">KOBİ / Küçük İşletme</option>
+            <option value="Mikro">Esnaf / Mikro Ölçek</option>
+            <option value="Büyük">Büyük Ölçekli Sanayi</option>
+          </select>
+          <select value={wizardHedef} onChange={e=>setWizardHedef(e.target.value)} style={{padding:"8px 10px",borderRadius:8,border:"1px solid var(--border)",background:"var(--bg-card)",color:"var(--text-main)",fontSize:13}}>
+            <option value="">3. Yatırım Amacınız</option>
+            <option value="ihracat">İhracat / Yurt Dışı Açılım</option>
+            <option value="dijital">Dijital Dönüşüm / Yazılım</option>
+            <option value="yeşil">Yeşil Dönüşüm / Güneş Enerjisi</option>
+            <option value="makine">Makine / Teçhizat Alımı</option>
+            <option value="arge">Ar-Ge / İnovasyon</option>
+          </select>
+        </div>
+        <div style={{display:"flex",justifyContent:"flex-end",gap:8}}>
+          {isWizardActive && <button onClick={()=>{setIsWizardActive(false);setWizardSektor("");setWizardOlcek("");setWizardHedef("");}} style={{padding:"6px 12px",borderRadius:6,border:"none",background:"#ef4444",color:"#fff",fontSize:12,cursor:"pointer"}}>Sihirbazı Kapat</button>}
+          <button onClick={()=>setIsWizardActive(true)} disabled={!wizardSektor && !wizardOlcek && !wizardHedef} style={{padding:"6px 16px",borderRadius:6,border:"none",background:"var(--green)",color:"#000",fontWeight:600,fontSize:12,cursor:"pointer",opacity:(!wizardSektor&&!wizardOlcek&&!wizardHedef)?0.5:1}}>Firmama Uygun Hibeleri Öner</button>
+        </div>
+      </div>
 
       {/* ── STAT KARTLARI ── */}
       {!yukleniyor&&!hata&&<div className="stat-grid" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:"1.25rem"}}>
@@ -307,47 +417,45 @@ function App(){
       </div>}
 
       {/* ── DİSCLAIMER ── */}
-      <div style={{background:"rgba(255,255,251,0.95)",border:"1px solid #fde68a",borderRadius:10,padding:"10px 16px",marginBottom:"1rem",fontSize:13,color:"#92400e",display:"flex",gap:10,alignItems:"flex-start"}}>
+      <div style={{background:"rgba(255,251,235,0.95)",border:"1px solid #fde68a",borderRadius:10,padding:"10px 16px",marginBottom:"1rem",fontSize:13,color:"#92400e",display:"flex",gap:10,alignItems:"flex-start"}}>
         <i className="ti ti-info-circle" style={{fontSize:17,marginTop:1,flexShrink:0}} aria-hidden="true"/>
-        <span>Bu platform bilgilendirme amacıyla hazırlanmıştır. Destek programlarına ilişkin güncel koşullar ve başvuru süreçleri için ilgili kurumun resmi web sitesini ziyaret ediniz. <span style={{color:"#b45309",opacity:0.7}}>Son güncelleme: {new Date().toLocaleDateString("tr-TR")}</span></span>
+        <span>Bu platform bilgilendirme amacıyla hazırlanmıştır. Güncel koşullar için ilgili kurumun resmi web sitesini ziyaret ediniz. <span style={{color:"#b45309",opacity:0.7}}>Son güncelleme: {new Date().toLocaleDateString("tr-TR")}</span></span>
       </div>
 
       {/* ── FİLTRE PANELİ ── */}
-      <div style={{background:"rgba(255,255,255,0.94)",border:"1px solid var(--border)",borderRadius:14,padding:"1.25rem",marginBottom:"1rem",boxShadow:"0 1px 6px rgba(0,0,0,0.06)"}}>
-
-        {/* 4'lü Arama Sütun Grubu */}
-        <div className="filter-cols" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",gap:10,marginBottom:"1rem"}}>
+      <div style={{background:"var(--bg-card)",border:"1px solid var(--border)",borderRadius:14,padding:"1.25rem",marginBottom:"1rem",boxShadow:"0 1px 6px rgba(0,0,0,0.06)"}}>
+        <div className="filter-cols" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",gap:10,marginBottom:"1rem",opacity:isWizardActive?0.4:1,pointerEvents:isWizardActive?"none":"auto"}}>
           <div>
-            <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+            <label style={{fontSize:11,color:"var(--text-light)",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
               <i className="ti ti-search" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Arama
             </label>
             <input type="text" placeholder="Program veya kurum ara..." value={arama} onChange={e=>setArama(e.target.value)}
-              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"#f8f9fc",color:"#1a1a2e"}}/>
+              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"var(--input-bg)",color:"var(--text-main)"}}/>
           </div>
           <div>
-            <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+            <label style={{fontSize:11,color:"var(--text-light)",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
               <i className="ti ti-building-factory" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Sektör
             </label>
             <select value={sektor} onChange={e=>setSektor(e.target.value)}
-              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"#f8f9fc",color:"#1a1a2e"}}>
+              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"var(--input-bg)",color:"var(--text-main)"}}>
               {sektorler.map(s=><option key={s}>{s}</option>)}
             </select>
           </div>
           <div>
-            <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+            <label style={{fontSize:11,color:"var(--text-light)",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
               <i className="ti ti-filter" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Durum
             </label>
             <select value={durum} onChange={e=>setDurum(e.target.value)}
-              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"#f8f9fc",color:"#1a1a2e"}}>
+              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"var(--input-bg)",color:"var(--text-main)"}}>
               {DURUMLAR.map(d=><option key={d}>{d}</option>)}
             </select>
           </div>
           <div>
-            <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+            <label style={{fontSize:11,color:"var(--text-light)",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
               <i className="ti ti-cash" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Bütçe Ölçeği
             </label>
             <select value={seciliButceIdx} onChange={e=>setSeciliButceIdx(parseInt(e.target.value))}
-              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"#f8f9fc",color:"#1a1a2e"}}>
+              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"var(--input-bg)",color:"var(--text-main)"}}>
               {BUTCELER.map((b, idx)=><option key={idx} value={idx}>{b.label}</option>)}
             </select>
           </div>
@@ -355,7 +463,7 @@ function App(){
 
         {/* Tutar filtresi */}
         <div style={{marginBottom:"0.9rem"}}>
-          <label style={{fontSize:11,color:"#888",display:"block",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+          <label style={{fontSize:11,color:"var(--text-light)",display:"block",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
             <i className="ti ti-coins" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Destek Türü
           </label>
           <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
@@ -364,8 +472,7 @@ function App(){
                 {f.label}
               </button>
             ))}
-            <button className={`fchip ${sadeceFavori?"fchip-active":"fchip-inactive"}`} onClick={()=>setSadeceFavori(p=>!p)}
-              style={sadeceFavori?{background:"#e8404a",borderColor:"#e8404a"}:{}}>
+            <button className={`fchip ${sadeceFavori?"fchip-active":"fchip-inactive"}`} onClick={()=>setSadeceFavori(p=>!p)} style={sadeceFavori?{background:"#e8404a",borderColor:"#e8404a"}:{}}>
               <i className="ti ti-heart" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>
               Favorilerim {favoriler.length>0&&`(${favoriler.length})`}
             </button>
@@ -374,11 +481,10 @@ function App(){
 
         {/* Kategori chip'leri */}
         <div>
-          <label style={{fontSize:11,color:"#888",display:"block",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+          <label style={{fontSize:11,color:"var(--text-light)",display:"block",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
             <i className="ti ti-layout-grid" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Destek Kategorisi
           </label>
-          <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-            <button className={`chip ${grup==="Tümü"?"chip-active":"chip-inactive"}`} onClick={()=>setGrup("Tümü")}>Tümü</button>
+          <div style={{display:"flex",flexWrap:"wrap",gap:6,opacity:isWizardActive?0.4:1,pointerEvents:isWizardActive?"none":"auto"}}>
             {GRUPLAR.map(g=>(
               <button key={g} className={`chip ${grup===g?"chip-active":"chip-inactive"}`} onClick={()=>setGrup(g)}>
                 <i className={`ti ${GRUP_ICONS[g]||"ti-tag"}`} style={{fontSize:11,marginRight:4}} aria-hidden="true"/>{g}
@@ -389,51 +495,56 @@ function App(){
       </div>
 
       {/* ── SONUÇ SATIRI ── */}
-      <div style={{fontSize:13,color:"#666",marginBottom:"0.75rem",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+      <div style={{fontSize:13,color:"var(--text-muted)",marginBottom:"0.75rem",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <span>
-          <strong style={{color:"var(--navy)",fontSize:15}}>{filtered.length}</strong>
-          <span style={{color:"#888"}}> / {data.length} program gösteriliyor</span>
+          <strong style={{color:"var(--navy2)",fontSize:15}}>{filtered.length}</strong>
+          <span style={{color:"var(--text-light)"}}> / {data.length} program gösteriliyor {isWizardActive && "(Akıllı Sihirbaz Önerisine Göre Sıralandı)"}</span>
         </span>
-        {aktif&&<button onClick={sifirla} style={{fontSize:12,color:"var(--navy2)",background:"transparent",border:"1px solid var(--navy2)",borderRadius:6,padding:"4px 12px",cursor:"pointer",display:"inline-flex",alignItems:"center",gap:4}}>
-          <i className="ti ti-x" style={{fontSize:12}} aria-hidden="true"/>Filtreleri temizle
+        {aktif&&<button onClick={sifirla} style={{fontSize:12,color:"var(--text-main)",background:"transparent",border:"1px solid var(--border)",borderRadius:6,padding:"4px 12px",cursor:"pointer",display:"inline-flex",alignItems:"center",gap:4}}>
+          <i className="ti ti-x" style={{fontSize:12}} aria-hidden="true"/>Temizle
         </button>}
       </div>
 
-      {/* ── YÜKLEME / HATA ── */}
-      {yukleniyor&&<div>{[1,2,3,4].map(i=><div key={i} className="skeleton" style={{marginBottom:8}}/>)}</div>}
-      {hata&&<div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:12,padding:"2rem",color:"#991b1b",textAlign:"center"}}>
-        <i className="ti ti-alert-circle" style={{fontSize:32,display:"block",marginBottom:8}} aria-hidden="true"/>
-        <strong>Veriler yüklenemedi</strong><br/><span style={{fontSize:13}}>{hata}</span>
-      </div>}
+      {/* ── YÜKLEME ── */}
+      {yukleniyor&&<div>{[1,2,3].map(i=><div key={i} className="skeleton"/>)}</div>}
 
       {/* ── PROGRAM KARTLARI ── */}
       {!yukleniyor&&!hata&&(filtered.length===0
-        ?<div style={{textAlign:"center",padding:"3rem",color:"#aaa",background:"rgba(255,255,255,0.92)",borderRadius:14,border:"1px solid var(--border)"}}>
+        ?<div style={{textAlign:"center",padding:"3rem",color:"#aaa",background:"var(--bg-card)",borderRadius:14,border:"1px solid var(--border)"}}>
           <i className="ti ti-mood-empty" style={{fontSize:44,display:"block",marginBottom:12}} aria-hidden="true"/>
-          <div style={{fontSize:15,fontWeight:500,color:"#888"}}>Bu kriterlere uygun program bulunamadı.</div>
+          <div style={{fontSize:15,fontWeight:500,color:"var(--text-light)"}}>Bu kriterlere uygun program bulunamadı.</div>
         </div>
         :<div style={{display:"flex",flexDirection:"column",gap:8}}>
           {filtered.map(h=>{
             const open=expanded===h.id;
             const isFav=favoriler.includes(h.id);
-            const bugun=new Date(); bugun.setHours(0,0,0,0);
+            const score = matchScore(h);
             return <div key={h.id}
-              style={{background:"rgba(255,255,255,0.92)",border:"1px solid var(--border)",borderRadius:14,borderLeft:`4px solid ${borderFor(h.durum)}`,overflow:"hidden",transition:"box-shadow .15s"}}
+              style={{background:"var(--bg-card)",border:"1px solid var(--border)",borderRadius:14,borderLeft:`4px solid ${borderFor(h.durum)}`,overflow:"hidden",position:"relative"}}
               onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,0.08)"}
               onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
+
+              {/* SİHİRBAZ ÖNERİ BADGE ŞERİDİ */}
+              {isWizardActive && score >= 70 && (
+                <div style={{position:"absolute",top:0,right:120,background:"linear-gradient(45deg, #7c3aed, #00d28c)",color:"#fff",fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:"0 0 6px 6px",letterSpacing:"0.5px",zIndex:5}}>
+                  🔥 %{score} UYUMLU ÖNERİ
+                </div>
+              )}
 
               <button onClick={()=>toggle(h.id)} style={{width:"100%",background:"none",border:"none",cursor:"pointer",padding:"14px 18px",display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:12,textAlign:"left"}}>
                 <div style={{flex:1,minWidth:0}}>
                   <div style={{display:"flex",alignItems:"flex-start",gap:8,marginBottom:8,flexWrap:"wrap"}}>
-                    <div style={{fontWeight:600,fontSize:14,color:"var(--navy)",lineHeight:1.4}}>{h.baslik}</div>
+                    <div style={{fontWeight:600,fontSize:14,color:"var(--text-main)",lineHeight:1.4}}>{h.baslik}</div>
+                    
+                    {/* ── 1. DİNAMİK KALAN GÜN SAYACI BADGE ENTEGRASYONU */}
                     <GeriSayim son={h.son}/>
                   </div>
                   <div style={{display:"flex",gap:5,flexWrap:"wrap",alignItems:"center"}}>
-                    <span style={{background:"#eef1f9",color:"var(--navy2)",borderRadius:6,padding:"3px 9px",fontSize:11,fontWeight:600}}>{h.kaynak}</span>
-                    <span style={{background:"#f5f6fa",color:"#666",borderRadius:6,padding:"3px 9px",fontSize:11,display:"inline-flex",alignItems:"center",gap:3}}>
+                    <span style={{background:"rgba(56,189,248,0.15)",color:"var(--text-main)",borderRadius:6,padding:"3px 9px",fontSize:11,fontWeight:600}}>{h.kaynak}</span>
+                    <span style={{background:"var(--input-bg)",color:"var(--text-muted)",borderRadius:6,padding:"3px 9px",fontSize:11,display:"inline-flex",alignItems:"center",gap:3}}>
                       <i className={`ti ${GRUP_ICONS[h.grup]||"ti-tag"}`} style={{fontSize:11}} aria-hidden="true"/>{h.grup}
                     </span>
-                    {h.son!=="Süresiz"&&<span style={{background:"#f5f6fa",color:"#666",borderRadius:6,padding:"3px 9px",fontSize:11,display:"inline-flex",alignItems:"center",gap:3}}>
+                    {h.son!=="Süresiz"&&<span style={{background:"var(--input-bg)",color:"var(--text-muted)",borderRadius:6,padding:"3px 9px",fontSize:11,display:"inline-flex",alignItems:"center",gap:3}}>
                       <i className="ti ti-calendar" style={{fontSize:11}} aria-hidden="true"/>{new Date(h.son).toLocaleDateString("tr-TR")}
                     </span>}
                   </div>
@@ -441,51 +552,47 @@ function App(){
                 <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0}}>
                   <DurumBadge durum={h.durum}/>
                   <div style={{display:"flex",gap:4,alignItems:"center"}}>
-                    <button onClick={e=>{e.stopPropagation();toggleFavori(h.id);}}
-                      title={isFav?"Favorilerden çıkar":"Favorilere ekle"}
-                      style={{background:"none",border:"none",cursor:"pointer",padding:"4px",borderRadius:6,color:isFav?"#e8404a":"#ccc",fontSize:18,transition:"color .15s"}}>
+                    <button onClick={e=>{e.stopPropagation();toggleFavori(h.id);}} style={{background:"none",border:"none",cursor:"pointer",padding:"4px",color:isFav?"#e8404a":"#ccc",fontSize:18}}>
                       <i className={isFav?"ti ti-heart-filled":"ti ti-heart"} aria-hidden="true"/>
                     </button>
-                    <button onClick={e=>{e.stopPropagation();setPaylasMod(h);}}
-                      title="Paylaş"
-                      style={{background:"none",border:"none",cursor:"pointer",padding:"4px",borderRadius:6,color:"#aaa",fontSize:18,transition:"color .15s"}}
-                      onMouseEnter={e=>e.currentTarget.style.color="var(--navy2)"}
-                      onMouseLeave={e=>e.currentTarget.style.color="#aaa"}>
+                    <button onClick={e=>{e.stopPropagation();setPaylasMod(h);}} style={{background:"none",border:"none",cursor:"pointer",padding:"4px",color:"#aaa",fontSize:18}}>
                       <i className="ti ti-share" aria-hidden="true"/>
                     </button>
-                    <i className={`ti ${open?"ti-chevron-up":"ti-chevron-down"}`} style={{fontSize:16,color:"#aaa"}/* safe */} aria-hidden="true"/>
+                    <i className={`ti ${open?"ti-chevron-up":"ti-chevron-down"}`} style={{fontSize:16,color:"#aaa"}} aria-hidden="true"/>
                   </div>
                 </div>
               </button>
 
-              {open&&<div style={{padding:"0 18px 16px",borderTop:"1px solid #f0f2f7"}}>
-                <p style={{fontSize:13,color:"#555",lineHeight:1.65,margin:"12px 0"}}>{h.aciklama}</p>
-                <div style={{display:"flex",gap:12,fontSize:13,flexWrap:"wrap",alignItems:"flex-start",marginBottom:14,padding:"10px 14px",background:"#f8f9fc",borderRadius:8}}>
-                  <span style={{display:"inline-flex",alignItems:"center",gap:6,color:"var(--navy)"}}>
+              {open&&<div style={{padding:"0 18px 16px",borderTop:"1px solid var(--border)"}}>
+                <p style={{fontSize:13,color:"var(--text-muted)",lineHeight:1.65,margin:"12px 0"}}>{h.aciklama}</p>
+                <div style={{display:"flex",gap:12,fontSize:13,flexWrap:"wrap",alignItems:"flex-start",marginBottom:14,padding:"10px 14px",background:"var(--input-bg)",borderRadius:8}}>
+                  <span style={{display:"inline-flex",alignItems:"center",gap:6,color:"var(--text-main)"}}>
                     <i className="ti ti-coins" style={{fontSize:16,color:"var(--navy2)"}} aria-hidden="true"/>
                     <strong>{h.tutar}</strong>
                   </span>
                   {h.son!=="Süresiz"
-                    ?<span style={{display:"inline-flex",alignItems:"center",gap:6,color:"#555"}}>
+                    ?<span style={{display:"inline-flex",alignItems:"center",gap:6,color:"var(--text-muted)"}}>
                       <i className="ti ti-calendar-event" style={{fontSize:15}} aria-hidden="true"/>
-                      Son başvuru: <strong style={{color:"var(--navy)"}}>{new Date(h.son).toLocaleDateString("tr-TR")}</strong>
+                      Son başvuru: <strong>{new Date(h.son).toLocaleDateString("tr-TR")}</strong>
                     </span>
-                    :<span style={{display:"inline-flex",alignItems:"center",gap:6,color:"#555"}}>
+                    :<span style={{display:"inline-flex",alignItems:"center",gap:6,color:"var(--text-muted)"}}>
                       <i className="ti ti-infinity" style={{fontSize:15}} aria-hidden="true"/>Süresiz başvuru
                     </span>
                   }
-                  {h.sektor[0]!=="Tüm Sektörler"&&<span style={{display:"inline-flex",alignItems:"center",gap:6,color:"#555"}}>
-                    <i className="ti ti-building-factory" style={{fontSize:15}} aria-hidden="true"/>
-                    {h.sektor.slice(0,4).join(", ")}{h.sektor.length>4?" +"+(h.sektor.length-4):""}
-                  </span>}
                 </div>
                 <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                  <a href={h.url} target="_blank" rel="noopener noreferrer"
-                    style={{display:"inline-flex",alignItems:"center",gap:7,fontSize:13,color:"#fff",background:"var(--navy2)",borderRadius:8,padding:"8px 18px",textDecoration:"none",fontWeight:500}}>
-                    <i className="ti ti-external-link" style={{fontSize:14}} aria-hidden="true"/>Resmi kaynağa git
-                  </a>
-                  <button onClick={()=>setPaylasMod(h)}
-                    style={{display:"inline-flex",alignItems:"center",gap:7,fontSize:13,color:"var(--navy2)",background:"transparent",border:"1px solid var(--navy2)",borderRadius:8,padding:"8px 18px",cursor:"pointer",fontWeight:500}}>
+                  {/* AKILLI LİNK VE ARAMA YÖNLENDİRME YEDEKLEME MOTORU */}
+                  {(() => {
+                    const isGenericUrl = h.url === "https://www.kosgeb.gov.tr" || h.url === "https://www.tubitak.gov.tr" || h.url?.length < 35;
+                    const targetUrl = isGenericUrl ? `https://www.google.com/search?q=${encodeURIComponent(h.kaynak + " " + h.baslik)}` : h.url;
+                    return (
+                      <a href={targetUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",alignItems:"center",gap:7,fontSize:13,color:"#fff",background:"#1a3a6e",borderRadius:8,padding:"8px 18px",textDecoration:"none",fontWeight:500}}>
+                        <i className="ti ti-external-link" style={{fontSize:14}} aria-hidden="true"/>
+                        {isGenericUrl ? "Detayları Google'da Ara" : "Resmi Kaynağa Git"}
+                      </a>
+                    );
+                  })()}
+                  <button onClick={()=>setPaylasMod(h)} style={{display:"inline-flex",alignItems:"center",gap:7,fontSize:13,color:"var(--text-main)",background:"transparent",border:"1px solid var(--border)",borderRadius:8,padding:"8px 18px",cursor:"pointer",fontWeight:500}}>
                     <i className="ti ti-share" style={{fontSize:14}} aria-hidden="true"/>Paylaş
                   </button>
                 </div>
@@ -496,20 +603,17 @@ function App(){
       )}
 
       {/* ── FOOTER ── */}
-      <div style={{marginTop:"2rem",padding:"1.75rem",background:"rgba(255,255,255,0.94)",borderRadius:14,border:"1px solid var(--border)"}}>
-        <div style={{display:"flex",alignItems:"center",gap:16,marginBottom:"1rem",paddingBottom:"1rem",borderBottom:"1px solid #f0f2f7"}}>
-          <img src="ctso-logo.png" alt="Çorlu TSO logosu"
-            style={{width:64,height:64,borderRadius:8,objectFit:"contain",flexShrink:0}}
-            onError={e=>e.target.style.display="none"}/>
+      <div style={{marginTop:"2rem",padding:"1.75rem",background:"var(--bg-card)",borderRadius:14,border:"1px solid var(--border)"}}>
+        <div style={{display:"flex",alignItems:"center",gap:16,marginBottom:"1rem",paddingBottom:"1rem",borderBottom:"1px solid var(--border)"}}>
+          <img src="ctso-logo.png" alt="Çorlu TSO" style={{width:64,height:64,borderRadius:8}} onError={e=>e.target.style.display="none"}/>
           <div>
-            <div style={{fontSize:15,fontWeight:700,color:"var(--navy)"}}>Çorlu Ticaret ve Sanayi Odası</div>
-            <div style={{fontSize:12,color:"#00d28c",fontWeight:500,marginTop:2}}>Hibe Teşvik Radar</div>
-            <div style={{fontSize:12,color:"#999",marginTop:2}}>hibeler.corlutso.org.tr</div>
+            <div style={{fontSize:15,fontWeight:700,color:"var(--text-main)"}}>Çorlu Ticaret ve Sanayi Odası</div>
+            <div style={{fontSize:12,color:"var(--green)",fontWeight:500,marginTop:2}}>Hibe Teşvik Radar — Dijital Dönüşüm Platformu</div>
           </div>
         </div>
-        <div style={{fontSize:12,color:"#888",lineHeight:1.7}}>
-          Çorlu Ticaret ve Sanayi Odası, bu platformdaki bilgilerin doğruluğu ve güncelliği konusunda sorumluluk üstlenmemektedir.<br/>
-          <span style={{color:"#bbb"}}>© 2026 Çorlu TSO — Hibe Teşvik Radar. Tüm hakları saklıdır.</span>
+        <div style={{fontSize:12,color:"var(--text-light)",lineHeight:1.7}}>
+          Çorlu Ticaret ve Sanayi Odası bilgilendirme platformudur. Sorumluluk üstlenmez.<br/>
+          <span style={{color:"var(--text-light)",opacity:0.6}}>© 2026 Çorlu TSO — Hibe Teşvik Radar. Tüm hakları saklıdır.</span>
         </div>
       </div>
 
