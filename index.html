@@ -21,7 +21,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 #root{position:relative;z-index:1;}
 :root{--navy:#0f1f45;--navy2:#1a2f5e;--green:#00d28c;--gold:#f5c842;--red:#e8404a;--amber:#f59820;--border:rgba(15,31,69,0.1);}
 select,input{outline:none;font-family:inherit;}
-select:focus,input:focus{border-color:var(--navy2)!important;box-shadow:0 0 0 3px rgba(26,47,94,0.1);}
+select:focus,input:focus{border-colorvar(--navy2)!important;box-shadow:0 0 0 3px rgba(26,47,94,0.1);}
 .chip{padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid transparent;white-space:nowrap;font-weight:500;font-family:inherit;transition:all .15s;}
 .chip-active{background:var(--navy2);color:#fff;border-color:var(--navy2);}
 .chip-inactive{background:#fff;color:#555;border-color:var(--border);}
@@ -50,7 +50,7 @@ const {useState,useMemo,useCallback,useEffect}=React;
 
 const GRUPLAR=["Hibe Programları","Yatırım Teşvikleri","İhracat ve Uluslararasılaşma","İhracat Finansmanı (Eximbank)","Kredi Garantisi (KGF)","Uygun Faizli Krediler","AB ve Uluslararası Hibeler","Bölgesel Kalkınma (Ajanslar)","Vergi ve SGK Avantajları","İstihdam ve Personel Destekleri","Tarım Destekleri","Enerji ve Yeşil Dönüşüm","Turizm Destekleri","Savunma Sektörü"];
 const GRUP_ICONS={"Hibe Programları":"ti-gift","Yatırım Teşvikleri":"ti-trending-up","İhracat ve Uluslararasılaşma":"ti-world","İhracat Finansmanı (Eximbank)":"ti-ship","Kredi Garantisi (KGF)":"ti-shield-check","Uygun Faizli Krediler":"ti-cash","AB ve Uluslararası Hibeler":"ti-flag","Bölgesel Kalkınma (Ajanslar)":"ti-map-pin","Vergi ve SGK Avantajları":"ti-receipt-tax","İstihdam ve Personel Destekleri":"ti-users","Tarım Destekleri":"ti-plant","Enerji ve Yeşil Dönüşüm":"ti-leaf","Turizm Destekleri":"ti-beach","Savunma Sektörü":"ti-shield"};
-const DURUMLAR=["Tümü","açık","kapanmak üzere","kapandı"];
+const DURUMLAR=["Tümü","Açık","Kapanmak üzere","Kapandı"];
 const TUTAR_FILTRELER=[
   {label:"Tümü",key:"tumu"},
   {label:"Geri ödemesiz",key:"geri_odemsiz"},
@@ -80,7 +80,8 @@ function GeriSayim({son}){
 }
 
 function DurumBadge({durum}){
-  const c=DURUM_CFG[durum]||{bg:"#f3f4f6",color:"#555",border:"#ddd",icon:"ti-help",label:durum};
+  const dStr = (durum || "").toLocaleLowerCase("tr-TR").trim();
+  const c=DURUM_CFG[dStr]||{bg:"#f3f4f6",color:"#555",border:"#ddd",icon:"ti-help",label:durum};
   return <span style={{display:"inline-flex",alignItems:"center",gap:4,background:c.bg,color:c.color,border:`1px solid ${c.border}`,borderRadius:20,padding:"3px 10px",fontSize:12,fontWeight:600,whiteSpace:"nowrap"}}>
     <i className={`ti ${c.icon}`} style={{fontSize:12}} aria-hidden="true"/>{c.label}
   </span>;
@@ -128,15 +129,15 @@ function PaylasBtnleri({program, onClose}){
       <div style={{display:"flex",flexDirection:"column",gap:8}}>
         <a href={waUrl} target="_blank" rel="noopener noreferrer"
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#e7f9ef",border:"1px solid #b2e8c8",borderRadius:10,textDecoration:"none",color:"#1a6e3a",fontWeight:500,fontSize:14}}>
-          <i className="ti ti-brand-whatsapp" style={{fontSize:20,color:"#25d366"}} aria-hidden="true"/>WhatsApp ile Paylaş
+          <i className="ti ti-brand-whatsapp" style={{fontSize:20,color:"#25d366"}/* safe */} aria-hidden="true"/>WhatsApp ile Paylaş
         </a>
         <a href={mailUrl}
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#eef2ff",border:"1px solid #c7d2fe",borderRadius:10,textDecoration:"none",color:"#3730a3",fontWeight:500,fontSize:14}}>
-          <i className="ti ti-mail" style={{fontSize:20,color:"#4f46e5"}} aria-hidden="true"/>E-posta ile Paylaş
+          <i className="ti ti-mail" style={{fontSize:20,color:"#4f46e5"}/* safe */} aria-hidden="true"/>E-posta ile Paylaş
         </a>
         <button onClick={()=>{navigator.clipboard?.writeText(program.url);onClose();}}
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#f8f9fc",border:"1px solid var(--border)",borderRadius:10,cursor:"pointer",color:"#555",fontWeight:500,fontSize:14}}>
-          <i className="ti ti-link" style={{fontSize:20,color:"#888"}} aria-hidden="true"/>Linki Kopyala
+          <i className="ti ti-link" style={{fontSize:20,color:"#888"}/* safe */} aria-hidden="true"/>Linki Kopyala
         </button>
       </div>
       <button onClick={onClose} style={{marginTop:"0.75rem",width:"100%",padding:"8px",background:"transparent",border:"none",cursor:"pointer",color:"#aaa",fontSize:13}}>Kapat</button>
@@ -189,7 +190,14 @@ function App(){
       if(sadeceFavori&&!favoriler.includes(h.id))return false;
       if(sektor!=="Tüm Sektörler"&&!h.sektor.includes(sektor)&&!h.sektor.includes("Tüm Sektörler"))return false;
       if(grup!=="Tümü"&&h.grup!==grup)return false;
-      if(durum!=="Tümü"&&h.durum!==durum)return false;
+      
+      // TÜRKÇE VE HARF DUYARSIZ DURUM FİLTRESİ
+      if(durum!=="Tümü"){
+        const itemDurum = (h.durum || "").toLocaleLowerCase("tr-TR").trim();
+        const filterDurum = durum.toLocaleLowerCase("tr-TR").trim();
+        if(itemDurum !== filterDurum) return false;
+      }
+      
       if(tutarFiltre==="geri_odemsiz"&&!h.tutar.toLowerCase().includes("geri ödemesiz")&&!h.tutar.toLowerCase().includes("hibe"))return false;
       if(tutarFiltre==="ab"&&!h.grup.includes("AB")&&!h.kaynak.includes("AB")&&!h.kaynak.includes("Avrupa"))return false;
       if(tutarFiltre==="buyuk"){
@@ -197,10 +205,24 @@ function App(){
         if(!buyuk) return false;
       }
       if(tutarFiltre==="kgf"&&!h.grup.includes("KGF")&&!h.kaynak.includes("KGF"))return false;
-      if(arama){const q=arama.toLowerCase();if(!h.baslik.toLowerCase().includes(q)&&!h.kaynak.toLowerCase().includes(q)&&!h.aciklama.toLowerCase().includes(q)&&!h.grup.toLowerCase().includes(q))return false;}
+      
+      // AKILLI TÜRKÇE ARAMA MOTORU INTEGRASYONU
+      if(arama){
+        const q = arama.toLocaleLowerCase("tr-TR").trim();
+        const baslik = (h.baslik || "").toLocaleLowerCase("tr-TR");
+        const kaynak = (h.kaynak || "").toLocaleLowerCase("tr-TR");
+        const aciklama = (h.aciklama || "").toLocaleLowerCase("tr-TR");
+        const grupIsmi = (h.grup || "").toLocaleLowerCase("tr-TR");
+        
+        if(!baslik.includes(q) && !kaynak.includes(q) && !aciklama.includes(q) && !grupIsmi.includes(q)) {
+          return false;
+        }
+      }
       return true;
     }).sort((a,b)=>{
-      const ds=(durumSira[a.durum]??1)-(durumSira[b.durum]??1);
+      const dStrA = (a.durum || "").toLocaleLowerCase("tr-TR").trim();
+      const dStrB = (b.durum || "").toLocaleLowerCase("tr-TR").trim();
+      const ds=(durumSira[dStrA]??1)-(durumSira[dStrB]??1);
       if(ds!==0)return ds;
       const aSon=a.son==="Süresiz"?new Date("2099-12-31"):new Date(a.son);
       const bSon=b.son==="Süresiz"?new Date("2099-12-31"):new Date(b.son);
@@ -208,12 +230,18 @@ function App(){
     });
   },[data,sektor,grup,durum,tutarFiltre,arama,sadeceFavori,favoriler]);
 
-  const acik=data.filter(h=>h.durum==="açık").length;
-  const yakin=data.filter(h=>h.durum==="kapanmak üzere").length;
+  // Sayaçlar Türkçe uyumlu hale getirildi
+  const acik=data.filter(h=>(h.durum || "").toLocaleLowerCase("tr-TR").trim()==="açık").length;
+  const yakin=data.filter(h=>(h.durum || "").toLocaleLowerCase("tr-TR").trim()==="kapanmak üzere").length;
+  
   const aktif=sektor!=="Tüm Sektörler"||grup!=="Tümü"||durum!=="Tümü"||tutarFiltre!=="tumu"||arama||sadeceFavori;
   const sifirla=()=>{setSektor("Tüm Sektörler");setGrup("Tümü");setDurum("Tümü");setTutarFiltre("tumu");setArama("");setSadeceFavori(false);};
   const toggle=useCallback(id=>setExpanded(p=>p===id?null:id),[]);
-  const borderFor=d=>d==="açık"?"#00d28c":d==="kapanmak üzere"?"#f59820":"#e8404a";
+  
+  const borderFor=d=>{
+    const dStr = (d || "").toLocaleLowerCase("tr-TR").trim();
+    return dStr==="açık"?"#00d28c":dStr==="kapanmak üzere"?"#f59820":"#e8404a";
+  };
 
   return <div style={{minHeight:"100vh",background:"transparent"}}>
 
@@ -262,7 +290,7 @@ function App(){
       </div>}
 
       {/* ── DİSCLAIMER ── */}
-      <div style={{background:"rgba(255,251,235,0.95)",border:"1px solid #fde68a",borderRadius:10,padding:"10px 16px",marginBottom:"1rem",fontSize:13,color:"#92400e",display:"flex",gap:10,alignItems:"flex-start"}}>
+      <div style={{background:"rgba(255,255,251,0.95)",border:"1px solid #fde68a",borderRadius:10,padding:"10px 16px",marginBottom:"1rem",fontSize:13,color:"#92400e",display:"flex",gap:10,alignItems:"flex-start"}}>
         <i className="ti ti-info-circle" style={{fontSize:17,marginTop:1,flexShrink:0}} aria-hidden="true"/>
         <span>Bu platform bilgilendirme amacıyla hazırlanmıştır. Destek programlarına ilişkin güncel koşullar ve başvuru süreçleri için ilgili kurumun resmi web sitesini ziyaret ediniz. <span style={{color:"#b45309",opacity:0.7}}>Son güncelleme: {new Date().toLocaleDateString("tr-TR")}</span></span>
       </div>
@@ -294,7 +322,7 @@ function App(){
             </label>
             <select value={durum} onChange={e=>setDurum(e.target.value)}
               style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"#f8f9fc",color:"#1a1a2e"}}>
-              {DURUMLAR.map(d=><option key={d}>{d.charAt(0).toUpperCase()+d.slice(1)}</option>)}
+              {DURUMLAR.map(d=><option key={d}>{d}</option>)}
             </select>
           </div>
         </div>
