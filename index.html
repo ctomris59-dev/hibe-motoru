@@ -21,7 +21,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 #root{position:relative;z-index:1;}
 :root{--navy:#0f1f45;--navy2:#1a2f5e;--green:#00d28c;--gold:#f5c842;--red:#e8404a;--amber:#f59820;--border:rgba(15,31,69,0.1);}
 select,input{outline:none;font-family:inherit;}
-select:focus,input:focus{border-colorvar(--navy2)!important;box-shadow:0 0 0 3px rgba(26,47,94,0.1);}
+select:focus,input:focus{border-color:var(--navy2)!important;box-shadow:0 0 0 3px rgba(26,47,94,0.1);}
 .chip{padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid transparent;white-space:nowrap;font-weight:500;font-family:inherit;transition:all .15s;}
 .chip-active{background:var(--navy2);color:#fff;border-color:var(--navy2);}
 .chip-inactive{background:#fff;color:#555;border-color:var(--border);}
@@ -55,8 +55,14 @@ const TUTAR_FILTRELER=[
   {label:"Tümü",key:"tumu"},
   {label:"Geri ödemesiz",key:"geri_odemsiz"},
   {label:"AB / Uluslararası",key:"ab"},
-  {label:"1 milyon ₺ üzeri",key:"buyuk"},
   {label:"KGF Kefalet",key:"kgf"},
+];
+const BUTCELER = [
+  { label: "Tüm Bütçeler", min: 0, max: Infinity },
+  { label: "0 - 1.000.000 ₺", min: 0, max: 1000000 },
+  { label: "1.000.000 ₺ - 5.000.000 ₺", min: 1000000, max: 5000000 },
+  { label: "5.000.000 ₺ - 15.000.000 ₺", min: 5000000, max: 15000000 },
+  { label: "15.000.000 ₺ Üzeri", min: 15000000, max: Infinity }
 ];
 const DURUM_CFG={
   "açık":{bg:"#e8f8f2",color:"#0a7a52",border:"#b2e8d4",icon:"ti-circle-check",label:"Açık"},
@@ -64,7 +70,6 @@ const DURUM_CFG={
   "kapandı":{bg:"#fef2f2",color:"#991b1b",border:"#fecaca",icon:"ti-circle-x",label:"Kapandı"},
 };
 
-// ── Geri sayım badge ──────────────────────────────────────────────────────────
 function GeriSayim({son}){
   if(!son||son==="Süresiz") return null;
   const bugun=new Date(); bugun.setHours(0,0,0,0);
@@ -117,27 +122,26 @@ function RadarLogo(){
   </svg>;
 }
 
-// ── Paylaş modal ──────────────────────────────────────────────────────────────
 function PaylasBtnleri({program, onClose}){
   const metin=`${program.baslik}\nKaynak: ${program.kaynak}\nTutar: ${program.tutar}\nSon başvuru: ${program.son==="Süresiz"?"Süresiz":new Date(program.son).toLocaleDateString("tr-TR")}\nDetay: ${program.url}`;
   const waUrl=`https://wa.me/?text=${encodeURIComponent(metin)}`;
   const mailUrl=`mailto:?subject=${encodeURIComponent(program.baslik)}&body=${encodeURIComponent(metin)}`;
-  return <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:"1rem"}} onClick={onClose}>
+  return <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:"1rem"}/* safe */} onClick={onClose}>
     <div style={{background:"#fff",borderRadius:16,padding:"1.5rem",maxWidth:360,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,0.2)"}} onClick={e=>e.stopPropagation()}>
       <div style={{fontWeight:600,fontSize:15,color:"var(--navy)",marginBottom:4}}>Programı Paylaş</div>
       <div style={{fontSize:13,color:"#888",marginBottom:"1rem"}}>{program.baslik}</div>
       <div style={{display:"flex",flexDirection:"column",gap:8}}>
         <a href={waUrl} target="_blank" rel="noopener noreferrer"
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#e7f9ef",border:"1px solid #b2e8c8",borderRadius:10,textDecoration:"none",color:"#1a6e3a",fontWeight:500,fontSize:14}}>
-          <i className="ti ti-brand-whatsapp" style={{fontSize:20,color:"#25d366"}/* safe */} aria-hidden="true"/>WhatsApp ile Paylaş
+          <i className="ti ti-brand-whatsapp" style={{fontSize:20,color:"#25d366"}} aria-hidden="true"/>WhatsApp ile Paylaş
         </a>
         <a href={mailUrl}
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#eef2ff",border:"1px solid #c7d2fe",borderRadius:10,textDecoration:"none",color:"#3730a3",fontWeight:500,fontSize:14}}>
-          <i className="ti ti-mail" style={{fontSize:20,color:"#4f46e5"}/* safe */} aria-hidden="true"/>E-posta ile Paylaş
+          <i className="ti ti-mail" style={{fontSize:20,color:"#4f46e5"}} aria-hidden="true"/>E-posta ile Paylaş
         </a>
         <button onClick={()=>{navigator.clipboard?.writeText(program.url);onClose();}}
           style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:"#f8f9fc",border:"1px solid var(--border)",borderRadius:10,cursor:"pointer",color:"#555",fontWeight:500,fontSize:14}}>
-          <i className="ti ti-link" style={{fontSize:20,color:"#888"}/* safe */} aria-hidden="true"/>Linki Kopyala
+          <i className="ti ti-link" style={{fontSize:20,color:"#888"}} aria-hidden="true"/>Linki Kopyala
         </button>
       </div>
       <button onClick={onClose} style={{marginTop:"0.75rem",width:"100%",padding:"8px",background:"transparent",border:"none",cursor:"pointer",color:"#aaa",fontSize:13}}>Kapat</button>
@@ -153,6 +157,7 @@ function App(){
   const [grup,setGrup]=useState("Tümü");
   const [durum,setDurum]=useState("Tümü");
   const [tutarFiltre,setTutarFiltre]=useState("tumu");
+  const [seciliButceIdx, setSeciliButceIdx] = useState(0); 
   const [arama,setArama]=useState("");
   const [expanded,setExpanded]=useState(null);
   const [favoriler,setFavoriler]=useState(()=>{
@@ -179,6 +184,17 @@ function App(){
     setFavoriler(prev=>prev.includes(id)?prev.filter(f=>f!==id):[...prev,id]);
   },[]);
 
+  const tutariSayiyaCevir = (tutarStr) => {
+    if (!tutarStr) return 0;
+    let temizText = tutarStr.toLocaleLowerCase("tr-TR").replace(/\./g, "").replace(/,/g, "");
+    if (temizText.includes("milyon") || temizText.includes("mlr")) {
+      let match = temizText.match(/(\d+)/);
+      return match ? parseInt(match[1]) * 1000000 : 0;
+    }
+    let match = temizText.match(/(\d+)/);
+    return match ? parseInt(match[1]) : 0;
+  };
+
   const sektorler=useMemo(()=>{
     if(!data.length)return["Tüm Sektörler"];
     return["Tüm Sektörler",...new Set(data.flatMap(h=>h.sektor).filter(s=>s!=="Tüm Sektörler"))].sort((a,b)=>a==="Tüm Sektörler"?-1:a.localeCompare(b,"tr"));
@@ -191,7 +207,6 @@ function App(){
       if(sektor!=="Tüm Sektörler"&&!h.sektor.includes(sektor)&&!h.sektor.includes("Tüm Sektörler"))return false;
       if(grup!=="Tümü"&&h.grup!==grup)return false;
       
-      // TÜRKÇE VE HARF DUYARSIZ DURUM FİLTRESİ
       if(durum!=="Tümü"){
         const itemDurum = (h.durum || "").toLocaleLowerCase("tr-TR").trim();
         const filterDurum = durum.toLocaleLowerCase("tr-TR").trim();
@@ -200,23 +215,26 @@ function App(){
       
       if(tutarFiltre==="geri_odemsiz"&&!h.tutar.toLowerCase().includes("geri ödemesiz")&&!h.tutar.toLowerCase().includes("hibe"))return false;
       if(tutarFiltre==="ab"&&!h.grup.includes("AB")&&!h.kaynak.includes("AB")&&!h.kaynak.includes("Avrupa"))return false;
-      if(tutarFiltre==="buyuk"){
-        const buyuk=h.tutar.match(/(\d[\d.,]+)\s*(milyon|mlr|milyar|milyon)/i);
-        if(!buyuk) return false;
-      }
       if(tutarFiltre==="kgf"&&!h.grup.includes("KGF")&&!h.kaynak.includes("KGF"))return false;
       
-      // AKILLI TÜRKÇE ARAMA MOTORU INTEGRASYONU
+      // Akıllı Sayısal Bütçe Filtresi
+      const hedefButce = BUTCELER[seciliButceIdx];
+      if (hedefButce && (hedefButce.min > 0 || hedefButce.max < Infinity)) {
+        const hibeTutari = tutariSayiyaCevir(h.tutar);
+        if (hibeTutari > 0) {
+          if (hibeTutari < hedefButce.min || hibeTutari > hedefButce.max) return false;
+        } else {
+          if (hedefButce.min > 5000000) return false; 
+        }
+      }
+      
       if(arama){
         const q = arama.toLocaleLowerCase("tr-TR").trim();
         const baslik = (h.baslik || "").toLocaleLowerCase("tr-TR");
         const kaynak = (h.kaynak || "").toLocaleLowerCase("tr-TR");
         const aciklama = (h.aciklama || "").toLocaleLowerCase("tr-TR");
         const grupIsmi = (h.grup || "").toLocaleLowerCase("tr-TR");
-        
-        if(!baslik.includes(q) && !kaynak.includes(q) && !aciklama.includes(q) && !grupIsmi.includes(q)) {
-          return false;
-        }
+        if(!baslik.includes(q) && !kaynak.includes(q) && !aciklama.includes(q) && !grupIsmi.includes(q)) return false;
       }
       return true;
     }).sort((a,b)=>{
@@ -228,14 +246,13 @@ function App(){
       const bSon=b.son==="Süresiz"?new Date("2099-12-31"):new Date(b.son);
       return aSon-bSon;
     });
-  },[data,sektor,grup,durum,tutarFiltre,arama,sadeceFavori,favoriler]);
+  },[data,sektor,grup,durum,tutarFiltre,seciliButceIdx,arama,sadeceFavori,favoriler]);
 
-  // Sayaçlar Türkçe uyumlu hale getirildi
   const acik=data.filter(h=>(h.durum || "").toLocaleLowerCase("tr-TR").trim()==="açık").length;
   const yakin=data.filter(h=>(h.durum || "").toLocaleLowerCase("tr-TR").trim()==="kapanmak üzere").length;
   
-  const aktif=sektor!=="Tüm Sektörler"||grup!=="Tümü"||durum!=="Tümü"||tutarFiltre!=="tumu"||arama||sadeceFavori;
-  const sifirla=()=>{setSektor("Tüm Sektörler");setGrup("Tümü");setDurum("Tümü");setTutarFiltre("tumu");setArama("");setSadeceFavori(false);};
+  const aktif=sektor!=="Tüm Sektörler"||grup!=="Tümü"||durum!=="Tümü"||tutarFiltre!=="tumu"||seciliButceIdx!==0||arama||sadeceFavori;
+  const sifirla=()=>{setSektor("Tüm Sektörler");setGrup("Tümü");setDurum("Tümü");setTutarFiltre("tumu");setSeciliButceIdx(0);setArama("");setSadeceFavori(false);};
   const toggle=useCallback(id=>setExpanded(p=>p===id?null:id),[]);
   
   const borderFor=d=>{
@@ -298,7 +315,7 @@ function App(){
       {/* ── FİLTRE PANELİ ── */}
       <div style={{background:"rgba(255,255,255,0.94)",border:"1px solid var(--border)",borderRadius:14,padding:"1.25rem",marginBottom:"1rem",boxShadow:"0 1px 6px rgba(0,0,0,0.06)"}}>
 
-        {/* Arama + Sektör + Durum */}
+        {/* 4'lü Arama Sütun Grubu */}
         <div className="filter-cols" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",gap:10,marginBottom:"1rem"}}>
           <div>
             <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
@@ -325,12 +342,21 @@ function App(){
               {DURUMLAR.map(d=><option key={d}>{d}</option>)}
             </select>
           </div>
+          <div>
+            <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
+              <i className="ti ti-cash" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Bütçe Ölçeği
+            </label>
+            <select value={seciliButceIdx} onChange={e=>setSeciliButceIdx(parseInt(e.target.value))}
+              style={{width:"100%",padding:"9px 12px",border:"1px solid var(--border)",borderRadius:8,fontSize:13,background:"#f8f9fc",color:"#1a1a2e"}}>
+              {BUTCELER.map((b, idx)=><option key={idx} value={idx}>{b.label}</option>)}
+            </select>
+          </div>
         </div>
 
         {/* Tutar filtresi */}
         <div style={{marginBottom:"0.9rem"}}>
           <label style={{fontSize:11,color:"#888",display:"block",marginBottom:6,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
-            <i className="ti ti-coins" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Destek Türü / Tutar
+            <i className="ti ti-coins" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Destek Türü
           </label>
           <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
             {TUTAR_FILTRELER.map(f=>(
@@ -391,7 +417,6 @@ function App(){
             const open=expanded===h.id;
             const isFav=favoriler.includes(h.id);
             const bugun=new Date(); bugun.setHours(0,0,0,0);
-            const kalan=h.son!=="Süresiz"?Math.ceil((new Date(h.son)-bugun)/86400000):999;
             return <div key={h.id}
               style={{background:"rgba(255,255,255,0.92)",border:"1px solid var(--border)",borderRadius:14,borderLeft:`4px solid ${borderFor(h.durum)}`,overflow:"hidden",transition:"box-shadow .15s"}}
               onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,0.08)"}
@@ -416,13 +441,11 @@ function App(){
                 <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0}}>
                   <DurumBadge durum={h.durum}/>
                   <div style={{display:"flex",gap:4,alignItems:"center"}}>
-                    {/* Favori butonu */}
                     <button onClick={e=>{e.stopPropagation();toggleFavori(h.id);}}
                       title={isFav?"Favorilerden çıkar":"Favorilere ekle"}
                       style={{background:"none",border:"none",cursor:"pointer",padding:"4px",borderRadius:6,color:isFav?"#e8404a":"#ccc",fontSize:18,transition:"color .15s"}}>
                       <i className={isFav?"ti ti-heart-filled":"ti ti-heart"} aria-hidden="true"/>
                     </button>
-                    {/* Paylaş butonu */}
                     <button onClick={e=>{e.stopPropagation();setPaylasMod(h);}}
                       title="Paylaş"
                       style={{background:"none",border:"none",cursor:"pointer",padding:"4px",borderRadius:6,color:"#aaa",fontSize:18,transition:"color .15s"}}
@@ -430,7 +453,7 @@ function App(){
                       onMouseLeave={e=>e.currentTarget.style.color="#aaa"}>
                       <i className="ti ti-share" aria-hidden="true"/>
                     </button>
-                    <i className={`ti ${open?"ti-chevron-up":"ti-chevron-down"}`} style={{fontSize:16,color:"#aaa"}} aria-hidden="true"/>
+                    <i className={`ti ${open?"ti-chevron-up":"ti-chevron-down"}`} style={{fontSize:16,color:"#aaa"}/* safe */} aria-hidden="true"/>
                   </div>
                 </div>
               </button>
