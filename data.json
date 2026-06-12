@@ -938,10 +938,25 @@
       "Tüm Sektörler"
     ],
     "tutar": "KOBİ başı değişken (2025'te 3.395 firmaya 54,7 mlr ₺)",
-    "durum": "açık",
+    "durum": "kapanmak üzere",
     "son": "2026-06-30",
     "aciklama": "KOBİ'lerin verimliliğini, üretim kapasitesini ve kurumsal yapısını güçlendirmeye yönelik ölçek büyütme yatırımları. 6 Haziran 2026 itibarıyla 2. dönem başvuruları açıldı.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9391/ureten-kobilere-guclu-destek-yeni-basvuru-donemi-basladi"
+  },
+  {
+    "id": 94,
+    "baslik": "KOSGEB Girişimci Destek Programı – İş Geliştirme Çağrısı 2026/2",
+    "tur": "Hibe",
+    "kaynak": "KOSGEB",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "2.000.000 ₺'ye kadar (kadın/genç: +150.000 ₺)",
+    "durum": "kapandı",
+    "son": "2026-05-08",
+    "aciklama": "20 Nisan – 8 Mayıs 2026 tarihleri arasında alınan 2026/2 dönemi başvuruları kapandı. 2026/3 dönemi bekleniyor.",
+    "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9374/girisimci-destek-programi-is-gelistirme-cagrisi-2026-yili-2-donem-basvurulari-basladi"
   },
   {
     "id": 95,
@@ -995,5 +1010,148 @@
     "son": "Süresiz",
     "aciklama": "Yatırım Tabanlı Girişimcilik Destek Programı (1812) kapsamında 2026/1 Tohum Öncesi Yatırım Çağrısı açık.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1512"
+  },
+  {
+    "id": 98,
+    "baslik": "TKDK IPARD III – 11. Başvuru Çağrısı (Tarım & Gıda İşleme)",
+    "tur": "Hibe",
+    "kaynak": "TKDK / AB",
+    "grup": "AB ve Uluslararası Hibeler",
+    "sektor": [
+      "Tarım",
+      "Gıda"
+    ],
+    "tutar": "%50–70 hibe, 30 milyon Avro bütçe",
+    "durum": "açık",
+    "son": "2026-07-20",
+    "aciklama": "Tarım ve balıkçılık ürünlerinin işlenmesi ve pazarlanmasına yönelik yatırımlara AB destekli hibe. 12 Haziran'da açıldı, proje dosyası teslim son tarihi 20 Temmuz 2026.",
+    "url": "https://www.tkdk.gov.tr"
+  },
+  {
+    "id": 99,
+    "baslik": "Kırsal Kalkınma Yatırımları Destekleme Programı 2026",
+    "tur": "Hibe",
+    "kaynak": "Tarım ve Orman Bakanlığı",
+    "grup": "Tarım Destekleri",
+    "sektor": [
+      "Tarım",
+      "Gıda"
+    ],
+    "tutar": "%50–70 hibe, 100 bin – 30 milyon TL proje",
+    "durum": "kapanmak üzere",
+    "son": "2026-06-30",
+    "aciklama": "Tarımsal üretim, işleme, depolama, hayvancılık, sulama ve yenilenebilir enerji yatırımlarına hibe. Yoğun ilgi üzerine başvuru süresi 30 Haziran'a uzatıldı.",
+    "url": "https://www.tarimorman.gov.tr"
+  },
+  {
+    "id": 100,
+    "baslik": "Tasarruflu Tarımsal Sulama Sistemleri Desteklemesi 2026",
+    "tur": "Hibe",
+    "kaynak": "Tarım ve Orman Bakanlığı",
+    "grup": "Tarım Destekleri",
+    "sektor": [
+      "Tarım"
+    ],
+    "tutar": "%50–70 hibe",
+    "durum": "kapanmak üzere",
+    "son": "2026-06-30",
+    "aciklama": "Damla sulama, yağmurlama, güneş enerjili sulama, akıllı sulama ve otomasyon sistemleri yatırımlarına hibe desteği. Başvuru süresi 30 Haziran'a uzatıldı.",
+    "url": "https://www.tarimorman.gov.tr"
+  },
+  {
+    "id": 101,
+    "baslik": "KOSGEB İstihdamı Koruma Destek Programı 2026",
+    "tur": "İstihdam Teşviki",
+    "kaynak": "KOSGEB",
+    "grup": "İstihdam ve Personel Destekleri",
+    "sektor": [
+      "Tekstil",
+      "Hazır Giyim",
+      "Deri",
+      "Mobilya"
+    ],
+    "tutar": "3.500 ₺/çalışan/ay geri ödemesiz + kredi",
+    "durum": "kapanmak üzere",
+    "son": "2026-06-30",
+    "aciklama": "Tekstil, giyim, deri ve mobilya imalatında 2025 yılı istihdam düzeyini koruyanlara performans desteği. Kredi kullanımı için son tarih Haziran 2026.",
+    "url": "https://kosgeb.gov.tr/site/tr/genel/destekdetay/9224/istihdami-koruma-destek-programi"
+  },
+  {
+    "id": 102,
+    "baslik": "İŞKUR Kadın, Genç ve Mesleki Yeterlilik Belgeli İstihdam Teşviki 2026",
+    "tur": "İstihdam Teşviki",
+    "kaynak": "İŞKUR",
+    "grup": "İstihdam ve Personel Destekleri",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "7.184 – 64.656 ₺/ay SGK işveren payı karşılanır",
+    "durum": "açık",
+    "son": "2026-12-31",
+    "aciklama": "İşsiz kadın, genç (18-29) veya mesleki yeterlilik belgeli kişileri işe alan özel sektör işverenlerine SGK prim desteği. 31 Aralık 2026'ya kadar uzatıldı.",
+    "url": "https://www.iskur.gov.tr/isveren/tesvikler/kadin-genc-ve-mesleki-yeterlilik-belgesi-olanlarin-tesviki/"
+  },
+  {
+    "id": 103,
+    "baslik": "SGK Asgari Ücret Desteği 2026 (Ocak–Aralık)",
+    "tur": "İstihdam Teşviki",
+    "kaynak": "Sosyal Güvenlik Kurumu",
+    "grup": "İstihdam ve Personel Destekleri",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "Çalışan başına günlük sabit destek (sektör ve çalışan sayısına göre)",
+    "durum": "açık",
+    "son": "2026-12-31",
+    "aciklama": "Tüm sigortalı çalışanlar için SGK'nın işverene sağladığı 2026 yılı asgari ücret prim desteği. Ocak–Aralık 2026 boyunca geçerli.",
+    "url": "https://www.sgk.gov.tr"
+  },
+  {
+    "id": 104,
+    "baslik": "TÜBİTAK 1501 & 1507 Ar-Ge Destek Programları – 2026/2 Çağrısı (Temmuz)",
+    "tur": "Hibe",
+    "kaynak": "TÜBİTAK",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Üretim",
+      "Teknoloji",
+      "Yazılım",
+      "Kimya"
+    ],
+    "tutar": "Proje maliyetinin %75'i; bütçe üst sınırı yok",
+    "durum": "açık",
+    "son": "Süresiz",
+    "aciklama": "Yılda iki kez (Ocak ve Temmuz) açılan programın 2026/2 çağrısı Temmuz 2026'da açılacak. Ön kayıt için beklemeye gerek yok, şimdiden yapılabilir.",
+    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501"
+  },
+  {
+    "id": 105,
+    "baslik": "TURQUALITY Marka Destek Programı 2026",
+    "tur": "Hibe",
+    "kaynak": "Ticaret Bakanlığı",
+    "grup": "İhracat ve Uluslararasılaşma",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "2026 yıllık limit: 493.271.347 ₺ (TURQUALITY) / 246.634.310 ₺ (Marka)",
+    "durum": "açık",
+    "son": "2026-12-31",
+    "aciklama": "Türk markalarının küresel pazarlarda bilinirliğini artırmaya yönelik en kapsamlı ihracat destek programı. 31 Aralık 2026'ya kadar programa kabul için başvuru yapılabilir.",
+    "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
+  },
+  {
+    "id": 106,
+    "baslik": "Ticaret Bakanlığı Yurt Dışı Fuar Katılım Desteği 2026",
+    "tur": "Hibe",
+    "kaynak": "Ticaret Bakanlığı",
+    "grup": "İhracat ve Uluslararasılaşma",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "Genel fuar: 271.000 ₺ | Sektörel: 452.000 ₺ | Prestijli: 1.357.000 ₺",
+    "durum": "açık",
+    "son": "Süresiz",
+    "aciklama": "İhracatçı firmaların yurt dışı fuarlara stant ile katılım harcamalarına destek. Fuar bitiminden itibaren 3 ay içinde başvuru yapılabilir. 5973 sayılı Karar kapsamında.",
+    "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri/5973-sayili-ihracat-destekleri-hakkinda-karara-iliskin-genelgeler/yurt-disi-ve-yurt-ici-fuar-destekleri"
   }
 ]
