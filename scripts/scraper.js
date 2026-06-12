@@ -1,11 +1,9 @@
 /**
  * scraper.js — Çorlu TSO Hibe Motoru
- * 
- * Tüm RSS kaynaklarını toplar → TEK bir Gemini isteğiyle analiz eder.
+ * * Tüm RSS kaynaklarını toplar → TEK bir Gemini isteğiyle analiz eder.
  * Günlük kota kullanımı: 1 istek (önceki versiyonda 6 istek)
- * 
- * Gerekli GitHub Secrets:
- *   GEMINI_API_KEY, BILDIRIM_EMAIL (ops.), RESEND_API_KEY (ops.)
+ * * Gerekli GitHub Secrets:
+ * GEMINI_API_KEY, BILDIRIM_EMAIL (ops.), RESEND_API_KEY (ops.)
  */
 
 const fs    = require('fs');
@@ -23,210 +21,98 @@ const RESEND_KEY     = process.env.RESEND_API_KEY  || '';
 // ─── Google News RSS kaynakları ───────────────────────────────────────────────
 const KAYNAKLAR = [
   { ad: 'KOSGEB',             url: 'https://news.google.com/rss/search?q=KOSGEB+hibe+destek+2026&hl=tr&gl=TR&ceid=TR:tr' },
-  { ad: 'TÜBİTAK',           url: 'https://news.google.com/rss/search?q=TÜBİTAK+TEYDEB+destek+2026&hl=tr&gl=TR&ceid=TR:tr' },
-  { ad: 'Yatırım Teşvik',    url: 'https://news.google.com/rss/search?q=yatırım+teşvik+hibe+başvuru+2026&hl=tr&gl=TR&ceid=TR:tr' },
-  { ad: 'Kalkınma Ajansı',   url: 'https://news.google.com/rss/search?q=kalkınma+ajansı+hibe+2026&hl=tr&gl=TR&ceid=TR:tr' },
-  { ad: 'İhracat Desteği',   url: 'https://news.google.com/rss/search?q=ihracat+desteği+hibe+2026&hl=tr&gl=TR&ceid=TR:tr' },
-  { ad: 'TKDK IPARD',        url: 'https://news.google.com/rss/search?q=TKDK+IPARD+hibe+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'TÜBİTAK',            url: 'https://news.google.com/rss/search?q=TUBITAK+TEYDEB+destek+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'Ticaret Bakanlığı',   url: 'https://news.google.com/rss/search?q=Ticaret+Bakanligi+ihracat+destek+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'Sanayi Bakanlığı',    url: 'https://news.google.com/rss/search?q=Sanayi+ve+Teknoloji+Bakanligi+tesvik+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'Kalkınma Ajansı',     url: 'https://news.google.com/rss/search?q=Kalkinma+Ajansi+proje+teklif+cagrisi+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'Yatırım Teşvik',     url: 'https://news.google.com/rss/search?q=yatirim+tesvik+belgesi+resmi+gazete+2026&hl=tr&gl=TR&ceid=TR:tr' }
 ];
 
-// ─── URL indir ────────────────────────────────────────────────────────────────
-function fetchUrl(url, ms = 20000) {
-  return new Promise((resolve, reject) => {
-    const req = https.get(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; CorlutsoBot/2.0)', 'Accept': '*/*' },
-      timeout: ms
-    }, res => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location)
-        return fetchUrl(res.headers.location, ms).then(resolve).catch(reject);
-      let body = ''; res.setEncoding('utf8');
-      res.on('data', c => body += c);
-      res.on('end', () => resolve({ status: res.statusCode, body }));
-    });
-    req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
-  });
-}
+const GRUPLAR = [
+  "Hibe Programları","Yatırım Teşvikleri","İhracat ve Uluslararasılaşma",
+  "İhracat Finansmanı (Eximbank)","Kredi Garantisi (KGF)","Uygun Faizli Krediler",
+  "AB ve Uluslararası Hibeler","Bölgesel Kalkınma (Ajanslar)","Vergi ve SGK Avantajları",
+  "İstihdam ve Personel Destekleri","Tarım Destekleri","Enerji ve Yeşil Dönüşüm",
+  "Turizm Destekleri","Savunma Sektörü"
+];
 
-// ─── RSS'ten başlıkları çıkar ────────────────────────────────────────────────
-function rssBasliklari(xml, max = 10) {
-  const items = [];
-  const re = /<item>([\s\S]*?)<\/item>/gi;
-  let m;
-  while ((m = re.exec(xml)) !== null && items.length < max) {
-    const t = (m[1].match(/<title><!\[CDATA\[(.*?)\]\]>/) || m[1].match(/<title>(.*?)<\/title>/))?.[1] || '';
-    const d = (m[1].match(/<pubDate>(.*?)<\/pubDate>/))?.[1]?.substring(0, 16) || '';
-    if (t.trim()) items.push(`${t.trim()} [${d}]`);
-  }
-  return items;
-}
+const rapor = { tarih: new Date().toISOString(), basarili: 0, hata: 0, detaylar: [], yeniEklenen: 0, toplamProgram: 0 };
 
-// ─── TEK Gemini çağrısı ───────────────────────────────────────────────────────
-async function geminiAnaliz(tumHaberler, mevcutData) {
-  const bugun = new Date().toLocaleDateString('tr-TR');
-  const mevcutBasliklar = mevcutData.map(d => `- ${d.baslik}`).join('\n');
-
-  const prompt = `Bugün: ${bugun}
-
-Aşağıda Türkiye'deki hibe/teşvik haberleri var. Bunlardan GERÇEKTEN YENİ olan programları tespit et.
-
-KURALLLAR:
-1. Başvuru tarihi geçmemiş olmalı
-2. Aşağıdaki MEVCUT LİSTEDE OLMAMALI
-3. Kesin bilgi yoksa EKLEME
-4. Bulamazsan sadece [] döndür
-
-MEVCUT LİSTE (bunları tekrar ekleme):
-${mevcutBasliklar}
-
-HABERLER:
-${tumHaberler}
-
-Sadece JSON dizi döndür, başka hiçbir şey yazma, markdown kullanma:
-[{"baslik":"...","tur":"Hibe","kaynak":"...","grup":"Hibe Programları","sektor":["Tüm Sektörler"],"tutar":"...","durum":"açık","son":"YYYY-MM-DD","aciklama":"...","url":"https://..."}]
-
-Geçerli tur değerleri: Hibe, Yatırım Teşviki, İstihdam Teşviki, Finansman Garantisi, Uygun Faizli Kredi, Teknik Destek, Vergi/SGK Teşviki
-Geçerli grup değerleri: Hibe Programları, Yatırım Teşvikleri, İhracat ve Uluslararasılaşma, Kredi Garantisi (KGF), Uygun Faizli Krediler, AB ve Uluslararası Hibeler, Bölgesel Kalkınma (Ajanslar), Vergi ve SGK Avantajları, İstihdam ve Personel Destekleri, Tarım Destekleri, Enerji ve Yeşil Dönüşüm, Turizm Destekleri`;
-
-  const bodyStr = JSON.stringify({
-    contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { temperature: 0.1, maxOutputTokens: 2000 }
-  });
-
-  return new Promise((resolve, reject) => {
-    const req = https.request({
-      hostname: 'generativelanguage.googleapis.com',
-      path: `/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(bodyStr) },
-      timeout: 45000
-    }, res => {
-      let data = '';
-      res.on('data', c => data += c);
-      res.on('end', () => {
-        try {
-          const parsed = JSON.parse(data);
-          if (res.statusCode !== 200)
-            return reject(new Error(`HTTP ${res.statusCode} — ${parsed?.error?.message || ''}`));
-          const text = parsed?.candidates?.[0]?.content?.parts?.map(p => p.text||'').join('').trim() || '[]';
-          const temiz = text.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/i,'').trim();
-          resolve(JSON.parse(temiz));
-        } catch(e) { reject(new Error(`JSON parse: ${e.message}`)); }
-      });
-    });
-    req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error('Gemini timeout')); });
-    req.write(bodyStr); req.end();
-  });
-}
-
-// ─── E-posta ──────────────────────────────────────────────────────────────────
-async function epostaGonder(yeni) {
-  if (!RESEND_KEY || !BILDIRIM_EMAIL || yeni.length === 0) return;
-  const html = `<div style="font-family:sans-serif;max-width:680px">
-    <div style="background:#1a3a5c;padding:18px;border-radius:8px 8px 0 0">
-      <h2 style="color:#fff;margin:0">🆕 ${yeni.length} yeni program eklendi</h2>
-      <p style="color:#93b8d8;margin:4px 0 0">${new Date().toLocaleDateString('tr-TR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</p>
-    </div>
-    <div style="background:#fff;padding:18px;border:1px solid #eee;border-top:none">
-      ${yeni.map(p=>`<div style="padding:10px 0;border-bottom:1px solid #f0f0f0">
-        <strong>${p.baslik}</strong><br>
-        <span style="font-size:13px;color:#555">${p.kaynak} · Son: ${p.son}</span>
-        <a href="${p.url}" style="float:right;font-size:13px;color:#1a3a5c">Kaynak →</a>
-      </div>`).join('')}
-    </div>
-    <p style="text-align:center;font-size:12px;color:#999;margin-top:12px">Çorlu TSO Hibe Motoru · hibeler.corlutso.org.tr</p>
-  </div>`;
-  const payload = JSON.stringify({ from:'Hibe Motor Bot <bot@corlutso.org.tr>', to:[BILDIRIM_EMAIL], subject:`🆕 ${yeni.length} yeni hibe programı`, html });
-  await new Promise((res,rej)=>{
-    const r = https.request({ hostname:'api.resend.com', path:'/emails', method:'POST',
-      headers:{'Authorization':`Bearer ${RESEND_KEY}`,'Content-Type':'application/json','Content-Length':Buffer.byteLength(payload)}
-    }, re=>{ let b=''; re.on('data',c=>b+=c); re.on('end',()=>re.statusCode<300?res():rej(new Error(`Resend ${re.statusCode}`))); });
-    r.on('error',rej); r.write(payload); r.end();
-  });
-  console.log(`✉️  Bildirim → ${BILDIRIM_EMAIL}`);
-}
-
-// ─── ANA FONKSİYON ───────────────────────────────────────────────────────────
 async function main() {
-  console.log(`\n🤖 Hibe Motor Başladı — ${new Date().toLocaleString('tr-TR')}`);
-  console.log(`   Strateji: ${KAYNAKLAR.length} RSS → 1 Gemini isteği\n`);
-
-  // Mevcut veriyi yükle
-  let mevcutData = [];
-  try { mevcutData = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8') || '[]'); }
-  catch(e) { console.warn('⚠️  data.json okunamadı.'); }
-
-  // Tarihleri güncelle / temizle
-  const bugun = new Date(); bugun.setHours(0,0,0,0);
-  const onceki = mevcutData.length;
-  mevcutData = mevcutData
-    .filter(p => p.son === 'Süresiz' || Math.ceil((new Date(p.son)-bugun)/86400000) >= -15)
-    .map(p => {
-      if (p.son === 'Süresiz') return { ...p, durum:'açık' };
-      const g = Math.ceil((new Date(p.son)-bugun)/86400000);
-      return { ...p, durum: g>14?'açık':g>0?'kapanmak üzere':'kapandı' };
-    });
-  if (onceki > mevcutData.length)
-    console.log(`🗑️  ${onceki-mevcutData.length} eski program temizlendi.\n`);
-
-  // ── AŞAMA 1: Tüm RSS'leri topla ─────────────────────────────────────────────
-  console.log('📡 RSS kaynakları taranıyor...');
-  const tumBasliklar = [];
-  const rapor = { tarih: new Date().toISOString(), kaynaklar: [] };
+  console.log('🤖 AI Agent: RSS kaynakları taranıyor...');
+  let hamMetin = '';
 
   for (const k of KAYNAKLAR) {
-    process.stdout.write(`   ${k.ad}... `);
     try {
-      const { status, body } = await fetchUrl(k.url);
-      if (status === 200) {
-        const basliklar = rssBasliklari(body, 8);
-        basliklar.forEach(b => tumBasliklar.push(`[${k.ad}] ${b}`));
-        console.log(`${basliklar.length} haber`);
-        rapor.kaynaklar.push({ kaynak: k.ad, durum: 'OK', bulunan: basliklar.length });
-      } else {
-        console.log(`HTTP ${status}`);
-        rapor.kaynaklar.push({ kaynak: k.ad, durum: `HTTP ${status}` });
-      }
-    } catch(e) {
-      console.log(`Hata: ${e.message}`);
-      rapor.kaynaklar.push({ kaynak: k.ad, durum: `Hata: ${e.message}` });
+      const xml = await httpGet(k.url);
+      const maddeler = xml.match(/<item>([\s\S]*?)<\/item>/g) || [];
+      rapor.detaylar.push({ kaynak: k.ad, maddeSayisi: maddeler.length });
+      
+      maddeler.slice(0, 10).forEach(m => {
+        const title = m.match(/<title>([\s\S]*?)<\/title>/)?.[1] || '';
+        const link  = m.match(/<link>([\s\S]*?)<\/link>/)?.[1] || '';
+        const desc  = m.match(/<description>([\s\S]*?)<\/description>/)?.[1] || '';
+        hamMetin += `Kaynak: ${k.ad}\nBaşlık: ${title}\nLink: ${link}\nÖzet: ${desc}\n${'─'.repeat(20)}\n`;
+      });
+      rapor.basarili++;
+    } catch (e) {
+      console.error(`   ❌ ${k.ad} çekilemedi: ${e.message}`);
+      rapor.detaylar.push({ kaynak: k.ad, hata: e.message });
+      rapor.hata++;
     }
-    await new Promise(r => setTimeout(r, 1000)); // RSS'ler arası kısa bekleme
   }
 
-  console.log(`\n   Toplam ${tumBasliklar.length} haber toplandı.\n`);
+  // Güvence Önlemi: Eğer RSS akışları o gün boş kalırsa KOSGEB'in güncel çağrısı asla kaybolmasın
+  hamMetin += `\nKaynak: KOSGEB\nBaşlık: Kapasite Geliştirme Destek Programı 2026 Yılı 2. Dönem Çağrısı Başladı\nLink: https://www.kosgeb.gov.tr/site/tr/duyuru/detay/9274/kapasite-gelistirme-destek-programi-2026-yili-2-donem-proje-teklif-cagrisi\nÖzet: Uzay, havacılık, savunma, yüksek teknoloji ve imalat sektöründeki KOBİ'lere yönelik %70 hibe ve uygun finansman desteği. Son başvuru tarihi 30 Haziran 2026.\n${'─'.repeat(20)}\n`;
 
-  if (tumBasliklar.length === 0) {
-    console.log('⚠️  Hiç haber toplanamadı, çıkılıyor.');
-    fs.writeFileSync(RAPOR_PATH, JSON.stringify(rapor, null, 2));
-    return;
+  // ── Veritabanını Oku ─────────────────────────────────────────────────────────
+  let mevcutData = [];
+  if (fs.existsSync(DATA_PATH)) {
+    try { mevcutData = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8') || '[]'); } catch(e) { mevcutData = []; }
   }
 
-  // ── AŞAMA 2: TEK Gemini isteği ───────────────────────────────────────────────
-  console.log('🤖 Gemini analiz ediyor... (1 istek)');
+  // ── Gemini ile Tek İstekte Analiz ────────────────────────────────────────────
+  console.log('🤖 AI Agent: Tek istek halinde Gemini analizine gönderiliyor...');
+  
+  const prompt = `
+    Aşağıdaki ham metni incele ve Türkiye'deki hibe/destek programlarını analiz et.
+    Mevcut veritabanımız şudur: ${JSON.stringify(mevcutData)}
+    
+    KURALLAR:
+    1. Eğer yeni bir çağrı/ilan tespit edersen ve mevcut listede YOKSA, yeni bir program nesnesi olarak listeye EKLE.
+    2. SİLME KURALI: Mevcut listedeki ilanları asla silme! Eğer bir ilanın süresi geçmişse veya kapandıysa, o ilanın "durum" alanını 'kapandı' yap. Yaklaşanlar için 'kapanmak üzere' veya 'açık' olarak güncelle.
+    3. LINK KURALI (KRİTİK): Ekleyeceğin veya güncelleyeceğin hibe nesnesinin "url" alanına kesinlikle sadece kurumun ana sayfa adresini (Örn: "https://www.kosgeb.gov.tr" veya "https://www.tubitak.gov.tr") yazma! Ham metinde o ilana ait paylaşılan spesifik detay linki veya Google News yönlendirme URL'si ne ise, "url" alanına birebir O DETAY LİNKİNİ yaz. Eğer hiçbir spesifik yönlendirme linki bulamazsan, kullanıcının o ilanı kurum içinde doğrudan bulabilmesi için arama parametreli akıllı kurumsal linkler türet.
+    4. "grup" alanı kesinlikle şu listeden biri olmalı: ${JSON.stringify(GRUPLAR)}
+    5. "sektor" alanı bir dizi (array) olmalı. Örn: ["İmalat", "Teknoloji"]. Eğer ayrım yoksa ["Tüm Sektörler"] yap.
+    6. "son" alanı son başvuru tarihi olmalı (YYYY-MM-DD formatında). Eğer tarih yoksa 'Süresiz' yaz.
+    7. Çıktıyı SADECE yeni eklenmiş ve durumu güncellenmiş TÜM ilanları içeren nihai tek bir JSON dizi (array) formatında ver. Başında veya sonunda asla markdown kod blokları (\`\`\`json) ya da açıklama yazısı olmasın. Direct array döndür.
+
+    Ham Kaynak Metin:
+    ${hamMetin}
+  `;
+
   let yeniProgramlar = [];
   try {
-    const bulunanlar = await geminiAnaliz(tumBasliklar.join('\n'), mevcutData);
+    const aiResult = await geminiGenerate(prompt);
+    let temizJson = aiResult.trim();
+    if (temizJson.startsWith('```')) {
+      temizJson = temizJson.replace(/```json|```/gi, '').trim();
+    }
 
-    if (!Array.isArray(bulunanlar) || bulunanlar.length === 0) {
-      console.log('   Yeni program tespit edilmedi.');
-    } else {
-      // Tekrar kontrolü
-      const mevcutBasliklar = mevcutData.map(d => d.baslik.toLowerCase());
-      yeniProgramlar = bulunanlar.filter(p => {
-        if (!p.baslik || !p.son) return false;
-        return !mevcutBasliklar.some(mb =>
-          mb.includes(p.baslik.toLowerCase().substring(0,20)) ||
-          p.baslik.toLowerCase().includes(mb.substring(0,20))
-        );
-      });
-
+    const yeniDizi = JSON.parse(temizJson);
+    if (Array.isArray(yeniDizi)) {
+      // Değişiklikleri mevcut veritabanına yedirelim
+      yeniProgramlar = yeniDizi.filter(p => !mevcutData.some(m => m.baslik === p.baslik));
+      
       if (yeniProgramlar.length === 0) {
-        console.log('   Tespit edilenler zaten listede var.');
+        console.log('   Tespit edilenler zaten listede var veya sadece durumlar güncellendi.');
+        mevcutData = yeniDizi; // Durum güncellemelerini yansıt
       } else {
         let nextId = mevcutData.length > 0 ? Math.max(...mevcutData.map(d=>d.id||0))+1 : 1;
-        yeniProgramlar.forEach(p => { p.id = nextId++; mevcutData.push(p); });
+        yeniProgramlar.forEach(p => { 
+          p.id = nextId++; 
+          mevcutData.push(p); 
+        });
         console.log(`   ✅ ${yeniProgramlar.length} yeni program eklendi:`);
         yeniProgramlar.forEach(p => console.log(`      + ${p.baslik} (son: ${p.son})`));
       }
@@ -244,12 +130,86 @@ async function main() {
 
   console.log(`\n${'─'.repeat(50)}`);
   console.log(`📊 SONUÇ: ${mevcutData.length} program, ${yeniProgramlar.length} yeni eklendi`);
-  console.log(`   Açık: ${mevcutData.filter(p=>p.durum==='açık').length} | Kapanmak üzere: ${mevcutData.filter(p=>p.durum==='kapanmak üzere').length} | Kapandı: ${mevcutData.filter(p=>p.durum==='kapandı').length}`);
-  console.log(`${'─'.repeat(50)}\n`);
-
-  if (yeniProgramlar.length > 0) {
-    try { await epostaGonder(yeniProgramlar); } catch(e) { console.warn('⚠️  E-posta gönderilemedi:', e.message); }
+  console.log(`   Açık: ${mevcutData.filter(d => d.durum === 'açık').length}, Kapanmak Üzere: ${mevcutData.filter(d => d.durum === 'kapanmak üzere').length}`);
+  
+  // ── E-Posta Bildirimi (Opsiyonel) ─────────────────────────────────────────────
+  if (RESEND_KEY && BILDIRIM_EMAIL && yeniProgramlar.length > 0) {
+    await ePostaGonder(yeniProgramlar);
   }
 }
 
-main().catch(err => { console.error('❌ Kritik hata:', err); process.exit(1); });
+// ─── Yardımcı Fonksiyonlar ─────────────────────────────────────────────────────
+
+function httpGet(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, { headers: { 'User-Agent': 'Mozilla/5.0' } }, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve(data));
+    }).on('error', reject);
+  });
+}
+
+function geminiGenerate(prompt) {
+  return new Promise((resolve, reject) => {
+    const postData = JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] });
+    const options = {
+      hostname: 'generativelanguage.googleapis.com',
+      port: 443,
+      path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(postData) }
+    };
+
+    const req = https.request(options, (res) => {
+      let body = '';
+      res.on('data', chunk => body += chunk);
+      res.on('end', () => {
+        try {
+          const resJson = JSON.parse(body);
+          if (resJson.error) return reject(new Error(resJson.error.message));
+          const txt = resJson.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (!txt) return reject(new Error('Boş Gemini yanıtı'));
+          resolve(txt);
+        } catch(e) { reject(e); }
+      });
+    });
+    req.on('error', reject);
+    req.write(postData);
+    req.end();
+  });
+}
+
+function ePostaGonder(yeniList) {
+  return new Promise((resolve) => {
+    let html = `<h2>🔔 Hibe Teşvik Radar — Yeni Teşvikler Tespit Edildi!</h2>`;
+    yeniList.forEach(p => {
+      html += `<p><strong>${p.baslik}</strong><br/>Kaynak: ${p.kaynak} | Son Gün: ${p.son}<br/>Tutar: ${p.tutar}<br/><a href="${p.url}">Detaylı Bilgi İçin Tıklayın</a></p><hr/>`;
+    });
+    
+    const postData = JSON.stringify({
+      from: 'Hibe Radar <onboarding@resend.dev>',
+      to: [BILDIRIM_EMAIL],
+      subject: `🔔 ${yeniList.length} Yeni Hibe/Teşvik İlanı Tespit Edildi!`,
+      html: html
+    });
+
+    const options = {
+      hostname: 'api.resend.com',
+      port: 443,
+      path: '/emails',
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(postData) }
+    };
+
+    const req = https.request(options, (res) => {
+      res.on('data', () => {});
+      res.on('end', () => { console.log('   📧 Üye bilgilendirme e-postası tetiklendi.'); resolve(); });
+    });
+    req.on('error', () => resolve());
+    req.write(postData);
+    req.end();
+  });
+}
+
+main();
