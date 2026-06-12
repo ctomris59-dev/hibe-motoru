@@ -11,7 +11,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f7;color:#1a1a2e;-webkit-font-smoothing:antialiased;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#e8edf7;color:#1a1a2e;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='1.2' fill='%23b0bdd4'/%3E%3C/svg%3E");
+  background-size:24px 24px;opacity:0.55;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 8% 50%, rgba(15,31,69,0.06) 0%, transparent 55%),
+             radial-gradient(ellipse at 92% 20%, rgba(0,210,140,0.05) 0%, transparent 50%),
+             radial-gradient(ellipse at 50% 95%, rgba(15,31,69,0.04) 0%, transparent 60%);}
+#root{position:relative;z-index:1;}
 :root{
   --navy:#0f1f45;
   --navy2:#1a2f5e;
@@ -36,11 +44,20 @@ select:focus,input:focus{border-color:var(--navy2)!important;box-shadow:0 0 0 3p
 button{font-family:inherit;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skeleton{background:linear-gradient(90deg,#e8eaf0 25%,#d8dae4 50%,#e8eaf0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:12px;height:80px;margin-bottom:8px;}
-@media(max-width:640px){.hide-mobile{display:none!important;}.filter-cols{grid-template-columns:1fr!important;}}
+@media(max-width:640px){
+  .hide-mobile{display:none!important;}
+  .filter-cols{grid-template-columns:1fr!important;}
+  .chip{font-size:11px;padding:5px 10px;}
+  .stat-grid{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:400px){
+  .stat-grid{grid-template-columns:1fr!important;}
+}
 </style>
 </head>
 <body>
 <div id="root"></div>
+
 <script type="text/babel">
 const {useState,useMemo,useCallback,useEffect}=React;
 
@@ -62,7 +79,7 @@ function DurumBadge({durum}){
 }
 
 function StatCard({icon,value,label,color}){
-  return <div style={{background:"#fff",border:"1px solid var(--border)",borderRadius:12,padding:"14px 18px",display:"flex",alignItems:"center",gap:12,flex:1,minWidth:0}}>
+  return <div style={{background:"rgba(255,255,255,0.92)",border:"1px solid var(--border)",borderRadius:12,padding:"14px 18px",display:"flex",alignItems:"center",gap:12,flex:1,minWidth:0}}>
     <div style={{width:40,height:40,borderRadius:10,background:color+"22",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
       <i className={`ti ${icon}`} style={{fontSize:20,color}} aria-hidden="true"/>
     </div>
@@ -145,44 +162,39 @@ function App(){
   return <div style={{minHeight:"100vh",background:"var(--page)"}}>
 
     {/* ── HEADER ── */}
-    <div style={{background:"linear-gradient(135deg, #0f1f45 0%, #1a3a6e 100%)",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
+    <div style={{background:"linear-gradient(135deg, #0f1f45 0%, #1a3a6e 100%)",borderBottom:"1px solid rgba(255,255,255,0.08)",position:"relative",overflow:"hidden"}}>
+      <svg style={{position:"absolute",right:0,top:0,width:320,height:"100%",pointerEvents:"none",opacity:0.35}} viewBox="0 0 320 120" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <circle cx="280" cy="20" r="80" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+        <circle cx="280" cy="20" r="55" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
+        <circle cx="280" cy="20" r="30" fill="none" stroke="rgba(0,210,140,0.3)" strokeWidth="1"/>
+        <circle cx="60" cy="100" r="60" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8"/>
+      </svg>
       <div style={{maxWidth:1000,margin:"0 auto",padding:"0 1rem"}}>
 
         {/* Üst bar */}
-        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 0",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-          <div style={{display:"flex",alignItems:"center",gap:8}}>
-            <img src="ctso-logo.jpg" alt="Çorlu TSO" style={{width:32,height:32,borderRadius:"50%",objectFit:"cover",border:"1px solid rgba(255,255,255,0.2)"}} onError={e=>e.target.style.display='none'}/>
-            <span style={{color:"rgba(255,255,255,0.6)",fontSize:12,letterSpacing:"0.5px"}}>Çorlu Ticaret ve Sanayi Odası</span>
-          </div>
-          <div style={{display:"flex",gap:6}} className="hide-mobile">
-            {!yukleniyor&&<>
-              <span style={{background:"rgba(0,210,140,0.15)",color:"#00d28c",border:"1px solid rgba(0,210,140,0.3)",borderRadius:20,padding:"3px 12px",fontSize:11,fontWeight:600}}>
-                <i className="ti ti-circle-check" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>{acik} Açık Program
-              </span>
-              <span style={{background:"rgba(245,152,32,0.15)",color:"#f59820",border:"1px solid rgba(245,152,32,0.3)",borderRadius:20,padding:"3px 12px",fontSize:11,fontWeight:600}}>
-                <i className="ti ti-alarm" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>{yakin} Kapanmak Üzere
-              </span>
-              <span style={{background:"rgba(255,255,255,0.08)",color:"rgba(255,255,255,0.6)",borderRadius:20,padding:"3px 12px",fontSize:11}}>
-                <i className="ti ti-database" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>{data.length} Toplam
-              </span>
-            </>}
-          </div>
+        <div style={{display:"flex",alignItems:"center",padding:"10px 0",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+          <span style={{color:"rgba(255,255,255,0.55)",fontSize:12,letterSpacing:"0.5px"}}>Çorlu Ticaret ve Sanayi Odası</span>
         </div>
 
         {/* Ana başlık */}
-        <div style={{padding:"20px 0 24px",display:"flex",alignItems:"center",gap:16}}>
-          <RadarLogo/>
-          <div>
-            <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-              <h1 style={{color:"#fff",fontSize:26,fontWeight:700,letterSpacing:"-0.5px",lineHeight:1}}>
-                Hibe Teşvik <span style={{color:"#00d28c"}}>Radar</span>
-              </h1>
-              <span style={{background:"rgba(245,200,66,0.18)",color:"#f5c842",border:"1px solid rgba(245,200,66,0.3)",borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:600,letterSpacing:"0.5px"}}>
-                <i className="ti ti-coin" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>FİNANSMAN & HİBE
-              </span>
+        <div style={{padding:"16px 0 20px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:16}}>
+          <div style={{display:"flex",alignItems:"center",gap:16}}>
+            <RadarLogo/>
+            <div>
+              <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+                <h1 style={{color:"#fff",fontSize:26,fontWeight:700,letterSpacing:"-0.5px",lineHeight:1}}>
+                  Hibe Teşvik <span style={{color:"#00d28c"}}>Radar</span>
+                </h1>
+                <span style={{background:"rgba(245,200,66,0.18)",color:"#f5c842",border:"1px solid rgba(245,200,66,0.3)",borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:600,letterSpacing:"0.5px"}}>
+                  <i className="ti ti-coin" style={{fontSize:11,marginRight:4}} aria-hidden="true"/>FİNANSMAN & HİBE
+                </span>
+              </div>
+              <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,marginTop:5}}>Türkiye'deki tüm hibe, teşvik ve yatırım finansmanı fırsatları</p>
             </div>
-            <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,marginTop:5}}>Türkiye'deki tüm hibe, teşvik ve yatırım finansmanı fırsatları</p>
           </div>
+          <img src="ctso-logo.jpg" alt="Çorlu TSO logosu" className="hide-mobile"
+            style={{width:72,height:72,borderRadius:"50%",objectFit:"cover",border:"2px solid rgba(255,255,255,0.25)",flexShrink:0}}
+            onError={e=>e.target.style.display="none"}/>
         </div>
 
       </div>
@@ -191,7 +203,7 @@ function App(){
     <div style={{maxWidth:1000,margin:"0 auto",padding:"1.5rem 1rem"}}>
 
       {/* ── STAT KARTLARI ── */}
-      {!yukleniyor&&!hata&&<div style={{display:"flex",gap:10,marginBottom:"1.25rem",flexWrap:"wrap"}}>
+      {!yukleniyor&&!hata&&<div className="stat-grid" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:"1.25rem"}}>
         <StatCard icon="ti-circle-check" value={acik} label="Açık Program" color="#00d28c"/>
         <StatCard icon="ti-alarm" value={yakin} label="Kapanmak Üzere" color="#f59820"/>
         <StatCard icon="ti-database" value={data.length} label="Toplam Fırsat" color="#1a3a6e"/>
@@ -199,13 +211,13 @@ function App(){
       </div>}
 
       {/* ── DİSCLAIMER ── */}
-      <div style={{background:"#fffbeb",border:"1px solid #fde68a",borderRadius:10,padding:"10px 14px",marginBottom:"1rem",fontSize:13,color:"#92400e",display:"flex",gap:8,alignItems:"flex-start"}}>
-        <i className="ti ti-info-circle" style={{fontSize:16,marginTop:1,flexShrink:0}} aria-hidden="true"/>
-        <span><strong>Bilgi amaçlıdır.</strong> Başvuru öncesinde resmi kaynak sitesini mutlaka ziyaret ediniz. Çorlu TSO sorumluluk kabul etmez. Son güncelleme: {new Date().toLocaleDateString("tr-TR")}</span>
+      <div style={{background:"rgba(255,251,235,0.95)",border:"1px solid #fde68a",borderRadius:10,padding:"10px 16px",marginBottom:"1rem",fontSize:13,color:"#92400e",display:"flex",gap:10,alignItems:"flex-start"}}>
+        <i className="ti ti-info-circle" style={{fontSize:17,marginTop:1,flexShrink:0}} aria-hidden="true"/>
+        <span>Bu platform bilgilendirme amacıyla hazırlanmıştır. Destek programlarına ilişkin güncel koşullar ve başvuru süreçleri için ilgili kurumun resmi web sitesini ziyaret ediniz. <span style={{color:"#b45309",opacity:0.7}}>Son güncelleme: {new Date().toLocaleDateString("tr-TR")}</span></span>
       </div>
 
       {/* ── FİLTRE PANEL ── */}
-      <div style={{background:"#fff",border:"1px solid var(--border)",borderRadius:14,padding:"1.25rem",marginBottom:"1rem",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+      <div style={{background:"rgba(255,255,255,0.94)",border:"1px solid var(--border)",borderRadius:14,padding:"1.25rem",marginBottom:"1rem",boxShadow:"0 1px 6px rgba(0,0,0,0.06)"}}>
         <div className="filter-cols" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))",gap:10,marginBottom:"1rem"}}>
           <div>
             <label style={{fontSize:11,color:"#888",display:"block",marginBottom:5,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
@@ -238,7 +250,7 @@ function App(){
           <label style={{fontSize:11,color:"#888",display:"block",marginBottom:7,textTransform:"uppercase",letterSpacing:"0.6px",fontWeight:500}}>
             <i className="ti ti-layout-grid" style={{fontSize:12,marginRight:4}} aria-hidden="true"/>Destek Kategorisi
           </label>
-          <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+          <div style={{display:"flex",flexWrap:"wrap",gap:6,WebkitOverflowScrolling:"touch"}}>
             <button className={`chip ${grup==="Tümü"?"chip-active":"chip-inactive"}`} onClick={()=>setGrup("Tümü")}>Tümü</button>
             {GRUPLAR.map(g=>(
               <button key={g} className={`chip ${grup===g?"chip-active":"chip-inactive"}`} onClick={()=>setGrup(g)}>
@@ -277,7 +289,7 @@ function App(){
           {filtered.map(h=>{
             const open=expanded===h.id;
             const cfg=DURUM_CFG[h.durum]||{};
-            return <div key={h.id} style={{background:"#fff",border:"1px solid var(--border)",borderRadius:14,borderLeft:`4px solid ${borderFor(h.durum)}`,overflow:"hidden",transition:"box-shadow .15s"}}
+            return <div key={h.id} style={{background:"rgba(255,255,255,0.92)",border:"1px solid var(--border)",borderRadius:14,borderLeft:`4px solid ${borderFor(h.durum)}`,overflow:"hidden",transition:"box-shadow .15s"}}
               onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,0.08)"}
               onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
 
@@ -303,7 +315,7 @@ function App(){
               {open&&<div style={{padding:"0 18px 16px",borderTop:"1px solid #f0f2f7"}}>
                 <p style={{fontSize:13,color:"#555",lineHeight:1.65,margin:"12px 0"}}>{h.aciklama}</p>
 
-                <div style={{display:"flex",gap:16,fontSize:13,flexWrap:"wrap",alignItems:"center",marginBottom:14,padding:"10px 14px",background:"#f8f9fc",borderRadius:8}}>
+                <div style={{display:"flex",gap:12,fontSize:13,flexWrap:"wrap",alignItems:"flex-start",marginBottom:14,padding:"10px 14px",background:"#f8f9fc",borderRadius:8}}>
                   <span style={{display:"inline-flex",alignItems:"center",gap:6,color:"var(--navy)"}}>
                     <i className="ti ti-coins" style={{fontSize:16,color:"var(--navy2)"}} aria-hidden="true"/>
                     <strong>{h.tutar}</strong>
@@ -337,17 +349,20 @@ function App(){
       )}
 
       {/* ── FOOTER ── */}
-      <div style={{marginTop:"2rem",padding:"1.5rem",background:"#fff",borderRadius:14,border:"1px solid var(--border)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
-        <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <img src="ctso-logo.jpg" alt="Çorlu TSO" style={{width:36,height:36,borderRadius:"50%",objectFit:"cover"}} onError={e=>e.target.style.display='none'}/>
+      <div style={{marginTop:"2rem",padding:"1.75rem",background:"rgba(255,255,255,0.94)",borderRadius:14,border:"1px solid var(--border)"}}>
+        <div style={{display:"flex",alignItems:"center",gap:16,marginBottom:"1rem",paddingBottom:"1rem",borderBottom:"1px solid #f0f2f7"}}>
+          <img src="ctso-logo.jpg" alt="Çorlu TSO logosu"
+            style={{width:64,height:64,borderRadius:"50%",objectFit:"cover",border:"2px solid #e8eaf0",flexShrink:0}}
+            onError={e=>e.target.style.display="none"}/>
           <div>
-            <div style={{fontSize:13,fontWeight:600,color:"var(--navy)"}}>Çorlu Ticaret ve Sanayi Odası</div>
-            <div style={{fontSize:11,color:"#999"}}>hibeler.corlutso.org.tr</div>
+            <div style={{fontSize:15,fontWeight:700,color:"var(--navy)"}}>Çorlu Ticaret ve Sanayi Odası</div>
+            <div style={{fontSize:12,color:"#00d28c",fontWeight:500,marginTop:2}}>Hibe Teşvik Radar</div>
+            <div style={{fontSize:12,color:"#999",marginTop:2}}>hibeler.corlutso.org.tr</div>
           </div>
         </div>
-        <div style={{fontSize:12,color:"#bbb",textAlign:"right"}}>
-          Bilgi amaçlıdır, resmi kaynak sitelerini ziyaret ediniz.<br/>
-          © 2026 Çorlu TSO — Hibe Teşvik Radar
+        <div style={{fontSize:12,color:"#888",lineHeight:1.7}}>
+          Çorlu Ticaret ve Sanayi Odası, bu platformdaki bilgilerin doğruluğu ve güncelliği konusunda sorumluluk üstlenmemektedir.<br/>
+          <span style={{color:"#bbb"}}>© 2026 Çorlu TSO — Hibe Teşvik Radar. Tüm hakları saklıdır.</span>
         </div>
       </div>
 
