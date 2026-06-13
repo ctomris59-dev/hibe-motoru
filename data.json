@@ -5,7 +5,11 @@
     "tur": "Vergi/SGK Teşviki",
     "kaynak": "KOSGEB",
     "grup": "Vergi ve SGK Avantajları",
-    "sektor": ["Teknoloji","Yazılım","Üretim"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Üretim"
+    ],
     "tutar": "Gelir vergisi muafiyeti + SGK desteği",
     "durum": "açık",
     "son": "Süresiz",
@@ -18,7 +22,9 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "KOBİ'lere %75, büyük firmaya %60",
     "durum": "açık",
     "son": "Süresiz",
@@ -31,7 +37,11 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Teknoloji","Yazılım","Sağlık"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Sağlık"
+    ],
     "tutar": "KOBİ başı max €500.000",
     "durum": "açık",
     "son": "Süresiz",
@@ -44,7 +54,9 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "Hibe Programları",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Patent başvuru masraflarının tamamı",
     "durum": "açık",
     "son": "Süresiz",
@@ -57,7 +69,11 @@
     "tur": "Vergi/SGK Teşviki",
     "kaynak": "TÜBİTAK",
     "grup": "Vergi ve SGK Avantajları",
-    "sektor": ["Teknoloji","Yazılım","Üretim"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Üretim"
+    ],
     "tutar": "Gelir vergisi muafiyeti + KDV istisnası",
     "durum": "açık",
     "son": "Süresiz",
@@ -70,7 +86,12 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Üretim","Lojistik","Enerji","Tarım"],
+    "sektor": [
+      "Üretim",
+      "Lojistik",
+      "Enerji",
+      "Tarım"
+    ],
     "tutar": "Vergi indirimi + SGK + gümrük muafiyeti",
     "durum": "açık",
     "son": "Süresiz",
@@ -83,7 +104,9 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Üretim"],
+    "sektor": [
+      "Üretim"
+    ],
     "tutar": "Artırımlı destek oranları + arazi tahsisi",
     "durum": "açık",
     "son": "Süresiz",
@@ -96,7 +119,12 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Teknoloji","Savunma","Enerji","Üretim"],
+    "sektor": [
+      "Teknoloji",
+      "Savunma",
+      "Enerji",
+      "Üretim"
+    ],
     "tutar": "%50 vergi indirimi + faiz desteği + arazi",
     "durum": "açık",
     "son": "Süresiz",
@@ -109,7 +137,10 @@
     "tur": "Hibe",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Hibe Programları",
-    "sektor": ["Teknoloji","Yazılım"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım"
+    ],
     "tutar": "1.000.000 ₺'ye kadar",
     "durum": "açık",
     "son": "Süresiz",
@@ -122,7 +153,12 @@
     "tur": "Vergi/SGK Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Vergi ve SGK Avantajları",
-    "sektor": ["Teknoloji","Üretim","İlaç","Kimya"],
+    "sektor": [
+      "Teknoloji",
+      "Üretim",
+      "İlaç",
+      "Kimya"
+    ],
     "tutar": "Ar-Ge harcamalarının %100 + prim desteği",
     "durum": "açık",
     "son": "Süresiz",
@@ -135,7 +171,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Harcamaların %50–75'i (5 yıl)",
     "durum": "açık",
     "son": "Süresiz",
@@ -148,7 +186,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Harcamaların %50'si (max 200.000 ₺/fuar)",
     "durum": "açık",
     "son": "Süresiz",
@@ -161,7 +201,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Kira giderlerinin %60'ı (4 yıl)",
     "durum": "açık",
     "son": "Süresiz",
@@ -174,7 +216,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Giderlerin %60'ı (max 200.000 ₺)",
     "durum": "açık",
     "son": "Süresiz",
@@ -187,7 +231,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Giderlerin %50'si",
     "durum": "açık",
     "son": "Süresiz",
@@ -200,7 +246,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Platform/yazılım giderlerinin %50'si",
     "durum": "açık",
     "son": "Süresiz",
@@ -213,7 +261,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Harcamaların %60'ı",
     "durum": "açık",
     "son": "Süresiz",
@@ -226,7 +276,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Danışmanlık/hukuk giderlerinin %60'ı",
     "durum": "açık",
     "son": "Süresiz",
@@ -239,7 +291,9 @@
     "tur": "Finansman Garantisi",
     "kaynak": "KGF",
     "grup": "Kredi Garantisi (KGF)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Firma başı 3.000.000 ₺'ye kadar kefalet",
     "durum": "açık",
     "son": "Süresiz",
@@ -252,7 +306,9 @@
     "tur": "Finansman Garantisi",
     "kaynak": "KGF",
     "grup": "Kredi Garantisi (KGF)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Hazine desteğiyle yüksek limitli kefalet",
     "durum": "açık",
     "son": "Süresiz",
@@ -265,7 +321,10 @@
     "tur": "Finansman Garantisi",
     "kaynak": "KGF",
     "grup": "Kredi Garantisi (KGF)",
-    "sektor": ["Savunma","Üretim"],
+    "sektor": [
+      "Savunma",
+      "Üretim"
+    ],
     "tutar": "Savunma tedarikçisi KOBİ'lere özel",
     "durum": "açık",
     "son": "Süresiz",
@@ -278,7 +337,11 @@
     "tur": "Finansman Garantisi",
     "kaynak": "KGF",
     "grup": "Kredi Garantisi (KGF)",
-    "sektor": ["Üretim","Turizm","Sağlık"],
+    "sektor": [
+      "Üretim",
+      "Turizm",
+      "Sağlık"
+    ],
     "tutar": "Yatırım kredisine kefalet",
     "durum": "açık",
     "son": "Süresiz",
@@ -291,7 +354,9 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "Türk Eximbank",
     "grup": "İhracat Finansmanı (Eximbank)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "İhracat taahhüdüne göre; sınır yok",
     "durum": "açık",
     "son": "Süresiz",
@@ -304,7 +369,9 @@
     "tur": "Sigorta / Güvence",
     "kaynak": "Türk Eximbank",
     "grup": "İhracat Finansmanı (Eximbank)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Prim bazlı; alacak güvencesi",
     "durum": "açık",
     "son": "Süresiz",
@@ -317,7 +384,12 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "Türk Eximbank",
     "grup": "İhracat Finansmanı (Eximbank)",
-    "sektor": ["Müteahhitlik","Sağlık","Yazılım","Turizm"],
+    "sektor": [
+      "Müteahhitlik",
+      "Sağlık",
+      "Yazılım",
+      "Turizm"
+    ],
     "tutar": "Hizmet ihracatı tutarına göre",
     "durum": "açık",
     "son": "Süresiz",
@@ -330,7 +402,11 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "Türk Eximbank",
     "grup": "İhracat Finansmanı (Eximbank)",
-    "sektor": ["Üretim","İnşaat","Savunma"],
+    "sektor": [
+      "Üretim",
+      "İnşaat",
+      "Savunma"
+    ],
     "tutar": "12 aydan uzun; proje bazlı",
     "durum": "açık",
     "son": "Süresiz",
@@ -343,7 +419,9 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "Türk Eximbank",
     "grup": "İhracat Finansmanı (Eximbank)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Katılım bankası aracılığıyla; TL",
     "durum": "açık",
     "son": "Süresiz",
@@ -356,7 +434,9 @@
     "tur": "Sigorta / Güvence",
     "kaynak": "Türk Eximbank",
     "grup": "İhracat Finansmanı (Eximbank)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Sigorta primlerinde indirim",
     "durum": "açık",
     "son": "Süresiz",
@@ -369,7 +449,12 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "T. Kalkınma ve Yatırım Bankası",
     "grup": "Uygun Faizli Krediler",
-    "sektor": ["Enerji","Üretim","Teknoloji","Tarım"],
+    "sektor": [
+      "Enerji",
+      "Üretim",
+      "Teknoloji",
+      "Tarım"
+    ],
     "tutar": "Proje bazlı; orta-uzun vade",
     "durum": "açık",
     "son": "Süresiz",
@@ -382,7 +467,9 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "T. Kalkınma ve Yatırım Bankası",
     "grup": "Uygun Faizli Krediler",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "KGF kefaleti ile teminat sorunu aşılır",
     "durum": "açık",
     "son": "Süresiz",
@@ -395,7 +482,9 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "T. Kalkınma ve Yatırım Bankası",
     "grup": "Uygun Faizli Krediler",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Uygun faizli; özel koşullar",
     "durum": "açık",
     "son": "Süresiz",
@@ -408,7 +497,9 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "Hazine ve Maliye Bakanlığı",
     "grup": "Uygun Faizli Krediler",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Banka faizinin bir kısmı sübvanse edilir",
     "durum": "açık",
     "son": "Süresiz",
@@ -421,7 +512,9 @@
     "tur": "Uygun Faizli Kredi",
     "kaynak": "TESK / TESKOMB",
     "grup": "Uygun Faizli Krediler",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Uygun faizli esnaf kredisi",
     "durum": "açık",
     "son": "Süresiz",
@@ -434,7 +527,12 @@
     "tur": "Hibe",
     "kaynak": "Avrupa Komisyonu / EIC",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Teknoloji","Yazılım","Sağlık","Enerji"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Sağlık",
+      "Enerji"
+    ],
     "tutar": "€2,5 milyona kadar hibe + €15M yatırım",
     "durum": "açık",
     "son": "Süresiz",
@@ -447,7 +545,12 @@
     "tur": "Hibe",
     "kaynak": "Avrupa Komisyonu / EIC",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Teknoloji","Sağlık","Enerji","Üretim"],
+    "sektor": [
+      "Teknoloji",
+      "Sağlık",
+      "Enerji",
+      "Üretim"
+    ],
     "tutar": "%70 hibe oranı; proje bazlı",
     "durum": "açık",
     "son": "Süresiz",
@@ -460,7 +563,9 @@
     "tur": "Hibe",
     "kaynak": "Avrupa Komisyonu",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Pazara erişim + finansman garantisi",
     "durum": "açık",
     "son": "Süresiz",
@@ -473,7 +578,11 @@
     "tur": "Hibe",
     "kaynak": "AB / Dijital Avrupa Programı",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Teknoloji","Yazılım","Üretim"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Üretim"
+    ],
     "tutar": "Çağrı bazlı; AB destekli",
     "durum": "açık",
     "son": "Süresiz",
@@ -486,7 +595,9 @@
     "tur": "Hibe",
     "kaynak": "Kalkınma Ajansları",
     "grup": "Bölgesel Kalkınma (Ajanslar)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Ajans ve çağrıya göre değişir",
     "durum": "açık",
     "son": "Süresiz",
@@ -499,7 +610,9 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Enerji Bakanlığı / EPDK",
     "grup": "Enerji ve Yeşil Dönüşüm",
-    "sektor": ["Enerji"],
+    "sektor": [
+      "Enerji"
+    ],
     "tutar": "Garanti alım fiyatı + lisans avantajı",
     "durum": "açık",
     "son": "Süresiz",
@@ -512,7 +625,11 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Çevre ve Şehircilik Bakanlığı",
     "grup": "Enerji ve Yeşil Dönüşüm",
-    "sektor": ["Üretim","Enerji","Kimya"],
+    "sektor": [
+      "Üretim",
+      "Enerji",
+      "Kimya"
+    ],
     "tutar": "Vergi ve SGK avantajları",
     "durum": "açık",
     "son": "Süresiz",
@@ -525,7 +642,10 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Enerji ve Yeşil Dönüşüm",
-    "sektor": ["Enerji","Üretim"],
+    "sektor": [
+      "Enerji",
+      "Üretim"
+    ],
     "tutar": "Vergi indirimi + SGK + gümrük muafiyeti",
     "durum": "açık",
     "son": "Süresiz",
@@ -538,7 +658,9 @@
     "tur": "Hibe",
     "kaynak": "Tarım ve Orman Bakanlığı",
     "grup": "Tarım Destekleri",
-    "sektor": ["Tarım"],
+    "sektor": [
+      "Tarım"
+    ],
     "tutar": "Ürün/dekar başı doğrudan ödeme",
     "durum": "açık",
     "son": "Süresiz",
@@ -551,7 +673,10 @@
     "tur": "Hibe",
     "kaynak": "Tarım ve Orman Bakanlığı",
     "grup": "Tarım Destekleri",
-    "sektor": ["Tarım","Gıda"],
+    "sektor": [
+      "Tarım",
+      "Gıda"
+    ],
     "tutar": "Konvansiyonele kıyasla artırımlı ödeme",
     "durum": "açık",
     "son": "Süresiz",
@@ -564,7 +689,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "İŞKUR",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "SGK prim işveren payı (6–24 ay)",
     "durum": "açık",
     "son": "Süresiz",
@@ -577,7 +704,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "İŞKUR",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Eğitim giderleri + kursiye harçlığı",
     "durum": "açık",
     "son": "Süresiz",
@@ -590,7 +719,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "İŞKUR",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Eğitim maliyeti + sigorta karşılama",
     "durum": "açık",
     "son": "Süresiz",
@@ -603,7 +734,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "Sosyal Güvenlik Kurumu",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Çalışan başına aylık sabit destek",
     "durum": "açık",
     "son": "Süresiz",
@@ -616,7 +749,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "Sosyal Güvenlik Kurumu",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "İlk yıl SGK prim devlet karşılaması",
     "durum": "açık",
     "son": "Süresiz",
@@ -629,7 +764,9 @@
     "tur": "Vergi/SGK Teşviki",
     "kaynak": "Hazine ve Maliye Bakanlığı",
     "grup": "Vergi ve SGK Avantajları",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Ar-Ge harcamalarının %100 indirim",
     "durum": "açık",
     "son": "Süresiz",
@@ -642,7 +779,10 @@
     "tur": "Vergi/SGK Teşviki",
     "kaynak": "Hazine ve Maliye Bakanlığı",
     "grup": "Vergi ve SGK Avantajları",
-    "sektor": ["Yazılım","Teknoloji"],
+    "sektor": [
+      "Yazılım",
+      "Teknoloji"
+    ],
     "tutar": "Kurumlar vergisi istisnası",
     "durum": "açık",
     "son": "Süresiz",
@@ -655,7 +795,9 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Kültür ve Turizm Bakanlığı",
     "grup": "Turizm Destekleri",
-    "sektor": ["Turizm"],
+    "sektor": [
+      "Turizm"
+    ],
     "tutar": "Arazi tahsisi + vergi muafiyeti",
     "durum": "açık",
     "son": "Süresiz",
@@ -668,7 +810,10 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Lojistik","Taşımacılık"],
+    "sektor": [
+      "Lojistik",
+      "Taşımacılık"
+    ],
     "tutar": "Bölgesel vergi indirimi + SGK desteği",
     "durum": "açık",
     "son": "Süresiz",
@@ -681,7 +826,9 @@
     "tur": "Hibe",
     "kaynak": "Savunma Sanayii Başkanlığı",
     "grup": "Savunma Sektörü",
-    "sektor": ["Savunma"],
+    "sektor": [
+      "Savunma"
+    ],
     "tutar": "Proje bazlı; kritik teknoloji odaklı",
     "durum": "açık",
     "son": "Süresiz",
@@ -694,7 +841,9 @@
     "tur": "Hibe",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Hibe Programları",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Tasarım giderlerinin %70'i",
     "durum": "açık",
     "son": "Süresiz",
@@ -707,7 +856,11 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Kimya","İlaç","Sağlık"],
+    "sektor": [
+      "Kimya",
+      "İlaç",
+      "Sağlık"
+    ],
     "tutar": "Ar-Ge merkezi belgesi + vergi avantajı",
     "durum": "açık",
     "son": "Süresiz",
@@ -720,7 +873,9 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Sağlık"],
+    "sektor": [
+      "Sağlık"
+    ],
     "tutar": "Artırımlı vergi indirimi + SGK desteği",
     "durum": "açık",
     "son": "Süresiz",
@@ -733,7 +888,10 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["Gıda","Tarım"],
+    "sektor": [
+      "Gıda",
+      "Tarım"
+    ],
     "tutar": "Bölgesel artırımlı destek",
     "durum": "açık",
     "son": "Süresiz",
@@ -746,7 +904,9 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı",
     "grup": "Yatırım Teşvikleri",
-    "sektor": ["İnşaat"],
+    "sektor": [
+      "İnşaat"
+    ],
     "tutar": "Bölgesel teşvik kapsamında",
     "durum": "açık",
     "son": "Süresiz",
@@ -759,7 +919,9 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "Hibe Programları",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Etkinlik ve eşleştirme maliyetleri",
     "durum": "açık",
     "son": "Süresiz",
@@ -772,25 +934,14 @@
     "tur": "Hibe",
     "kaynak": "KOSGEB",
     "grup": "Hibe Programları",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "KOBİ başı değişken (2025'te 3.395 firmaya 54,7 mlr ₺)",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "KOBİ'lerin verimliliğini, üretim kapasitesini ve kurumsal yapısını güçlendirmeye yönelik ölçek büyütme yatırımları. 6 Haziran 2026 itibarıyla 2. dönem başvuruları açıldı.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9391/ureten-kobilere-guclu-destek-yeni-basvuru-donemi-basladi"
-  },
-  {
-    "id": 94,
-    "baslik": "KOSGEB Girişimci Destek Programı – İş Geliştirme Çağrısı 2026/2",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": ["Tüm Sektörler"],
-    "tutar": "2.000.000 ₺'ye kadar (kadın/genç: +150.000 ₺)",
-    "durum": "kapandı",
-    "son": "2026-05-08",
-    "aciklama": "20 Nisan – 8 Mayıs 2026 tarihleri arasında alınan 2026/2 dönemi başvuruları kapandı. 2026/3 dönemi bekleniyor.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/detay/9374/girisimci-destek-programi-is-gelistirme-cagrisi-2026-yili-2-donem-basvurulari-basladi"
   },
   {
     "id": 95,
@@ -798,7 +949,13 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "Hibe Programları",
-    "sektor": ["Üretim","Teknoloji","Kimya","Savunma","Yazılım"],
+    "sektor": [
+      "Üretim",
+      "Teknoloji",
+      "Kimya",
+      "Savunma",
+      "Yazılım"
+    ],
     "tutar": "Proje maliyetinin %75'i; bütçe üst sınırı yok",
     "durum": "açık",
     "son": "Süresiz",
@@ -811,7 +968,11 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "Hibe Programları",
-    "sektor": ["Üretim","Teknoloji","Yazılım"],
+    "sektor": [
+      "Üretim",
+      "Teknoloji",
+      "Yazılım"
+    ],
     "tutar": "Proje maliyetinin %75'i; KOBİ'lere özel",
     "durum": "açık",
     "son": "Süresiz",
@@ -824,7 +985,11 @@
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
     "grup": "Hibe Programları",
-    "sektor": ["Teknoloji","Yazılım","Üretim"],
+    "sektor": [
+      "Teknoloji",
+      "Yazılım",
+      "Üretim"
+    ],
     "tutar": "Tohum öncesi yatırım + mentörlük",
     "durum": "açık",
     "son": "Süresiz",
@@ -837,7 +1002,10 @@
     "tur": "Hibe",
     "kaynak": "TKDK / AB",
     "grup": "AB ve Uluslararası Hibeler",
-    "sektor": ["Tarım","Gıda"],
+    "sektor": [
+      "Tarım",
+      "Gıda"
+    ],
     "tutar": "%50–70 hibe, 30 milyon Avro bütçe",
     "durum": "açık",
     "son": "2026-07-20",
@@ -850,9 +1018,12 @@
     "tur": "Hibe",
     "kaynak": "Tarım ve Orman Bakanlığı",
     "grup": "Tarım Destekleri",
-    "sektor": ["Tarım","Gıda"],
+    "sektor": [
+      "Tarım",
+      "Gıda"
+    ],
     "tutar": "%50–70 hibe, 100 bin – 30 milyon TL proje",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "Tarımsal üretim, işleme, depolama, hayvancılık, sulama ve yenilenebilir enerji yatırımlarına hibe. Yoğun ilgi üzerine başvuru süresi 30 Haziran'a uzatıldı.",
     "url": "https://www.tarimorman.gov.tr/Konu/819/Kirsal-Kalkinma-Yatirimlari"
@@ -863,9 +1034,11 @@
     "tur": "Hibe",
     "kaynak": "Tarım ve Orman Bakanlığı",
     "grup": "Tarım Destekleri",
-    "sektor": ["Tarım"],
+    "sektor": [
+      "Tarım"
+    ],
     "tutar": "%50–70 hibe",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "Damla sulama, yağmurlama, güneş enerjili sulama, akıllı sulama ve otomasyon sistemleri yatırımlarına hibe desteği. Başvuru süresi 30 Haziran'a uzatıldı.",
     "url": "https://www.tarimorman.gov.tr/Konu/868/Tasarruflu-Sulama"
@@ -876,9 +1049,14 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "KOSGEB",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tekstil","Hazır Giyim","Deri","Mobilya"],
+    "sektor": [
+      "Tekstil",
+      "Hazır Giyim",
+      "Deri",
+      "Mobilya"
+    ],
     "tutar": "3.500 ₺/çalışan/ay geri ödemesiz + kredi",
-    "durum": "kapanmak üzere",
+    "durum": "açık",
     "son": "2026-06-30",
     "aciklama": "Tekstil, giyim, deri ve mobilya imalatında 2025 yılı istihdam düzeyini koruyanlara performans desteği. Kredi kullanımı için son tarih Haziran 2026.",
     "url": "https://kosgeb.gov.tr/site/tr/genel/destekdetay/9224/istihdami-koruma-destek-programi"
@@ -889,7 +1067,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "İŞKUR",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "7.184 – 64.656 ₺/ay SGK işveren payı karşılanır",
     "durum": "açık",
     "son": "2026-12-31",
@@ -902,7 +1082,9 @@
     "tur": "İstihdam Teşviki",
     "kaynak": "Sosyal Güvenlik Kurumu",
     "grup": "İstihdam ve Personel Destekleri",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Çalışan başına günlük sabit destek (sektör ve çalışan sayısına göre)",
     "durum": "açık",
     "son": "2026-12-31",
@@ -915,7 +1097,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "2026 yıllık limit: 493.271.347 ₺ (TURQUALITY) / 246.634.310 ₺ (Marka)",
     "durum": "açık",
     "son": "2026-12-31",
@@ -928,7 +1112,9 @@
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Genel fuar: 271.000 ₺ | Sektörel: 452.000 ₺ | Prestijli: 1.357.000 ₺",
     "durum": "açık",
     "son": "Süresiz",
@@ -941,7 +1127,10 @@
     "tur": "Teknik Destek",
     "kaynak": "TRAKYAKA",
     "grup": "Çorlu'ya Özel (Bölgesel)",
-    "sektor": ["Tarım","Gıda"],
+    "sektor": [
+      "Tarım",
+      "Gıda"
+    ],
     "tutar": "Danışmanlık hizmeti (nakdi değil)",
     "durum": "açık",
     "son": "2026-08-31",
@@ -954,7 +1143,11 @@
     "tur": "Teknik Destek",
     "kaynak": "TRAKYAKA",
     "grup": "Çorlu'ya Özel (Bölgesel)",
-    "sektor": ["Üretim","Enerji","Teknoloji"],
+    "sektor": [
+      "Üretim",
+      "Enerji",
+      "Teknoloji"
+    ],
     "tutar": "Teknik destek + proje eşleştirme (nakdi değil)",
     "durum": "açık",
     "son": "2026-12-31",
@@ -967,7 +1160,12 @@
     "tur": "Teknik Destek",
     "kaynak": "TRAKYAKA",
     "grup": "Çorlu'ya Özel (Bölgesel)",
-    "sektor": ["Üretim","Tekstil","Gıda","Teknoloji"],
+    "sektor": [
+      "Üretim",
+      "Tekstil",
+      "Gıda",
+      "Teknoloji"
+    ],
     "tutar": "Teknik destek + ihracat kapasitesi geliştirme (nakdi değil)",
     "durum": "açık",
     "son": "2026-12-31",
@@ -980,7 +1178,9 @@
     "tur": "Teknik Destek",
     "kaynak": "TRAKYAKA",
     "grup": "Çorlu'ya Özel (Bölgesel)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Ücretsiz danışmanlık (nakdi değil)",
     "durum": "açık",
     "son": "Süresiz",
@@ -993,7 +1193,12 @@
     "tur": "Yatırım Teşviki",
     "kaynak": "Sanayi ve Teknoloji Bakanlığı / OSB",
     "grup": "Çorlu'ya Özel (Bölgesel)",
-    "sektor": ["Üretim","Tekstil","Gıda","Lojistik"],
+    "sektor": [
+      "Üretim",
+      "Tekstil",
+      "Gıda",
+      "Lojistik"
+    ],
     "tutar": "Piyasa altı arazi bedeli + altyapı hazır",
     "durum": "açık",
     "son": "Süresiz",
@@ -1006,7 +1211,9 @@
     "tur": "Hibe",
     "kaynak": "TRAKYAKA",
     "grup": "Çorlu'ya Özel (Bölgesel)",
-    "sektor": ["Tüm Sektörler"],
+    "sektor": [
+      "Tüm Sektörler"
+    ],
     "tutar": "Önceki yıl: 500.000 – 2.500.000 TL (%25 eş finansman)",
     "durum": "açık",
     "son": "Süresiz",
