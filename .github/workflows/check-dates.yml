@@ -1,0 +1,38 @@
+name: Tarih Kontrolü – Kapanan Programları Güncelle
+
+on:
+  schedule:
+    # Her gece 02:00 UTC (Türkiye 05:00) çalışır
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Manuel tetikleme de mümkün
+
+jobs:
+  check-dates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repoyu çek
+        uses: actions/checkout@v4
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Tarihleri kontrol et ve güncelle
+        run: node scripts/check-dates.js
+
+      - name: Değişiklik varsa commit at
+        run: |
+          git config user.name "Hibe Motor Bot"
+          git config user.email "bot@corlutso.org.tr"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "Değişiklik yok, commit atılmadı."
+          else
+            TARIH=$(date '+%d.%m.%Y')
+            git commit -m "🤖 Otomatik güncelleme: $TARIH tarihinde kapanan programlar işaretlendi"
+            git push
+          fi
