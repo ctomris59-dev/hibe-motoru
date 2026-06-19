@@ -167,7 +167,7 @@
   },
   {
     "id": 25,
-    "baslik": "TURQUALITY – Marka ve Uluslararasılaşma",
+    "baslik": "TURQUALITY – Marka og Uluslararasılaşma",
     "tur": "Hibe",
     "kaynak": "Ticaret Bakanlığı",
     "grup": "İhracat ve Uluslararasılaşma",
@@ -207,7 +207,7 @@
     "tutar": "Kira giderlerinin %60'ı (4 yıl)",
     "durum": "açık",
     "son": "Süresiz",
-    "aciklama": "Firmaların yurt dışında ofis, showroom veya depo açma giderlerine destek.",
+    "aciklama": "Firmaların yurt dışından ofis, showroom veya depo açma giderlerine destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri"
   },
   {
@@ -707,7 +707,7 @@
     "sektor": [
       "Tüm Sektörler"
     ],
-    "tutar": "Eğitim giderleri + kursiye harçlığı",
+    "tutar": "Eğitim giderleri + kursiyer harçlığı",
     "durum": "açık",
     "son": "Süresiz",
     "aciklama": "İşverenlerin ihtiyaç duyduğu nitelikte çalışan yetiştirmek için mesleki eğitim desteği.",
@@ -1006,7 +1006,7 @@
       "Tarım",
       "Gıda"
     ],
-    "tutar": "%50–70 hibe, 30 milyon Avro bütçe",
+    "tutar": "%50–70 hibe, 30 million Avro bütçe",
     "durum": "açık",
     "son": "2026-07-20",
     "aciklama": "Tarım ve balıkçılık ürünlerinin işlenmesi ve pazarlanmasına yönelik yatırımlara AB destekli hibe. 12 Haziran'da açıldı, proje dosyası teslim son tarihi 20 Temmuz 2026.",
@@ -1058,6 +1058,8 @@
     "tutar": "3.500 ₺/çalışan/ay geri ödemesiz + kredi",
     "durum": "açık",
     "son": "2026-06-30",
+    "basvuru_son_tarih": "2026-04-30",
+    "kapatma_son_tarih": "2026-06-30",
     "aciklama": "Tekstil, giyim, deri ve mobilya imalatında 2025 yılı istihdam düzeyini koruyanlara performans desteği. Kredi kullanımı için son tarih Haziran 2026.",
     "url": "https://kosgeb.gov.tr/site/tr/genel/destekdetay/9224/istihdami-koruma-destek-programi"
   },
@@ -1073,7 +1075,7 @@
     "tutar": "7.184 – 64.656 ₺/ay SGK işveren payı karşılanır",
     "durum": "açık",
     "son": "2026-12-31",
-    "aciklama": "İşsiz kadın, genç (18-29) veya mesleki yeterlilik belgeli kişileri işe alan özel sektör işverenlerine SGK prim desteği. 31 Aralık 2026'ya kadar uzatıldı.",
+    "aciklama": "İşsuz kadın, genç (18-29) veya mesleki yeterlilik belgeli kişileri işe alan özel sektör işverenlerine SGK prim desteği. 31 Aralık 2026'ya kadar uzatıldı.",
     "url": "https://www.iskur.gov.tr/isveren/tesvikler/kadin-genc-ve-mesleki-yeterlilik-belgesi-olanlarin-tesviki/"
   },
   {
@@ -1184,7 +1186,7 @@
     "tutar": "Ücretsiz danışmanlık (nakdi değil)",
     "durum": "açık",
     "son": "Süresiz",
-    "aciklama": "Tekirdağ, Edirne ve Kırklareli'nde yatırım yapmak isteyen firmalara izin/ruhsat, teşvik belgesi, arazi tahsisi ve proje hazırlama konularında ücretsiz danışmanlık.",
+    "aciklama": "Tekirdağ, Edirne ve Kırklareli'nde yatırım yapmak isteyen firmalara izin/ruhsat, teşvik belgesi, arazi tahsisi og proje hazırlama konularında ücretsiz danışmanlık.",
     "url": "https://www.trakyaka.org.tr/tr/33631/YATIRIM-DESTEK-OFISLERI"
   },
   {
