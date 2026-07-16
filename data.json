@@ -988,22 +988,6 @@
     "linkKontrol": "2026-06-24T08:56:38.044Z"
   },
   {
-    "id": 93,
-    "baslik": "KOSGEB Kapasite Geliştirme Destek Programı – 2026 Yılı 2. Dönem",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "KOBİ başı değişken (2025'te 3.395 firmaya 54,7 mlr ₺)",
-    "durum": "kapandı",
-    "son": "2026-06-30",
-    "aciklama": "KOBİ'lerin verimliliğini, üretim kapasitesini ve kurumsal yapısını güçlendirmeye yönelik ölçek büyütme yatırımları. 6 Haziran 2026 itibarıyla 2. dönem başvuruları açıldı.",
-    "url": "https://www.google.com/search?q=KOSGEB%20Kapasite%20Geli%C5%9Ftirme%20Destek%20Program%C4%B1%20%E2%80%93%202026%20Y%C4%B1l%C4%B1%202.%20D%C3%B6nem%20KOSGEB%20ba%C5%9Fvuru%202026",
-    "linkKontrol": "2026-06-24T08:56:39.445Z"
-  },
-  {
     "id": 95,
     "baslik": "TÜBİTAK 1501 Sanayi Ar-Ge Destek Programı – 2026/2 Çağrı (Temmuz)",
     "tur": "Hibe",
@@ -1075,60 +1059,6 @@
     "aciklama": "Tarım ve balıkçılık ürünlerinin işlenmesi ve pazarlanmasına yönelik yatırımlara AB destekli hibe. 12 Haziran'da açıldı, proje dosyası teslim son tarihi 20 Temmuz 2026.",
     "url": "https://www.google.com/search?q=TKDK%20IPARD%20III%20%E2%80%93%2011.%20Ba%C5%9Fvuru%20%C3%87a%C4%9Fr%C4%B1s%C4%B1%20(Tar%C4%B1m%20%26%20G%C4%B1da%20%C4%B0%C5%9Fleme)%20TKDK%20%2F%20AB%20ba%C5%9Fvuru%202026",
     "linkKontrol": "2026-06-29T11:15:46.174Z"
-  },
-  {
-    "id": 99,
-    "baslik": "Kırsal Kalkınma Yatırımları Destekleme Programı 2026",
-    "tur": "Hibe",
-    "kaynak": "Tarım ve Orman Bakanlığı",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım",
-      "Gıda"
-    ],
-    "tutar": "%50–70 hibe, 100 bin – 30 milyon TL proje",
-    "durum": "kapandı",
-    "son": "2026-06-30",
-    "aciklama": "Tarımsal üretim, işleme, depolama, hayvancılık, sulama ve yenilenebilir enerji yatırımlarına hibe. Yoğun ilgi üzerine başvuru süresi 30 Haziran'a uzatıldı.",
-    "url": "https://kirsalkalkinma.tarimorman.gov.tr/destekler/kirsal-kalkinma-yatirim-programi",
-    "linkKontrol": "2026-06-29T11:15:47.267Z"
-  },
-  {
-    "id": 100,
-    "baslik": "Tasarruflu Tarımsal Sulama Sistemleri Desteklemesi 2026",
-    "tur": "Hibe",
-    "kaynak": "Tarım ve Orman Bakanlığı",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım"
-    ],
-    "tutar": "%50–70 hibe",
-    "durum": "kapandı",
-    "son": "2026-06-30",
-    "aciklama": "Damla sulama, yağmurlama, güneş enerjili sulama, akıllı sulama ve otomasyon sistemleri yatırımlarına hibe desteği. Başvuru süresi 30 Haziran'a uzatıldı.",
-    "url": "https://tss.tarimorman.gov.tr/giris",
-    "linkKontrol": "2026-06-29T11:15:52.569Z"
-  },
-  {
-    "id": 101,
-    "baslik": "KOSGEB İstihdamı Koruma Destek Programı 2026",
-    "tur": "İstihdam Teşviki",
-    "kaynak": "KOSGEB",
-    "grup": "İstihdam ve Personel Destekleri",
-    "sektor": [
-      "Tekstil",
-      "Hazır Giyim",
-      "Deri",
-      "Mobilya"
-    ],
-    "tutar": "3.500 ₺/çalışan/ay geri ödemesiz + kredi",
-    "durum": "kapandı",
-    "son": "2026-06-30",
-    "basvuru_son_tarih": "2026-04-30",
-    "kapatma_son_tarih": "2026-06-30",
-    "aciklama": "Tekstil, giyim, deri ve mobilya imalatında 2025 yılı istihdam düzeyini koruyanlara performans desteği. Kredi kullanımı için son tarih Haziran 2026.",
-    "url": "https://www.google.com/search?q=KOSGEB%20%C4%B0stihdam%C4%B1%20Koruma%20Destek%20Program%C4%B1%202026%20KOSGEB%20ba%C5%9Fvuru%202026",
-    "linkKontrol": "2026-06-29T11:15:53.775Z"
   },
   {
     "id": 102,
