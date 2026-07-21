@@ -1230,36 +1230,6 @@
     "linkKontrol": "2026-07-06T10:52:37.376Z"
   },
   {
-    "baslik": "KOSGEB Girişimci Destek Programı İş Geliştirme Çağrısı 2026 Yılı 1. Dönem",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "KOSGEB tarafından girişimcilere yönelik iş geliştirme çağrısı kapsamında başvurular alınmaktadır.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7777/girisimci-destek-programi",
-    "id": 113
-  },
-  {
-    "baslik": "KOSGEB Üreten KOBİ’lere Güçlü Destek",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "İmalat Sanayii"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "Üreten KOBİ'lere yönelik yeni başvuru dönemi açılmıştır.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7778/ureten-kobi-destek-programi",
-    "id": 114
-  },
-  {
     "baslik": "KOSGEB Geri Ödemesiz Destekler ve Yeşil Sanayi Programı 2026",
     "tur": "Hibe",
     "kaynak": "KOSGEB",
@@ -1304,85 +1274,6 @@
     "aciklama": "İmalat sanayine yönelik 100 milyar TL'lik kapsamlı finansman programı.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7781/imalat-sanayi-finansman-programi",
     "id": 117
-  },
-  {
-    "baslik": "TÜBİTAK 1501-Sanayi Ar-Ge Destek Programı ve 1507-KOBİ Ar-Ge Başlangıç Destek Programı 2026 yılı 1. Çağrısı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Sanayi",
-      "KOBİ",
-      "Ar-Ge"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "Sanayi Ar-Ge ve KOBİ Ar-Ge başlangıç destek programlarının 2026 yılı 1. çağrısı açılmıştır.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501",
-    "id": 118
-  },
-  {
-    "baslik": "TÜBİTAK 1707 Sipariş Ar-Ge 2026-2 Çağrısı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Ar-Ge"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "Sipariş Ar-Ge projeleri için 2026-2 çağrısı açılmıştır.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1707",
-    "id": 119
-  },
-  {
-    "baslik": "TÜBİTAK 1707-Sipariş Ar-Ge 2026-1 Çağrısı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Ar-Ge"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "Sipariş Ar-Ge projeleri için 2026-1 çağr��sı açılmıştır.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1707",
-    "id": 120
-  },
-  {
-    "baslik": "TÜBİTAK 1832-Sanayide Yeşil Dönüşüm 2026-1 Çağrısı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Enerji ve Yeşil Dönüşüm",
-    "sektor": [
-      "Sanayi",
-      "Yeşil Dönüşüm"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "Sanayide yeşil dönüşüm projeleri için 2026-1 çağrısı açılmıştır.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1832",
-    "id": 121
-  },
-  {
-    "baslik": "TÜBİTAK Eurostars Koordinatörlük Desteği Programı 2026 Yılı 2. Ulusal Çağrısı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "AB ve Uluslararası Hibeler",
-    "sektor": [
-      "Ar-Ge",
-      "Uluslararasılaşma"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-01",
-    "aciklama": "Eurostars programı kapsamında koordinatörlük desteği için 2026 yılı 2. ulusal çağrısı açılmıştır.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/eurostars",
-    "id": 122
   },
   {
     "baslik": "Kırsal Kalkınma Yatırım Programı 2026",
