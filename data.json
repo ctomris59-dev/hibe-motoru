@@ -1528,131 +1528,6 @@
     "id": 137
   },
   {
-    "baslik": "KOSGEB'den Teknolojİ Girişimlerİne Yapay Zekâ Kredİ ProgramI",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Teknoloji",
-      "Yapay Zeka"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-09",
-    "aciklama": "KOSGEB'in yapay zeka alanındaki teknoloji girişimlerine yönelik kredi programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7780/yapay-zeka-kredi-programi",
-    "id": 138
-  },
-  {
-    "baslik": "Girişimci Destek Programı İş Geliştirme Çağrısı 2026 Yılı 1. Dönem Başvuruları Başladı",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Girişimcilik"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-01-01",
-    "aciklama": "KOSGEB'in girişimcilere yönelik iş geliştirme çağrısı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7779/girisimci-destek-programi-is-gelistirme-cagrisi",
-    "id": 139
-  },
-  {
-    "baslik": "KOSGEB Destekleri 2026: Geri Ödemesiz Destekler, Başvuru Takvimi ve Yeşil Sanayi Programı Rehberi",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler",
-      "Yeşil Sanayi"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-03",
-    "aciklama": "2026 yılı KOSGEB geri ödemesiz destekleri, başvuru takvimi ve yeşil sanayi programı hakkında bilgi.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7778/kosgeb-destekleri-2026",
-    "id": 140
-  },
-  {
-    "baslik": "İş kuracaklara büyük fırsat: KOSGEB 2 milyon TL destek başvurusu şartları neler 2026? KOSGEB yeni işletme desteği 0-3 yaş şirketler başvurabilir mi? İşte detaylar",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Girişimcilik",
-      "Yeni İşletmeler"
-    ],
-    "tutar": "2 Milyon TL",
-    "durum": "açık",
-    "son": "2026-04-21",
-    "aciklama": "KOSGEB'in yeni kurulacak işletmelere yönelik 2 milyon TL'ye kadar destek programı ve başvuru şartları.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7777/yeni-isletme-destek-programi",
-    "id": 141
-  },
-  {
-    "baslik": "Kadın girişimcilere destek yağıyor",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Girişimcilik",
-      "Kadın Girişimciler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-06",
-    "aciklama": "KOSGEB'in kadın girişimcilere yönelik destek programları.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7776/kadin-girisimci-destek-programi",
-    "id": 142
-  },
-  {
-    "baslik": "Üreten KOBİ’lere Güçlü Destek, Yeni Başvuru Dönemi Başladı",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "KOBİ",
-      "Üretim"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-06",
-    "aciklama": "KOSGEB'in üreten KOBİ'lere yönelik yeni başvuru dönemi destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7775/ureten-kobi-destek-programi",
-    "id": 143
-  },
-  {
-    "baslik": "Sanayi ve Teknoloji Bakanı Mehmet Fatih Kacır: Girişimcilerimize 2 milyon TL’ye kadar destek sunuyoruz",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Girişimcilik"
-    ],
-    "tutar": "2 Milyon TL",
-    "durum": "açık",
-    "son": "2026-04-20",
-    "aciklama": "Sanayi ve Teknoloji Bakanı'nın duyurduğu, KOSGEB aracılığıyla girişimcilere sunulan 2 milyon TL'ye kadar destek.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7774/girisimci-destek-programi",
-    "id": 144
-  },
-  {
-    "baslik": "Bakan Kacır Duyurdu: KOSGEB’den Girişimcilere 2 Milyon TL’lik Dev Destek",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Girişimcilik"
-    ],
-    "tutar": "2 Milyon TL",
-    "durum": "açık",
-    "son": "2026-04-20",
-    "aciklama": "Bakan Kacır tarafından duyurulan, KOSGEB'in girişimcilere yönelik 2 milyon TL'lik destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7773/girisimci-destek-programi",
-    "id": 145
-  },
-  {
     "baslik": "1501-Sanayi Ar-Ge Destek Programı ve 1507-KOBİ Ar-Ge Başlangıç Destek Programı 2026 yılı 2. Çağrıları Açıldı",
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
@@ -1663,7 +1538,7 @@
       "KOBİ"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-07-20",
     "aciklama": "TÜBİTAK'ın 1501 Sanayi Ar-Ge ve 1507 KOBİ Ar-Ge Başlangıç Destek Programları'nın 2026 yılı 2. çağrıları.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501",
@@ -1679,7 +1554,7 @@
       "Ar-Ge"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-07-26",
     "aciklama": "TÜBİTAK'ın KOBİ'lerin Ar-Ge projelerine yönelik destekleri.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1507",
@@ -1694,61 +1569,11 @@
       "KOBİ"
     ],
     "tutar": "20 Milyon TL",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-07-26",
     "aciklama": "TÜBİTAK'ın KOBİ'lere yönelik 20 milyon liraya kadar sağlayacağı destek.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1507",
     "id": 148
-  },
-  {
-    "baslik": "1501-Sanayi Ar-Ge Destek Programı ve 1507-KOBİ Ar-Ge Başlangıç Destek Programı 2026 yılı 1. Çağrıları Başvuru Takvimi Güncellendi",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Sanayi",
-      "Ar-Ge",
-      "KOBİ"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-02-23",
-    "aciklama": "TÜBİTAK'ın 1501 Sanayi Ar-Ge ve 1507 KOBİ Ar-Ge Başlangıç Destek Programları'nın 2026 yılı 1. çağrıları için başvuru takviminin güncellenmesi.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501",
-    "id": 149
-  },
-  {
-    "baslik": "1707 Sipariş Ar-Ge 2026-2 Çağrısı Açıldı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Ar-Ge",
-      "Sipariş Ar-Ge"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-05",
-    "aciklama": "TÜBİTAK'ın 1707 Sipariş Ar-Ge programının 2026-2 çağrısı.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1707",
-    "id": 150
-  },
-  {
-    "baslik": "1501-Sanayi Ar-Ge Destek Programı ve 1507-KOBİ Ar-Ge Başlangıç Destek Programı 2026 yılı 1. Çağrısı Açıldı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Sanayi",
-      "Ar-Ge",
-      "KOBİ"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-01-01",
-    "aciklama": "TÜBİTAK'ın 1501 Sanayi Ar-Ge ve 1507 KOBİ Ar-Ge Başlangıç Destek Programları'nın 2026 yılı 1. çağrıları.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501",
-    "id": 151
   },
   {
     "baslik": "KOBİ'lerin Ar-Ge projelerine dört koldan teşvik",
@@ -1760,42 +1585,10 @@
       "Ar-Ge"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-07-27",
     "aciklama": "TÜBİTAK'ın KOBİ'lerin Ar-Ge projelerine yönelik teşvikleri.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1507",
     "id": 152
-  },
-  {
-    "baslik": "KIRSAL YATIRIM BAŞVURULARI BAŞLADI",
-    "tur": "Hibe",
-    "kaynak": "Tarım ve Orman Bakanlığı",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım",
-      "Kırsal Kalkınma"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-01",
-    "aciklama": "Kırsal yatırım başvurularının başladığına dair duyuru.",
-    "url": "https://www.tarimorman.gov.tr/Sayfalar/KKYDP.aspx",
-    "id": 153
-  },
-  {
-    "baslik": "KIRSAL KALKINMA",
-    "tur": "Hibe",
-    "kaynak": "Tarım ve Orman Bakanlığı",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım",
-      "Kırsal Kalkınma"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-02",
-    "aciklama": "Kırsal kalkınma destekleri hakkında genel bilgi.",
-    "url": "https://www.tarimorman.gov.tr/Sayfalar/KKYDP.aspx",
-    "id": 154
   }
 ]
