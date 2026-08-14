@@ -395,7 +395,7 @@ body::after{
 const {useState,useMemo,useCallback,useEffect,useRef}=React;
 
 const GRUPLAR=["Tümü","Çorlu'ya Özel (Bölgesel)","Hibe Programları","Yatırım Teşvikleri","İhracat ve Uluslararasılaşma","İhracat Finansmanı (Eximbank)","Kredi Garantisi (KGF)","Uygun Faizli Krediler","AB ve Uluslararası Hibeler","Bölgesel Kalkınma (Ajanslar)","Vergi ve SGK Avantajları","İstihdam ve Personel Destekleri","Tarım Destekleri","Enerji ve Yeşil Dönüşüm","Turizm Destekleri","Savunma Sektörü"];
-const DURUMLAR=["Tümü","Açık","Kapanmak üzere","Kapandı"];
+const DURUMLAR=["Tümü","Açık","Kapanmak üzere","Kapandı","Tarih belirtilmemiş"];
 const TUTAR_FILTRELER=[{label:"Tümü",key:"tumu"},{label:"Geri ödemesiz",key:"geri"},{label:"AB / Uluslararası",key:"ab"},{label:"KGF Kefalet",key:"kgf"}];
 const BUTCELER=[
   {label:"Tüm Bütçeler",min:0,max:Infinity},
@@ -446,12 +446,14 @@ function durumCls(d){
   const s=(d||'').toLowerCase().trim();
   if(s==='açık') return 'g';
   if(s==='kapanmak üzere') return 'a';
+  if(s==='tarih belirtilmemiş') return 'a';
   return 'r';
 }
 function durumLabel(d){
   const s=(d||'').toLowerCase().trim();
   if(s==='açık') return 'Açık';
   if(s==='kapanmak üzere') return 'Kapanmak Üzere';
+  if(s==='tarih belirtilmemiş') return 'Tarih Belirtilmemiş';
   return 'Kapandı';
 }
 
@@ -674,7 +676,7 @@ function App(){
   };
 
   const filtered=useMemo(()=>{
-    const sira={'kapanmak üzere':0,'açık':1,'kapandı':2};
+    const sira={'kapanmak üzere':0,'açık':1,'tarih belirtilmemiş':1,'kapandı':2};
     return data.filter(h=>{
       if(sadeceFav&&!favs.includes(h.id)) return false;
       if(wizOn){if(!wizSonuclar[h.id]) return false;}
@@ -701,8 +703,15 @@ function App(){
       if(wizOn) return (wizSonuclar[b.id]?.skor||0)-(wizSonuclar[a.id]?.skor||0);
       const ds=(sira[(a.durum||'').toLowerCase().trim()]??1)-(sira[(b.durum||'').toLowerCase().trim()]??1);
       if(ds!==0) return ds;
-      const as=a.son==='Süresiz'?new Date('2099-12-31'):new Date(a.son);
-      const bs=b.son==='Süresiz'?new Date('2099-12-31'):new Date(b.son);
+      // "Süresiz" ve tarihi belirsiz/geçersiz kayıtlar sona (uzak tarihe) atılır,
+      // aksi halde new Date(NaN) sıralamayı bozar.
+      const guvenliTarih=(s)=>{
+        if(s==='Süresiz') return new Date('2099-12-31');
+        const d=new Date(s);
+        return isNaN(d.getTime())?new Date('2099-12-30'):d;
+      };
+      const as=guvenliTarih(a.son);
+      const bs=guvenliTarih(b.son);
       return as-bs;
     });
   },[data,sektor,grup,durum,tutar,butce,q,sadeceFav,favs,wizOn,wizSonuclar]);
