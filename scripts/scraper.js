@@ -3,9 +3,15 @@
  * 
  * Tüm RSS kaynaklarını toplar → TEK bir Gemini isteğiyle analiz eder.
  * Günlük kota kullanımı: 1 istek
+ *
+ * Her çalıştırmanın sonunda (yeni program bulunsa da bulunmasa da, hata
+ * olsa da olmasa da) bir "sağlık raporu" e-postası gönderilir — böylece
+ * sistem sessiz kalırsa bunun "her şey yolunda" mı yoksa "bir şey bozuldu
+ * ve kimse fark etmedi" mi olduğu belirsiz kalmaz.
  * 
  * Gerekli GitHub Secrets:
- *   GEMINI_API_KEY, BILDIRIM_EMAIL (ops.), RESEND_API_KEY (ops.)
+ *   GEMINI_API_KEY (zorunlu), BILDIRIM_EMAIL (ops., yoksa e-posta atlanır),
+ *   RESEND_API_KEY (ops., yoksa e-posta atlanır)
  */
 
 const fs    = require('fs');
@@ -202,6 +208,9 @@ const KAYNAKLAR = [
   { ad: 'Yatırım Teşvik (News)', url: 'https://news.google.com/rss/search?q=yatırım+teşvik+hibe+başvuru+2026&hl=tr&gl=TR&ceid=TR:tr' },
   { ad: 'Kalkınma Ajansı (News)',url: 'https://news.google.com/rss/search?q=kalkınma+ajansı+mali+destek+hibe+2026&hl=tr&gl=TR&ceid=TR:tr' },
   { ad: 'İhracat Desteği (News)',url: 'https://news.google.com/rss/search?q=ihracat+desteği+TURQUALITY+hibe+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'KGF Kefalet (News)',      url: 'https://news.google.com/rss/search?q=KGF+Kredi+Garanti+Fonu+kefalet+KOBİ+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'Eximbank Kredi (News)',   url: 'https://news.google.com/rss/search?q=Eximbank+ihracat+kredisi+sigortası+KOBİ+2026&hl=tr&gl=TR&ceid=TR:tr' },
+  { ad: 'Uygun Faizli Kredi (News)', url: 'https://news.google.com/rss/search?q=uygun+faizli+kredi+KOBİ+destek+2026&hl=tr&gl=TR&ceid=TR:tr' },
   { ad: 'TKDK IPARD (News)',     url: 'https://news.google.com/rss/search?q=TKDK+IPARD+tarım+hibe+çağrı+2026&hl=tr&gl=TR&ceid=TR:tr' },
   { ad: 'TRAKYAKA (News)',       url: 'https://news.google.com/rss/search?q=TRAKYAKA+destek+program+Tekirdağ+2026&hl=tr&gl=TR&ceid=TR:tr' },
   { ad: 'Tekirdağ Hibe (News)',  url: 'https://news.google.com/rss/search?q=Tekirdağ+Çorlu+hibe+teşvik+destek+2026&hl=tr&gl=TR&ceid=TR:tr' },
@@ -220,6 +229,16 @@ const DIREKT_KAYNAKLAR = [
     ad: 'TRAKYAKA Açık Programlar',
     url: 'https://www.trakyaka.org.tr/tr/33555/Acik-Olan-Destek-Programlari',
     snapshot_key: 'trakyaka_acik_programlar'
+  },
+  {
+    ad: 'KGF Ürünler',
+    url: 'https://www.kgf.com.tr/index.php/tr/urunlerimiz',
+    snapshot_key: 'kgf_urunler'
+  },
+  {
+    ad: 'Eximbank Krediler',
+    url: 'https://www.eximbank.gov.tr/tr/urun-ve-hizmetlerimiz/krediler',
+    snapshot_key: 'eximbank_krediler'
   },
 ];
 
@@ -337,8 +356,8 @@ URL KURALI (EN ÖNEMLİ):
   * Ticaret Bakanlığı: https://ticaret.gov.tr/destekler/ihracat-destekleri
   * TKDK/IPARD: https://www.tkdk.gov.tr/ProjeIslemleri/CagriIlanArsiv
   * Tarım Bakanlığı: https://www.tarimorman.gov.tr/Konu/[ilgili-konu]
-  * KGF: https://www.kgf.com.tr/urunler/[urun-adi]
-  * Eximbank: https://www.eximbank.gov.tr/tr/urunler/krediler/[kredi-turu]
+  * KGF: https://www.kgf.com.tr/index.php/tr/urunlerimiz/[kategori]/[urun-adi]
+  * Eximbank: https://www.eximbank.gov.tr/tr/urun-ve-hizmetlerimiz/krediler/[kredi-kategorisi]/[kredi-adi]
   * Kalkınma Ajansları: https://www.yatirimadestek.gov.tr
 - Son çare olarak boş bırak, kod otomatik Google aramasına yönlendirecek
 
@@ -392,23 +411,13 @@ Geçerli grup değerleri: Hibe Programları, Yatırım Teşvikleri, İhracat ve 
 }
 
 // ─── E-posta ──────────────────────────────────────────────────────────────────
-async function epostaGonder(yeni) {
-  if (!RESEND_KEY || !BILDIRIM_EMAIL || yeni.length === 0) return;
-  const html = `<div style="font-family:sans-serif;max-width:680px">
-    <div style="background:#1a3a5c;padding:18px;border-radius:8px 8px 0 0">
-      <h2 style="color:#fff;margin:0">🆕 ${yeni.length} yeni program eklendi</h2>
-      <p style="color:#93b8d8;margin:4px 0 0">${new Date().toLocaleDateString('tr-TR',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</p>
-    </div>
-    <div style="background:#fff;padding:18px;border:1px solid #eee;border-top:none">
-      ${yeni.map(p=>`<div style="padding:10px 0;border-bottom:1px solid #f0f0f0">
-        <strong>${p.baslik}</strong><br>
-        <span style="font-size:13px;color:#555">${p.kaynak} · Son: ${p.son}</span>
-        <a href="${p.url}" style="float:right;font-size:13px;color:#1a3a5c">Kaynak →</a>
-      </div>`).join('')}
-    </div>
-    <p style="text-align:center;font-size:12px;color:#999;margin-top:12px">Çorlu TSO Hibe Motoru · hibeler.corlutso.org.tr</p>
-  </div>`;
-  const payload = JSON.stringify({ from:'Hibe Motor Bot <bot@corlutso.org.tr>', to:[BILDIRIM_EMAIL], subject:`🆕 ${yeni.length} yeni hibe programı`, html });
+
+/**
+ * epostaGonderHam — Resend API'sine ham HTML e-posta gönderir (alt katman).
+ */
+async function epostaGonderHam(konu, html) {
+  if (!RESEND_KEY || !BILDIRIM_EMAIL) return;
+  const payload = JSON.stringify({ from:'Hibe Motor Bot <bot@corlutso.org.tr>', to:[BILDIRIM_EMAIL], subject:konu, html });
   await new Promise((res,rej)=>{
     const r = https.request({ hostname:'api.resend.com', path:'/emails', method:'POST',
       headers:{'Authorization':`Bearer ${RESEND_KEY}`,'Content-Type':'application/json','Content-Length':Buffer.byteLength(payload)}
@@ -416,6 +425,72 @@ async function epostaGonder(yeni) {
     r.on('error',rej); r.write(payload); r.end();
   });
   console.log(`✉️  Bildirim → ${BILDIRIM_EMAIL}`);
+}
+
+/**
+ * saglikRaporuGonder — Her çalıştırmada (yeni program bulunsa da bulunmasa da)
+ * gönderilen özet e-posta. Amaç: "sistem sessiz kaldı, bir şey mi bozuldu?"
+ * belirsizliğini ortadan kaldırmak — çalışmanın kendisi her zaman bir kanıt
+ * bırakır. Gemini/kaynak hatası varsa konu satırında açıkça işaretlenir.
+ * @param {Object} rapor - main() içinde biriktirilen rapor nesnesi
+ * @param {Array} yeniProgramlar
+ * @param {Array} tumData - güncel data.json içeriği (özet sayılar için)
+ */
+async function saglikRaporuGonder(rapor, yeniProgramlar, tumData) {
+  const hataVar = !!rapor.geminiHata || (rapor.kaynaklar||[]).some(k => k.durum !== 'OK');
+  const basarisizKaynaklar = (rapor.kaynaklar||[]).filter(k => k.durum !== 'OK');
+  const tarih = new Date().toLocaleDateString('tr-TR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+  const durumSayilari = {
+    açık: tumData.filter(p=>p.durum==='açık').length,
+    'kapanmak üzere': tumData.filter(p=>p.durum==='kapanmak üzere').length,
+    kapandı: tumData.filter(p=>p.durum==='kapandı').length,
+    'tarih belirtilmemiş': tumData.filter(p=>p.durum==='tarih belirtilmemiş').length,
+  };
+
+  const konu = hataVar
+    ? `🔴 Hibe Motoru: haftalık taramada sorun var (${basarisizKaynaklar.length} kaynak/Gemini hatası)`
+    : `✅ Hibe Motoru: haftalık tarama tamam (${yeniProgramlar.length} yeni program)`;
+
+  const html = `<div style="font-family:sans-serif;max-width:680px">
+    <div style="background:${hataVar?'#8a1f1f':'#1a3a5c'};padding:18px;border-radius:8px 8px 0 0">
+      <h2 style="color:#fff;margin:0">${hataVar?'🔴 Sorunlu Çalışma':'✅ Haftalık Sağlık Raporu'}</h2>
+      <p style="color:#dbe8f5;margin:4px 0 0">${tarih}</p>
+    </div>
+    <div style="background:#fff;padding:18px;border:1px solid #eee;border-top:none">
+      ${hataVar ? `<div style="background:#FFF3F3;border:1px solid #f3c2c2;border-radius:6px;padding:12px;margin-bottom:14px">
+        <strong style="color:#8a1f1f">⚠️ Dikkat edilmesi gereken noktalar:</strong>
+        <ul style="margin:8px 0 0;padding-left:18px;color:#555;font-size:13px">
+          ${rapor.geminiHata ? `<li>Gemini analiz hatası: ${rapor.geminiHata}</li>` : ''}
+          ${basarisizKaynaklar.map(k=>`<li>${k.kaynak}: ${k.durum}</li>`).join('')}
+        </ul>
+      </div>` : ''}
+
+      <table style="width:100%;font-size:13px;color:#333;border-collapse:collapse">
+        <tr><td style="padding:4px 0">📡 Taranan kaynak</td><td style="text-align:right"><strong>${(rapor.kaynaklar||[]).length}</strong> (${(rapor.kaynaklar||[]).length - basarisizKaynaklar.length} başarılı)</td></tr>
+        <tr><td style="padding:4px 0">🆕 Yeni eklenen program</td><td style="text-align:right"><strong>${yeniProgramlar.length}</strong></td></tr>
+        <tr><td style="padding:4px 0">🔗 Link kontrolü yapılan</td><td style="text-align:right"><strong>${rapor.linkKontrol?.kontrolEdilen ?? 0}</strong></td></tr>
+        <tr><td style="padding:4px 0">🔗 Kırık link → pasife çekilen</td><td style="text-align:right"><strong>${rapor.linkKontrol?.duzeltilen ?? 0}</strong></td></tr>
+        <tr><td style="padding:8px 0 4px;border-top:1px solid #eee" colspan="2"><strong>Toplam ${tumData.length} program</strong></td></tr>
+        <tr><td style="padding:2px 0;color:#1a7a3a">　Açık</td><td style="text-align:right">${durumSayilari['açık']}</td></tr>
+        <tr><td style="padding:2px 0;color:#b8880c">　Kapanmak üzere</td><td style="text-align:right">${durumSayilari['kapanmak üzere']}</td></tr>
+        <tr><td style="padding:2px 0;color:#b8880c">　Tarih belirtilmemiş (kontrol gerekir)</td><td style="text-align:right">${durumSayilari['tarih belirtilmemiş']}</td></tr>
+        <tr><td style="padding:2px 0;color:#888">　Kapandı</td><td style="text-align:right">${durumSayilari['kapandı']}</td></tr>
+      </table>
+
+      ${yeniProgramlar.length > 0 ? `<div style="margin-top:14px;border-top:1px solid #eee;padding-top:10px">
+        <strong style="font-size:13px">Yeni eklenen programlar:</strong>
+        ${yeniProgramlar.map(p=>`<div style="padding:8px 0;border-bottom:1px solid #f0f0f0">
+          <strong>${p.baslik}</strong><br>
+          <span style="font-size:13px;color:#555">${p.kaynak} · Son: ${p.son}</span>
+          <a href="${p.url}" style="float:right;font-size:13px;color:#1a3a5c">Kaynak →</a>
+        </div>`).join('')}
+      </div>` : ''}
+    </div>
+    <p style="text-align:center;font-size:12px;color:#999;margin-top:12px">Çorlu TSO Hibe Motoru · hibeler.corlutso.org.tr</p>
+  </div>`;
+
+  await epostaGonderHam(konu, html);
 }
 
 // ─── ANA FONKSİYON ───────────────────────────────────────────────────────────
@@ -547,15 +622,28 @@ async function main() {
 
   console.log(`\n${'─'.repeat(50)}`);
   console.log(`📊 SONUÇ: ${mevcutData.length} program, ${yeniProgramlar.length} yeni eklendi`);
-  console.log(`   Açık: ${mevcutData.filter(p=>p.durum==='açık').length} | Kapanmak üzere: ${mevcutData.filter(p=>p.durum==='kapanmak üzere').length} | Kapandı: ${mevcutData.filter(p=>p.durum==='kapandı').length}`);
+  console.log(`   Açık: ${mevcutData.filter(p=>p.durum==='açık').length} | Kapanmak üzere: ${mevcutData.filter(p=>p.durum==='kapanmak üzere').length} | Tarih belirtilmemiş: ${mevcutData.filter(p=>p.durum==='tarih belirtilmemiş').length} | Kapandı: ${mevcutData.filter(p=>p.durum==='kapandı').length}`);
   if (rapor.linkKontrol) {
     console.log(`   🔗 Link kontrolü: ${rapor.linkKontrol.kontrolEdilen} kontrol edildi, ${rapor.linkKontrol.duzeltilen} düzeltildi`);
   }
   console.log(`${'─'.repeat(50)}\n`);
 
-  if (yeniProgramlar.length > 0) {
-    try { await epostaGonder(yeniProgramlar); } catch(e) { console.warn('⚠️  E-posta gönderilemedi:', e.message); }
+  // Her çalıştırmada gönderilir — yeni program bulunsun bulunmasın. Amaç:
+  // sistemin hâlâ çalıştığının pasif kanıtı + hata varsa fark edilmesi.
+  try {
+    await saglikRaporuGonder(rapor, yeniProgramlar, mevcutData);
+  } catch(e) {
+    console.warn('⚠️  Sağlık raporu e-postası gönderilemedi:', e.message);
   }
 }
 
-main().catch(err => { console.error('❌ Kritik hata:', err); process.exit(1); });
+main().catch(err => {
+  console.error('❌ Kritik hata:', err);
+  // Script tamamen çökerse (örn. dosya okunamıyor, beklenmeyen istisna) bile
+  // haberimiz olsun diye son bir e-posta denemesi yap. Bu bile başarısız
+  // olursa iş GitHub Actions workflow'undaki "if: failure()" adımına kalır.
+  epostaGonderHam(
+    '🔴 Hibe Motoru: script tamamen çöktü',
+    `<p>scraper.js beklenmeyen bir hatayla sonlandı:</p><pre>${(err && err.stack) || err}</pre>`
+  ).catch(()=>{}).finally(() => process.exit(1));
+});
