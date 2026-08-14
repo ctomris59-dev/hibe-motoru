@@ -457,8 +457,20 @@ function durumLabel(d){
   return 'Kapandı';
 }
 
+/**
+ * tarihGecerliMi — "Süresiz" ve boş/placeholder değerler hariç, gerçekten
+ * parse edilebilir bir tarih mi kontrol eder. "Belirtilmemiş" gibi
+ * placeholder string'ler `new Date()` ile NaN üretir; bu fonksiyon olmadan
+ * her tarih gösterimi kodu bunu ayrı ayrı kontrol etmek zorunda kalır ve
+ * unutulursa "Invalid Date" / "NaN gün kaldı" gibi çıktılar ekrana sızar.
+ */
+function tarihGecerliMi(son){
+  if(!son || son==='Süresiz') return false;
+  return !isNaN(new Date(son).getTime());
+}
+
 function kalanGun(son){
-  if(!son||son==='Süresiz') return null;
+  if(!tarihGecerliMi(son)) return null;
   const b=new Date(); b.setHours(0,0,0,0);
   return Math.ceil((new Date(son)-b)/86400000);
 }
@@ -490,7 +502,7 @@ function akillıLink(h){
 
 /* ── PAYLAŞ MODAL ── */
 function ShareModal({h,onClose}){
-  const txt=`${h.baslik}\nKaynak: ${h.kaynak}\nTutar: ${h.tutar}\nSon: ${h.son==='Süresiz'?'Süresiz':new Date(h.son).toLocaleDateString('tr-TR')}\n${h.url}`;
+  const txt=`${h.baslik}\nKaynak: ${h.kaynak}\nTutar: ${h.tutar}\nSon: ${h.son==='Süresiz'?'Süresiz':tarihGecerliMi(h.son)?new Date(h.son).toLocaleDateString('tr-TR'):'Belirtilmemiş'}\n${h.url}`;
   return <div className="modal-overlay" onClick={onClose}>
     <div className="modal" onClick={e=>e.stopPropagation()}>
       <div className="modal-title">Programı Paylaş</div>
@@ -529,7 +541,7 @@ function Card({h,isWizardActive,wizSonuc,fav,onFav,onShare}){
           <div className="card-tags">
             <span className="tag src">{h.kaynak}</span>
             <span className="tag">{icons.tag} {h.grup}</span>
-            {h.son!=='Süresiz'&&<span className="tag">{icons.calendar} {new Date(h.son).toLocaleDateString('tr-TR')}</span>}
+            {tarihGecerliMi(h.son)&&<span className="tag">{icons.calendar} {new Date(h.son).toLocaleDateString('tr-TR')}</span>}
             <GeriSayim son={h.son}/>
           </div>
         </div>
@@ -556,9 +568,11 @@ function Card({h,isWizardActive,wizSonuc,fav,onFav,onShare}){
         </div>
         <div className="card-meta">
           <div className="meta-row">{icons.coin} <span>Destek:</span> <span className="meta-val">{h.tutar}</span></div>
-          {h.son!=='Süresiz'
+          {tarihGecerliMi(h.son)
             ?<div className="meta-row">{icons.calendar} <span>Son:</span> <span className="meta-val">{new Date(h.son).toLocaleDateString('tr-TR')}</span></div>
-            :<div className="meta-row">{icons.clock} <span className="meta-val">Süresiz başvuru</span></div>
+            :h.son==='Süresiz'
+              ?<div className="meta-row">{icons.clock} <span className="meta-val">Süresiz başvuru</span></div>
+              :<div className="meta-row">{icons.clock} <span className="meta-val">Son tarih belirtilmemiş — kaynağı kontrol edin</span></div>
           }
         </div>
         <div className="card-actions">
