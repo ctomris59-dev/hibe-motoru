@@ -15,6 +15,33 @@
  * Gerekli ortam değişkeni: GEMINI_API_KEY (Vercel → Settings → Environment Variables)
  */
 
+/**
+ * kesikJsonKurtar — Gemini yanıtı yarıda kesilmişse (maxOutputTokens limiti)
+ * olabildiğince veri kaybı olmadan kurtarır. scripts/scraper.js içindeki
+ * aynı isimli fonksiyonla birebir aynı mantık (iki dosya farklı modül
+ * sistemleri — CommonJS / ESM — kullandığı için paylaşılan bir dosyaya
+ * taşınmadı, ikisinde de senkron tutulmalı).
+ */
+function kesikJsonKurtar(metin) {
+  const denemeler = [
+    () => JSON.parse(metin),
+    () => JSON.parse(metin + ']'),
+    () => JSON.parse(metin.replace(/,\s*$/, '') + ']'),
+    () => {
+      const sonKapanis = metin.lastIndexOf('}');
+      if (sonKapanis <= 0) throw new Error('kurtarılabilir eleman yok');
+      return JSON.parse(metin.substring(0, sonKapanis + 1) + ']');
+    }
+  ];
+  for (const deneme of denemeler) {
+    try {
+      const sonuc = deneme();
+      if (Array.isArray(sonuc)) return sonuc;
+    } catch (e) { /* sıradaki stratejiyi dene */ }
+  }
+  throw new Error('JSON hiçbir kurtarma stratejisiyle parse edilemedi');
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ hata: 'Sadece POST isteği kabul edilir.' });
@@ -112,19 +139,9 @@ ${JSON.stringify(programOzetleri)}
 
       let sonuclar;
       try {
-        sonuclar = JSON.parse(temiz);
+        sonuclar = kesikJsonKurtar(temiz);
       } catch (parseErr) {
-        // Kesik yanıt kurtarma — son tam elemanı bul, oradan kapat.
-        const sonTamKapanis = temiz.lastIndexOf('},');
-        if (sonTamKapanis > 0) {
-          try {
-            sonuclar = JSON.parse(temiz.substring(0, sonTamKapanis + 1) + ']');
-          } catch (e2) {
-            return res.status(502).json({ hata: 'Gemini yanıtı işlenemedi (kesik veya geçersiz JSON).' });
-          }
-        } else {
-          return res.status(502).json({ hata: 'Gemini yanıtı işlenemedi (geçersiz JSON).' });
-        }
+        return res.status(502).json({ hata: 'Gemini yanıtı işlenemedi (kesik veya geçersiz JSON).' });
       }
 
       if (!Array.isArray(sonuclar)) {
