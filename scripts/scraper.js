@@ -74,6 +74,50 @@ function googleAramaLinki(baslik, kaynak) {
 }
 
 /**
+ * kesikJsonKurtar — Gemini'nin maxOutputTokens limitine takılıp yarıda
+ * kestiği bir JSON dizisini olabildiğince veri kaybı olmadan geri kazanır.
+ *
+ * Eski mantığın hatası: lastIndexOf('},') kullanmak, dizi SON TAM ELEMANLA
+ * (kapanış ']' gelmeden) bittiğinde o son elemanı da siliyordu — çünkü ondan
+ * önceki virgülü buluyordu, kendisininkini değil.
+ *
+ * Bu fonksiyon sırasıyla dener:
+ *   1. Doğrudan parse (zaten tamsa)
+ *   2. Sadece ']' ekleyerek parse (son eleman tam, sadece kapanış eksikse)
+ *   3. Sondaki sarkan virgülü temizleyip ']' ekleyerek parse
+ *   4. Son '}' konumundan kesip ']' ekleyerek parse (gerçekten yarıda kesilmiş
+ *      bir elemanı atıp öncekini korumak için — eski mantığın yerini alıyor
+ *      ama '},' değil '}' arıyor, böylece tam son elemanı yanlışlıkla atmıyor)
+ *
+ * @param {string} metin - Temizlenmiş (```json çitleri kaldırılmış) ham metin
+ * @returns {Array} Parse edilmiş dizi
+ * @throws {Error} Hiçbir strateji işe yaramazsa
+ */
+function kesikJsonKurtar(metin) {
+  const denemeler = [
+    () => JSON.parse(metin),
+    () => JSON.parse(metin + ']'),
+    () => JSON.parse(metin.replace(/,\s*$/, '') + ']'),
+    () => {
+      const sonKapanis = metin.lastIndexOf('}');
+      if (sonKapanis <= 0) throw new Error('kurtarılabilir eleman yok');
+      return JSON.parse(metin.substring(0, sonKapanis + 1) + ']');
+    }
+  ];
+
+  for (let i = 0; i < denemeler.length; i++) {
+    try {
+      const sonuc = denemeler[i]();
+      if (Array.isArray(sonuc)) {
+        if (i > 0) console.warn(`   ⚠️  Gemini yanıtı kesikti (strateji ${i+1} ile kurtarıldı), ${sonuc.length} kayıt.`);
+        return sonuc;
+      }
+    } catch (e) { /* sıradaki stratejiyi dene */ }
+  }
+  throw new Error('JSON hiçbir kurtarma stratejisiyle parse edilemedi');
+}
+
+/**
  * linkCalisiyorMu — Bir URL'in gerçekten açılıp açılmadığını kontrol eder.
  * - 404/410/5xx  → kırık
  * - 200 ama ana sayfaya redirect olmuş (ANASAYFA_PATTERN) → kırık
@@ -333,19 +377,9 @@ Geçerli grup değerleri: Hibe Programları, Yatırım Teşvikleri, İhracat ve 
           const text = parsed?.candidates?.[0]?.content?.parts?.map(p => p.text||'').join('').trim() || '[]';
           const temiz = text.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/i,'').trim();
           try {
-            resolve(JSON.parse(temiz));
+            const kurtarilmisData = kesikJsonKurtar(temiz);
+            resolve(kurtarilmisData);
           } catch (parseErr) {
-            // Yanıt kesik kalmış olabilir (maxOutputTokens limiti) — son eksik
-            // elemanı atıp geçerli kısmı kurtarmayı dene.
-            const sonTamKapanis = temiz.lastIndexOf('},');
-            if (sonTamKapanis > 0) {
-              const kurtarilmis = temiz.substring(0, sonTamKapanis + 1) + ']';
-              try {
-                const kurtarilmisData = JSON.parse(kurtarilmis);
-                console.warn(`   ⚠️  Gemini yanıtı kesikti, ${kurtarilmisData.length} kayıt kurtarıldı.`);
-                return resolve(kurtarilmisData);
-              } catch (e2) { /* kurtarma da başarısız, aşağıda asıl hata fırlatılır */ }
-            }
             reject(new Error(`JSON parse: ${parseErr.message}`));
           }
         } catch(e) { reject(new Error(`JSON parse: ${e.message}`)); }
@@ -395,15 +429,27 @@ async function main() {
 
   const bugun = new Date(); bugun.setHours(0,0,0,0);
   const onceki = mevcutData.length;
+
+  // Geçersiz/boş/"Belirtilmemiş" tarihli kayıtlar ASLA silinmez ve "kapandı"
+  // olarak etiketlenmez — bitiş tarihi bilinmiyor demek, kapandı demek değildir.
+  // Bu kayıtlar ayrı bir "tarih belirtilmemiş" durumuna düşer ve elle kontrol
+  // edilene kadar listede kalır.
   mevcutData = mevcutData
-    .filter(p => p.son === 'Süresiz' || Math.ceil((new Date(p.son)-bugun)/86400000) >= -15)
+    .filter(p => {
+      if (p.son === 'Süresiz') return true;
+      const d = new Date(p.son);
+      if (isNaN(d.getTime())) return true; // tarih belirsiz — silme, koru
+      return Math.ceil((d - bugun) / 86400000) >= -15;
+    })
     .map(p => {
-      if (p.son === 'Süresiz') return { ...p, durum:'açık' };
-      const g = Math.ceil((new Date(p.son)-bugun)/86400000);
+      if (p.son === 'Süresiz') return { ...p, durum: 'açık' };
+      const d = new Date(p.son);
+      if (isNaN(d.getTime())) return { ...p, durum: 'tarih belirtilmemiş' };
+      const g = Math.ceil((d - bugun) / 86400000);
       return { ...p, durum: g>14?'açık':g>0?'kapanmak üzere':'kapandı' };
     });
   if (onceki > mevcutData.length)
-    console.log(`🗑️  ${onceki-mevcutData.length} eski program temizlendi.\n`);
+    console.log(`🗑️  ${onceki-mevcutData.length} eski program temizlendi (15+ gün geçmiş, geçerli tarihli).\n`);
 
   const rapor = { tarih: new Date().toISOString(), kaynaklar: [] };
 

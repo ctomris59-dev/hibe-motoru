@@ -6,8 +6,5 @@
     "check-dates": "node check-dates.js",
     "scrape": "node scraper.js"
   },
-  "dependencies": {
-    "@google/genai": "latest",
-    "cheerio": "latest"
-  }
+  "dependencies": {}
 }

@@ -2,11 +2,15 @@
  * check-dates.js
  * Her gece çalışır. data.json içindeki programları şu kurala göre yönetir:
  *
- *  son tarihi > 14 gün sonra     → "açık"
- *  son tarihi 1-14 gün sonra     → "kapanmak üzere"
- *  son tarihi geçmiş, 0-15 gün   → "kapandı" (hâlâ göster)
- *  son tarihi 15+ gün geçmiş     → data.json'dan SİL
- *  "Süresiz"                     → dokunma, hep "açık"
+ *  son tarihi > 14 gün sonra        → "açık"
+ *  son tarihi 1-14 gün sonra        → "kapanmak üzere"
+ *  son tarihi geçmiş, 0-15 gün      → "kapandı" (hâlâ göster)
+ *  son tarihi 15+ gün geçmiş        → data.json'dan SİL
+ *  "Süresiz"                        → dokunma, hep "açık"
+ *  "Belirtilmemiş" / geçersiz tarih → SİLİNMEZ, "tarih belirtilmemiş" olarak
+ *                                      işaretlenir (bitiş tarihi bilinmiyor
+ *                                      demek kapandı demek DEĞİLDİR — elle
+ *                                      kontrol edilene kadar listede kalır)
  */
 
 const fs   = require('fs');
@@ -20,10 +24,11 @@ let data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
 const onceki = data.length;
 const log = { guncellenen: [], silinen: [] };
 
-// 1. Tarihi 15+ gün geçmişleri sil
+// 1. Tarihi 15+ gün geçmişleri sil (SADECE geçerli/parse edilebilir tarihler için)
 data = data.filter(p => {
   if (p.son === 'Süresiz') return true;
   const son = new Date(p.son);
+  if (isNaN(son.getTime())) return true; // tarih belirsiz — silme, koru
   const kalanGun = Math.ceil((son - bugun) / (1000 * 60 * 60 * 24));
   if (kalanGun < -15) {
     log.silinen.push(p);
@@ -36,11 +41,15 @@ data = data.filter(p => {
 data = data.map(p => {
   if (p.son === 'Süresiz') return { ...p, durum: 'açık' };
   const son = new Date(p.son);
-  const kalanGun = Math.ceil((son - bugun) / (1000 * 60 * 60 * 24));
   let yeniDurum;
-  if (kalanGun > 14)     yeniDurum = 'açık';
-  else if (kalanGun > 0) yeniDurum = 'kapanmak üzere';
-  else                   yeniDurum = 'kapandı';
+  if (isNaN(son.getTime())) {
+    yeniDurum = 'tarih belirtilmemiş';
+  } else {
+    const kalanGun = Math.ceil((son - bugun) / (1000 * 60 * 60 * 24));
+    if (kalanGun > 14)     yeniDurum = 'açık';
+    else if (kalanGun > 0) yeniDurum = 'kapanmak üzere';
+    else                   yeniDurum = 'kapandı';
+  }
   if (yeniDurum !== p.durum) {
     log.guncellenen.push({ ...p, yeniDurum });
     return { ...p, durum: yeniDurum };
