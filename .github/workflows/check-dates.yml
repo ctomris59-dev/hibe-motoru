@@ -36,3 +36,24 @@ jobs:
             git commit -m "🤖 Otomatik güncelleme: $TARIH tarihinde kapanan programlar işaretlendi"
             git push
           fi
+
+      # check-dates.js'in kendi içinde e-posta gönderme mekanizması yok
+      # (her gece çalıştığı için başarılı sonuçlarda e-posta atmak gürültü
+      # yaratır). Ama BAŞARISIZ olursa (örn. data.json bozuksa, script
+      # istisna fırlatırsa) bunu bilmek gerekiyor — bu yüzden sadece hata
+      # durumunda tetiklenen bağımsız bir bildirim.
+      - name: Başarısızlık bildirimi gönder (son çare)
+        if: failure()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          BILDIRIM_EMAIL: ${{ secrets.BILDIRIM_EMAIL }}
+        run: |
+          if [ -z "$RESEND_API_KEY" ] || [ -z "$BILDIRIM_EMAIL" ]; then
+            echo "RESEND_API_KEY veya BILDIRIM_EMAIL tanımlı değil, bildirim atlanıyor."
+            exit 0
+          fi
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{\"from\":\"Hibe Motor Bot <bot@corlutso.org.tr>\",\"to\":[\"$BILDIRIM_EMAIL\"],\"subject\":\"🔴 Hibe Motoru: gecelik tarih kontrolü BAŞARISIZ oldu\",\"html\":\"<p>Gecelik tarih kontrolü (check-dates.yml) workflow'u tamamlanamadı.</p><p><a href='$RUN_URL'>Çalıştırma kaydını gör →</a></p>\"}"

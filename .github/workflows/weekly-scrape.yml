@@ -44,3 +44,25 @@ jobs:
             git commit -m "🤖 AI Agent: Yeni açık ilanlar veritabanına otomatik eklendi"
             git push
           fi
+
+      # Bu adım SADECE önceki adımlardan biri başarısız olursa çalışır
+      # (örn. npm install patlarsa, scraper.js process.exit(1) ile çökerse).
+      # scraper.js kendi içindeki catch bloğu da bir e-posta denemesi yapar,
+      # ama script'in KENDİSİ çalışamayacak kadar bozulmuşsa (örn. Node
+      # kurulamadıysa) o kod hiç çalışmaz — bu adım workflow seviyesinde,
+      # scripte hiç bağımlı olmayan bağımsız bir son çare bildirimidir.
+      - name: Başarısızlık bildirimi gönder (son çare)
+        if: failure()
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          BILDIRIM_EMAIL: ${{ secrets.BILDIRIM_EMAIL }}
+        run: |
+          if [ -z "$RESEND_API_KEY" ] || [ -z "$BILDIRIM_EMAIL" ]; then
+            echo "RESEND_API_KEY veya BILDIRIM_EMAIL tanımlı değil, bildirim atlanıyor."
+            exit 0
+          fi
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{\"from\":\"Hibe Motor Bot <bot@corlutso.org.tr>\",\"to\":[\"$BILDIRIM_EMAIL\"],\"subject\":\"🔴 Hibe Motoru: haftalık tarama workflow'u BAŞARISIZ oldu\",\"html\":\"<p>Haftalık tarama (weekly-scrape.yml) workflow'u tamamlanamadı — muhtemelen npm kurulumu, Node çalıştırma veya git push adımlarından biri patladı (scraper.js'in kendi hata e-postası bu durumda hiç gönderilmemiş olabilir).</p><p><a href='$RUN_URL'>Çalıştırma kaydını gör →</a></p>\"}"
