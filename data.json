@@ -1766,148 +1766,6 @@
     "linkKontrol": "2026-08-14T10:54:41.700Z"
   },
   {
-    "baslik": "KOSGEB Girişimci Destek Programı İş Geliştirme Çağrısı 2026 Yılı 1. Dönem",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-01-01",
-    "aciklama": "KOSGEB'in 2026 yılı 1. dönem iş geliştirme çağrısı kapsamında girişimcilere yönelik destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7761/girisimci-destek-programi-is-gelistirme-cagrisi",
-    "id": 168
-  },
-  {
-    "baslik": "KOSGEB Üreten KOBİ’lere Güçlü Destek",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "İmalat Sanayi",
-      "Teknoloji",
-      "Yüksek Teknoloji"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-06",
-    "aciklama": "Üreten KOBİ'lere yönelik yeni başvuru dönemi açılan destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7762/ureten-kobi-lere-guclu-destek",
-    "id": 169
-  },
-  {
-    "baslik": "KOSGEB Destekleri 2026: Geri Ödemesiz Destekler ve Yeşil Sanayi Programı",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler",
-      "Yeşil Dönüşüm"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-03",
-    "aciklama": "2026 yılı KOSGEB geri ödemesiz destekleri ve yeşil sanayi programı hakkında rehber niteliğinde bilgi.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7763/kosgeb-destekleri-2026-geri-odemesiz-destekler-ve-yesil-sanayi-programi-rehberi",
-    "id": 170
-  },
-  {
-    "baslik": "KOSGEB Yeni İşletme Desteği (0-3 Yaş Şirketler)",
-    "tur": "Hibe",
-    "kaynak": "KOSGEB",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "2 Milyon TL'ye Kadar",
-    "durum": "açık",
-    "son": "2026-04-21",
-    "aciklama": "İş kuracaklara yönelik KOSGEB'in 2 milyon TL'ye kadar destek sağladığı yeni işletme desteği programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7764/kosgeb-yeni-isletme-destegi-0-3-yas-sirketler-basvurabilir-mi",
-    "id": 171
-  },
-  {
-    "baslik": "KOSGEB Teknoloji Girişimlerine Yapay Zeka Kredi Programı",
-    "tur": "Uygun Faizli Kredi",
-    "kaynak": "KOSGEB",
-    "grup": "Uygun Faizli Krediler",
-    "sektor": [
-      "Teknoloji",
-      "Yapay Zeka"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-09",
-    "aciklama": "Teknoloji girişimlerine yönelik yapay zeka alanında kredi programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7765/kosgeb-den-teknoloji-girisimlerine-yapay-zeka-kredi-programi",
-    "id": 172
-  },
-  {
-    "baslik": "KOBİ'lere TÜBİTAK Başvuru Uyarısı (Giresun Teknopark)",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "KOBİ",
-      "Ar-Ge"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-02-24",
-    "aciklama": "Giresun Teknopark aracılığıyla KOBİ'lere yönelik TÜBİTAK başvuru uyarısı.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari",
-    "id": 173
-  },
-  {
-    "baslik": "KOBİ'lere 20 Milyon Liraya Kadar Hibe Desteği (TÜBİTAK)",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "KOBİ",
-      "Ar-Ge"
-    ],
-    "tutar": "20 Milyon TL",
-    "durum": "açık",
-    "son": "2026-07-26",
-    "aciklama": "KOBİ'lere yönelik 20 milyon liraya kadar hibe desteği sağlanacak.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari",
-    "id": 174
-  },
-  {
-    "baslik": "2026 Sanayi Yatırım Rehberi",
-    "tur": "Yatırım Teşviki",
-    "kaynak": "Yatırım Teşvik",
-    "grup": "Yatırım Teşvikleri",
-    "sektor": [
-      "Sanayi"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-21",
-    "aciklama": "2026 yılı sanayi yatırımları için teşvikler, sektörler ve kapasite artış stratejilerini içeren rehber.",
-    "url": "https://www.yatirimadestek.gov.tr/tr/yatirim-tesvik-rehberi/sanayi-yatirim-rehberi",
-    "id": 175
-  },
-  {
-    "baslik": "Kırsal Yatırım Başvuruları Başladı (Denizli)",
-    "tur": "Hibe",
-    "kaynak": "Yatırım Teşvik",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım",
-      "Kırsal Kalkınma"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-01",
-    "aciklama": "Denizli'de kırsal kalkınma yatırımları için başvurular başladı.",
-    "url": "https://www.yatirimadestek.gov.tr/tr/yatirim-tesvik-rehberi/kirsal-kalkinma-yatirim-programi",
-    "id": 176
-  },
-  {
     "baslik": "MARKADAN BELEDİYELERE HİBE KREDİ VERİLECEK (DÜZCE)",
     "tur": "Uygun Faizli Kredi",
     "kaynak": "Kalkınma Ajansı",
@@ -1916,27 +1774,11 @@
       "Tüm Sektörler"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-08-11",
     "aciklama": "MARKADAN belediyelere hibe kredi verilecek.",
     "url": "https://www.yatirimadestek.gov.tr/tr/kalkinma-ajanslari/marka-destekleri",
     "id": 177
-  },
-  {
-    "baslik": "Girişimci ve Güçlü Sivil Toplum Mali Destek Programı (GİSEP) (Uşak)",
-    "tur": "Hibe",
-    "kaynak": "Kalkınma Ajansı",
-    "grup": "Bölgesel Kalkınma (Ajanslar)",
-    "sektor": [
-      "Girişimcilik",
-      "Sivil Toplum"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-26",
-    "aciklama": "Uşak'ta girişimci ve güçlü sivil toplum kuruluşlarına yönelik mali destek programı.",
-    "url": "https://www.yatirimadestek.gov.tr/tr/kalkinma-ajanslari/usak-kalkinma-ajansi",
-    "id": 178
   },
   {
     "baslik": "KUZKA'dan 39 Milyon TL'lik Hibe",
@@ -1947,7 +1789,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "39 Milyon TL",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-08-05",
     "aciklama": "KUZKA tarafından 39 milyon TL'lik hibe desteği sağlanacak.",
     "url": "https://www.yatirimadestek.gov.tr/tr/kalkinma-ajanslari/kuzka-destekleri",
