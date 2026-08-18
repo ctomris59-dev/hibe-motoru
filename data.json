@@ -1798,51 +1798,6 @@
     "linkKontrol": "2026-08-17T07:07:03.706Z"
   },
   {
-    "baslik": "KOSGEB Destekleri 2026: Geri Ödemesiz Destekler, Başvuru Takvimi ve Yeşil Sanayi Programı Rehberi",
-    "tur": "Hibe",
-    "kaynak": "Sanayi Gazetesi",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-03",
-    "aciklama": "KOSGEB'in 2026 yılındaki geri ödemesiz destekleri, başvuru takvimi ve yeşil sanayi programı hakkında rehber niteliğinde bir haber.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/6303/yeşil-sanayi-ve-dijitalleşme-destek-programı",
-    "id": 180
-  },
-  {
-    "baslik": "İş kuracaklara büyük fırsat: KOSGEB 2 milyon TL destek başvurusu şartları neler 2026? KOSGEB yeni işletme desteği 0-3 yaş şirketler başvurabilir mi? İşte detaylar",
-    "tur": "Hibe",
-    "kaynak": "Yeni Şafak",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "2 Milyon TL",
-    "durum": "açık",
-    "son": "2026-04-21",
-    "aciklama": "KOSGEB'in yeni kurulacak işletmelere yönelik 2 milyon TL'ye kadar vereceği desteklerin şartları ve detayları hakkında bilgi veren haber.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/6303/yeşil-sanayi-ve-dijitalleşme-destek-programı",
-    "id": 181
-  },
-  {
-    "baslik": "100 milyar liralık kredi paketi",
-    "tur": "Uygun Faizli Kredi",
-    "kaynak": "paradergi.com.tr",
-    "grup": "Uygun Faizli Krediler",
-    "sektor": [
-      "İmalat Sanayii"
-    ],
-    "tutar": "100 Milyar TL",
-    "durum": "açık",
-    "son": "2026-02-16",
-    "aciklama": "İmalat sanayisine yönelik 100 milyar TL'lik kapsamlı finansman programı hakkında bilgi veren haber.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/6303/yeşil-sanayi-ve-dijitalleşme-destek-programı",
-    "id": 182
-  },
-  {
     "baslik": "TÜBİTAK 1707 programında 2026 yılı ilk dönem sonuçları açıklandı",
     "tur": "Hibe",
     "kaynak": "Norm Haber",
@@ -1852,88 +1807,10 @@
       "Sipariş Ar-Ge"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-08-06",
     "aciklama": "TÜBİTAK 1707 Sipariş Ar-Ge programının 2026 yılı ilk dönem sonuçları hakkında bilgi veren haber.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1707",
     "id": 183
-  },
-  {
-    "baslik": "KOBİ'lere 20 milyon liraya kadar hibe desteği",
-    "tur": "Hibe",
-    "kaynak": "TRT Haber",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "KOBİ",
-      "Ar-Ge"
-    ],
-    "tutar": "20 Milyon TL",
-    "durum": "açık",
-    "son": "2026-07-26",
-    "aciklama": "KOBİ'lerin Ar-Ge projelerine yönelik 20 milyon liraya kadar hibe desteği hakkında bilgi veren haber.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1507",
-    "id": 184
-  },
-  {
-    "baslik": "KOBİ'lerin Ar-Ge projelerine dört koldan teşvik",
-    "tur": "Hibe",
-    "kaynak": "Sabah",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "KOBİ",
-      "Ar-Ge"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-27",
-    "aciklama": "KOBİ'lerin Ar-Ge projelerini desteklemek amacıyla sunulan çeşitli teşvikler hakkında bilgi veren haber.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1507",
-    "id": 185
-  },
-  {
-    "baslik": "2026 Sanayi Yatırım Rehberi: Teşvikler, Sektörler ve Kapasite Artış Stratejileri",
-    "tur": "Yatırım Teşviki",
-    "kaynak": "Sanayi Gazetesi",
-    "grup": "Yatırım Teşvikleri",
-    "sektor": [
-      "Sanayi"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-05-21",
-    "aciklama": "2026 yılı için sanayi yatırımlarına yönelik teşvikler, sektörler ve kapasite artış stratejileri hakkında rehber niteliğinde bir haber.",
-    "url": "https://www.sanayi.gov.tr/yatirim-tesvik-belgesi",
-    "id": 186
-  },
-  {
-    "baslik": "Kırsal kalkınmada yeni dönem başlıyor: Tarımda 30 milyona varan hibe desteği",
-    "tur": "Hibe",
-    "kaynak": "Yeniçağ Gazetesi",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım",
-      "Kırsal Kalkınma"
-    ],
-    "tutar": "30 Milyon TL",
-    "durum": "açık",
-    "son": "2026-04-03",
-    "aciklama": "Kırsal kalkınmada yeni dönemin başladığını ve tarımda 30 milyon liraya varan hibe desteği sunulduğunu belirten haber.",
-    "url": "https://www.tarimorman.gov.tr/IPARD",
-    "id": 187
-  },
-  {
-    "baslik": "Enerji verimliliği desteği başladı | İşletmelere 18 milyon TL'ye kadar hibe: Kimler başvurabilecek?",
-    "tur": "Hibe",
-    "kaynak": "Takvim",
-    "grup": "Enerji ve Yeşil Dönüşüm",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "18 Milyon TL",
-    "durum": "açık",
-    "son": "2026-06-27",
-    "aciklama": "İşletmelere yönelik enerji verimliliği desteği hakkında bilgi veren ve 18 milyon TL'ye kadar hibe imkanı sunan haber.",
-    "url": "https://www.csb.gov.tr/bakanlik/cevre",
-    "id": 188
   }
 ]
