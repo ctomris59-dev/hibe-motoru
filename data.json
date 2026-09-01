@@ -1874,87 +1874,10 @@
       "Tüm Sektörler"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-08-24",
     "aciklama": "KOSGEB tarafından işletmelerin kapasite geliştirme amacıyla sunulan destek programı.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7703/kapasite-gelistirme-destek-programi",
     "id": 184
-  },
-  {
-    "baslik": "Zafer Kalkınma Ajansı'ndan 737 bin avroluk GİSEP desteği",
-    "tur": "Hibe",
-    "kaynak": "Kalkınma Ajansları",
-    "grup": "Bölgesel Kalkınma (Ajanslar)",
-    "sektor": [
-      "Girişimcilik",
-      "Sivil Toplum"
-    ],
-    "tutar": "737.000 Avro",
-    "durum": "açık",
-    "son": "2026-07-25",
-    "aciklama": "Zafer Kalkınma Ajansı tarafından Girişimci ve Güçlü Sivil Toplum Mali Destek Programı (GİSEP) kapsamında 737 bin avroluk destek.",
-    "url": "https://www.yatirimadestek.gov.tr/",
-    "id": 185
-  },
-  {
-    "baslik": "Edirne’ye Milyonluk AB Projeleri 38 PROJE DESTEK ALDI",
-    "tur": "Hibe",
-    "kaynak": "Kalkınma Ajansları",
-    "grup": "Bölgesel Kalkınma (Ajanslar)",
-    "sektor": [
-      "AB Projeleri"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-02-04",
-    "aciklama": "Trakya Kalkınma Ajansı tarafından Edirne ilinde yürütülen ve planlanan Avrupa Birliği destekli projelere ilişkin 38 proje destek aldı.",
-    "url": "https://www.yatirimadestek.gov.tr/",
-    "id": 186
-  },
-  {
-    "baslik": "Sosyal girişimcilikte proje hazırlığı: TR82 bölgesinde bilgilendirme ve eğitimler başlıyor",
-    "tur": "Hibe",
-    "kaynak": "Kalkınma Ajansları",
-    "grup": "Bölgesel Kalkınma (Ajanslar)",
-    "sektor": [
-      "Sosyal Girişimcilik"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-07-27",
-    "aciklama": "TR82 bölgesinde sosyal girişimcilikte proje hazırlığı için bilgilendirme ve eğitimler başlıyor.",
-    "url": "https://www.yatirimadestek.gov.tr/",
-    "id": 187
-  },
-  {
-    "baslik": "2026 Mobil Uygulama Teşvikleri Artırıldı",
-    "tur": "Hibe",
-    "kaynak": "Ticaret Bakanlığı",
-    "grup": "İhracat ve Uluslararasılaşma",
-    "sektor": [
-      "Mobil Uygulama",
-      "Teknoloji"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-03-13",
-    "aciklama": "2026 yılı için mobil uygulama geliştiren firmalara yönelik teşvikler artırıldı.",
-    "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri",
-    "id": 188
-  },
-  {
-    "baslik": "TOBB Nefes Kredisi yeniden başlıyor",
-    "tur": "Uygun Faizli Kredi",
-    "kaynak": "KGF",
-    "grup": "Kredi Garantisi (KGF)",
-    "sektor": [
-      "KOBİ"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-04",
-    "aciklama": "TOBB tarafından KOBİ'lere yönelik Nefes Kredisi yeniden başlatılıyor.",
-    "url": "https://www.kgf.com.tr/index.php/tr/urunlerimiz/kredi-garantisi-programlari",
-    "id": 189
   }
 ]
