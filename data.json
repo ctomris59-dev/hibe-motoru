@@ -1890,7 +1890,7 @@
       "Tüm Sektörler"
     ],
     "tutar": "1,5 milyon TL",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-09-03",
     "aciklama": "KOSGEB tarafından sağlanan 1,5 milyon TL'lik desteğin geri ödemeli olduğu belirtiliyor.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7799/kobi-gelir-kaybi-destek-programi",
@@ -1905,41 +1905,10 @@
       "Tüm Sektörler"
     ],
     "tutar": "1,5 milyon TL",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-09-03",
     "aciklama": "KOSGEB tarafından sağlanan 1,5 milyon TL'lik desteğin geri ödemeli olduğu belirtiliyor.",
     "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7799/kobi-gelir-kaybi-destek-programi",
     "id": 186
-  },
-  {
-    "baslik": "Girişimci Destek Programı İş Geliştirme Çağrısı 2026 Yılı 1. Dönem Başvuruları Başladı",
-    "tur": "Hibe",
-    "kaynak": "Kosgeb",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Girişimcilik",
-      "İş Geliştirme"
-    ],
-    "tutar": null,
-    "durum": "açık",
-    "son": "2026-01-01",
-    "aciklama": "KOSGEB Girişimci Destek Programı İş Geliştirme Çağrısı 2026 Yılı 1. Dönem başvuruları başlamıştır.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7797/girisimci-destek-programi",
-    "id": 187
-  },
-  {
-    "baslik": "Ankara Kalkınma Ajansı’ndan sosyal girişimciliğe 1 milyon 526 bin avroluk destek",
-    "tur": "Hibe",
-    "kaynak": "İhlas Haber Ajansı",
-    "grup": "Bölgesel Kalkınma (Ajanslar)",
-    "sektor": [
-      "Sosyal Girişimcilik"
-    ],
-    "tutar": "1.526.000 Avro",
-    "durum": "açık",
-    "son": "2026-07-30",
-    "aciklama": "Ankara Kalkınma Ajansı, sosyal girişimciliğe 1 milyon 526 bin avroluk destek sağlamaktadır.",
-    "url": "https://www.ankaka.org.tr/tr/mali-destekler/sosyal-girisimcilik-mali-destek-programi",
-    "id": 188
   }
 ]
