@@ -395,22 +395,26 @@ body::after{
   text-transform:uppercase;color:var(--text-3);margin-bottom:22px;
 }
 .visibility-logos{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:nowrap;gap:28px;width:100%;
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+  align-items:center;gap:18px;width:100%;
 }
 .visibility-logo-item{
-  display:flex;align-items:center;justify-content:center;
-  flex:0 0 auto;text-align:center;
+  min-width:0;height:118px;display:flex;align-items:center;
+  justify-content:center;text-align:center;overflow:visible;
 }
 .visibility-logo-item img{
-  display:block;width:auto;object-fit:contain;
+  display:block;height:92px;width:auto;max-width:100%;
+  object-fit:contain;object-position:center;
 }
-.visibility-logo-item.cfcu img{height:120px;max-width:150px;}
-.visibility-logo-item.eurochambres img{height:52px;max-width:210px;}
-.visibility-logo-item.tobb img{height:120px;max-width:150px;}
-.visibility-logo-item.ctso img{height:130px;max-width:160px;}
-.visibility-logo-item.padova img{height:70px;max-width:260px;}
-.visibility-logo-item.eu-affairs img{height:150px;max-width:170px;}
+/* Tüm kurum logoları aynı görsel yüksekliği kullanır. */
+.visibility-logo-item.cfcu img,
+.visibility-logo-item.eurochambres img,
+.visibility-logo-item.tobb img,
+.visibility-logo-item.ctso img,
+.visibility-logo-item.padova img,
+.visibility-logo-item.eu-affairs img{
+  height:92px;max-height:92px;max-width:100%;
+}
 .footer{
   margin-top:16px;padding:20px 4px 28px;border-top:1px solid var(--border);
   text-align:center;
@@ -422,30 +426,34 @@ body::after{
 
 /* Responsive */
 @media(max-width:1100px){
-  .visibility-logos{flex-wrap:wrap;justify-content:center;gap:20px 26px;}
-  .visibility-logo-item{flex:0 1 40%;}
-  .visibility-logo-item.cfcu img{height:90px;max-width:120px;}
-  .visibility-logo-item.eurochambres img{height:40px;max-width:180px;}
-  .visibility-logo-item.tobb img{height:90px;max-width:120px;}
-  .visibility-logo-item.ctso img{height:95px;max-width:125px;}
-  .visibility-logo-item.padova{flex-basis:44%;}
-  .visibility-logo-item.padova img{height:52px;max-width:220px;}
-  .visibility-logo-item.eu-affairs img{height:110px;max-width:140px;}
+  .visibility-logos{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 22px;}
+  .visibility-logo-item{height:104px;}
+  .visibility-logo-item img,
+  .visibility-logo-item.cfcu img,
+  .visibility-logo-item.eurochambres img,
+  .visibility-logo-item.tobb img,
+  .visibility-logo-item.ctso img,
+  .visibility-logo-item.padova img,
+  .visibility-logo-item.eu-affairs img{
+    height:82px;max-height:82px;max-width:100%;
+  }
 }
 @media(max-width:700px){
   .visibility-top-inner{min-height:86px;padding:8px 16px;}
   .visibility-top-logo{height:68px;max-width:100%;}
   .header{top:86px;}
   .visibility-footer{padding:18px 14px;}
-  .visibility-logos{justify-content:center;gap:18px 20px;}
-  .visibility-logo-item{flex:0 1 42%;min-width:120px;}
-  .visibility-logo-item.cfcu img{height:70px;max-width:95px;}
-  .visibility-logo-item.eurochambres img{height:34px;max-width:150px;}
-  .visibility-logo-item.tobb img{height:70px;max-width:95px;}
-  .visibility-logo-item.ctso img{height:74px;max-width:100px;}
-  .visibility-logo-item.padova{flex-basis:100%;}
-  .visibility-logo-item.padova img{height:44px;max-width:205px;}
-  .visibility-logo-item.eu-affairs img{height:80px;max-width:110px;}
+  .visibility-logos{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;}
+  .visibility-logo-item{height:90px;min-width:0;}
+  .visibility-logo-item img,
+  .visibility-logo-item.cfcu img,
+  .visibility-logo-item.eurochambres img,
+  .visibility-logo-item.tobb img,
+  .visibility-logo-item.ctso img,
+  .visibility-logo-item.padova img,
+  .visibility-logo-item.eu-affairs img{
+    height:68px;max-height:68px;max-width:100%;
+  }
   .stats{grid-template-columns:1fr 1fr;}
   .wizard-grid{grid-template-columns:1fr;}
   .card-detail{grid-template-columns:1fr;}
