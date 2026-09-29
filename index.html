@@ -100,6 +100,7 @@ body::after{
   color:var(--text-2);font-family:inherit;transition:all .2s ease-out;letter-spacing:.01em;
 }
 .btn-sm:hover{color:var(--text);background:var(--surface2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.35);}
+.lang-link{text-decoration:none;font-weight:700;letter-spacing:.06em;}
 
 /* ── HERO ── */
 .hero{padding:16px 0 12px;border-bottom:1px solid var(--border);}
@@ -855,6 +856,7 @@ function App(){
             </div>
           </div>
           <div className="header-actions">
+            <a className="btn-sm lang-link" href="/en.html" aria-label="English version">EN</a>
             {aktif&&<button className="btn-sm" onClick={sifirla}>{icons.x} Filtreleri Temizle</button>}
           </div>
         </div>
