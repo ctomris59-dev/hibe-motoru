@@ -589,7 +589,7 @@ function durumLabel(d){
  * unutulursa "Invalid Date" / "NaN gün kaldı" gibi çıktılar ekrana sızar.
  */
 function tarihGecerliMi(son){
-  if(!son || son==='Open-ended') return false;
+  if(!son || son==='Süresiz') return false;
   return !isNaN(new Date(son).getTime());
 }
 
@@ -626,7 +626,7 @@ function akillıLink(h){
 
 /* ── PAYLAŞ MODAL ── */
 function ShareModal({h,onClose}){
-  const txt=`${h.baslik}\nSource: ${h.kaynak}\nSupport: ${h.tutar}\nDeadline: ${h.son==='Süresiz'?'Süresiz':tarihGecerliMi(h.son)?new Date(h.son).toLocaleDateString('en-GB'):'Not specified'}\n${h.url}`;
+  const txt=`${h.baslik}\nSource: ${h.kaynak}\nSupport: ${enText(h.tutar)}\nDeadline: ${h.son==='Süresiz'?'Open-ended':tarihGecerliMi(h.son)?new Date(h.son).toLocaleDateString('en-GB'):'Not specified'}\n${h.url}`;
   return <div className="modal-overlay" onClick={onClose}>
     <div className="modal" onClick={e=>e.stopPropagation()}>
       <div className="modal-title">Share Programme</div>
@@ -665,7 +665,7 @@ function Card({h,isWizardActive,wizSonuc,fav,onFav,onShare}){
           <div className="card-tags">
             <span className="tag src">{h.kaynak}</span>
             <span className="tag">{icons.tag} {enLabel(h.grup)}</span>
-            {tarihGecerliMi(h.son)&&<span className="tag">{icons.calendar} {new Date(h.son).toLocaleDateString('tr-TR')}</span>}
+            {tarihGecerliMi(h.son)&&<span className="tag">{icons.calendar} {new Date(h.son).toLocaleDateString('en-GB')}</span>}
             <GeriSayim son={h.son}/>
           </div>
         </div>
@@ -693,7 +693,7 @@ function Card({h,isWizardActive,wizSonuc,fav,onFav,onShare}){
         <div className="card-meta">
           <div className="meta-row">{icons.coin} <span>Support:</span> <span className="meta-val">{enText(h.tutar)}</span></div>
           {tarihGecerliMi(h.son)
-            ?<div className="meta-row">{icons.calendar} <span>Deadline:</span> <span className="meta-val">{new Date(h.son).toLocaleDateString('tr-TR')}</span></div>
+            ?<div className="meta-row">{icons.calendar} <span>Deadline:</span> <span className="meta-val">{new Date(h.son).toLocaleDateString('en-GB')}</span></div>
             :h.son==='Süresiz'
               ?<div className="meta-row">{icons.clock} <span className="meta-val">Open-ended applications</span></div>
               :<div className="meta-row">{icons.clock} <span className="meta-val">Deadline not specified — check the official source</span></div>
@@ -1027,7 +1027,7 @@ function App(){
       {/* ── DİSCLAİMER ── */}
       <div className="disclaimer fiu fiu-5">
         <span style={{flexShrink:0,marginTop:1}}>{icons.info}</span>
-        <span>Prepared for information purposes. Please visit the institution's official website for current conditions. Official programme titles and some source details may remain in Turkish. Last updated: {new Date().toLocaleDateString('tr-TR')}</span>
+        <span>Prepared for information purposes. Please visit the institution's official website for current conditions. Official programme titles and some source details may remain in Turkish. Last updated: {new Date().toLocaleDateString('en-GB')}</span>
       </div>
 
       {/* ── SONUÇ SATIRI ── */}
