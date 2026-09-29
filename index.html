@@ -64,6 +64,21 @@ body::after{
 .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
 
 /* ── HEADER ── */
+.visibility-top{
+  background:#fff;border-bottom:1px solid var(--border);
+}
+.visibility-top-inner{
+  max-width:1040px;margin:0 auto;padding:10px 24px;
+  display:flex;align-items:center;justify-content:center;min-height:82px;
+}
+.visibility-top-logo{
+  height:64px;max-width:min(460px,100%);width:auto;object-fit:contain;display:block;
+}
+.visibility-top-fallback{
+  display:none;align-items:center;justify-content:center;gap:14px;
+  font-size:13px;font-weight:700;color:var(--text);text-align:center;
+}
+.visibility-top-fallback .flags{font-size:28px;line-height:1;}
 .header{
   border-bottom:1px solid var(--border);
   position:sticky;top:0;z-index:100;
@@ -369,13 +384,51 @@ body::after{
 }
 .wizard-active-dot{width:5px;height:5px;border-radius:50%;background:var(--navy);}
 
-/* Footer */
-.footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
-.footer-brand{font-size:13px;font-weight:600;color:var(--text);}
-.footer-meta{font-size:11px;color:var(--text-3);}
+/* EU / TEBD II visibility */
+.visibility-footer{
+  margin-top:48px;background:#fff;border:1px solid var(--border);
+  border-radius:8px;padding:24px;
+}
+.visibility-footer-title{
+  text-align:center;font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-3);margin-bottom:18px;
+}
+.visibility-logos{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+  gap:22px 30px;
+}
+.visibility-logo-item{
+  min-width:112px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:7px;text-align:center;
+}
+.visibility-logo-item img{
+  max-width:150px;height:42px;width:auto;object-fit:contain;display:block;
+}
+.visibility-logo-item.eu-tr img{height:58px;max-width:200px;}
+.visibility-logo-item.ctso img{height:56px;max-width:120px;}
+.visibility-logo-label{
+  font-size:9px;line-height:1.25;color:var(--text-3);font-weight:600;
+  max-width:150px;
+}
+.footer{
+  margin-top:16px;padding:20px 4px 28px;border-top:1px solid var(--border);
+  text-align:center;
+}
+.footer-disclaimer{
+  max-width:900px;margin:0 auto;font-size:11px;line-height:1.65;
+  color:var(--text-2);
+}
 
 /* Responsive */
 @media(max-width:700px){
+  .visibility-top-inner{min-height:68px;padding:8px 16px;}
+  .visibility-top-logo{height:52px;}
+  .visibility-footer{padding:18px 14px;}
+  .visibility-logos{gap:18px;}
+  .visibility-logo-item{min-width:92px;}
+  .visibility-logo-item img{height:34px;max-width:120px;}
+  .visibility-logo-item.eu-tr img{height:46px;max-width:165px;}
+  .visibility-logo-item.ctso img{height:46px;max-width:100px;}
   .stats{grid-template-columns:1fr 1fr;}
   .wizard-grid{grid-template-columns:1fr;}
   .card-detail{grid-template-columns:1fr;}
@@ -741,6 +794,22 @@ function App(){
   const sifirla=()=>{setSektor('Tüm Sektörler');setGrup('Tümü');setDurum('Tümü');setTutar('tumu');setButce(0);setQ('');setSadeceFav(false);setWizOn(false);setWSek('');setWOlc('');setWHed('');};
 
   return <>
+    {/* ── EU / TÜRKİYE VISIBILITY ── */}
+    <div className="visibility-top">
+      <div className="visibility-top-inner">
+        <img
+          className="visibility-top-logo"
+          src="https://static.wixstatic.com/media/3e2256_c46bb8871b1948b38be58a429574cd17~mv2.png"
+          alt="Türkiye - European Union · Funded by the European Union"
+          onError={e=>{e.currentTarget.style.display='none';e.currentTarget.nextElementSibling.style.display='flex';}}
+        />
+        <div className="visibility-top-fallback">
+          <span className="flags">🇹🇷 🇪🇺</span>
+          <span>Funded by the European Union<br/>Avrupa Birliği tarafından finanse edilmektedir</span>
+        </div>
+      </div>
+    </div>
+
     {/* ── HEADER ── */}
     <header className="header">
       <div className="wrap">
@@ -920,13 +989,40 @@ function App(){
         {normal.map(h=><Card key={h.id} h={h} isWizardActive={wizOn} wizSonuc={wizSonuclar[h.id]} fav={favs.includes(h.id)} onFav={toggleFav} onShare={setShareItem}/>)}
       </div>}
 
-      {/* ── FOOTER ── */}
-      <div className="footer">
-        <div>
-          <div className="footer-brand">Çorlu Ticaret ve Sanayi Odası</div>
-          <div className="footer-meta">Hibe Teşvik Radar · Bilgilendirme platformu · Sorumluluk üstlenmez.</div>
+      {/* ── PROJECT VISIBILITY BAND ── */}
+      <section className="visibility-footer" aria-label="Project visibility and institutional logos">
+        <div className="visibility-footer-title">Türkiye–EU Business Dialogue II · Project Visibility</div>
+        <div className="visibility-logos">
+          <div className="visibility-logo-item eu-tr">
+            <img src="https://static.wixstatic.com/media/3e2256_c46bb8871b1948b38be58a429574cd17~mv2.png" alt="Türkiye - European Union" />
+            <div className="visibility-logo-label">Funded by the European Union</div>
+          </div>
+          <div className="visibility-logo-item">
+            <img src="https://static.wixstatic.com/media/3e2256_70280c2d0fbc4901ba54b9c9746533f7~mv2.png" alt="Central Finance and Contracts Unit" />
+            <div className="visibility-logo-label">Central Finance and Contracts Unit</div>
+          </div>
+          <div className="visibility-logo-item">
+            <img src="https://static.wixstatic.com/media/3e2256_ecb25009400746cfa668fd6203736bcc~mv2.png" alt="EUROCHAMBRES" />
+            <div className="visibility-logo-label">EUROCHAMBRES</div>
+          </div>
+          <div className="visibility-logo-item">
+            <img src="https://static.wixstatic.com/media/3e2256_e6cd05d503e945b0917c6fd07fba24bc~mv2.png" alt="TOBB" />
+            <div className="visibility-logo-label">TOBB</div>
+          </div>
+          <div className="visibility-logo-item">
+            <img src="https://static.wixstatic.com/media/3e2256_3b545073b29d4658bad17e2290659637~mv2.png" alt="Directorate for EU Affairs" />
+            <div className="visibility-logo-label">Directorate for EU Affairs</div>
+          </div>
+          <div className="visibility-logo-item ctso">
+            <img src="ctso-logo.png" alt="Çorlu Chamber of Commerce and Industry" />
+            <div className="visibility-logo-label">Çorlu Chamber of Commerce and Industry</div>
+          </div>
         </div>
-        <div className="footer-meta">© 2026 Çorlu TSO</div>
+      </section>
+
+      {/* ── FOOTER DISCLAIMER ── */}
+      <div className="footer">
+        <div className="footer-disclaimer">This publication was funded by the European Union. Its contents are the sole responsibility of Corlu Chamber of Commerce and Industry and do not necessarily reflect the views of the European Union.</div>
       </div>
     </div>
 
