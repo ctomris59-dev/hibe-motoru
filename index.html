@@ -66,6 +66,7 @@ body::after{
 /* ── HEADER ── */
 .visibility-top{
   background:#fff;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:120;
 }
 .visibility-top-inner{
   max-width:1040px;margin:0 auto;padding:12px 24px;
@@ -81,7 +82,7 @@ body::after{
 .visibility-top-fallback .flags{font-size:28px;line-height:1;}
 .header{
   border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:100;
+  position:sticky;top:116px;z-index:110;
   backdrop-filter:blur(16px);
   background:rgba(244,246,250,.92);
 }
@@ -434,6 +435,7 @@ body::after{
 @media(max-width:700px){
   .visibility-top-inner{min-height:86px;padding:8px 16px;}
   .visibility-top-logo{height:68px;max-width:100%;}
+  .header{top:86px;}
   .visibility-footer{padding:18px 14px;}
   .visibility-logos{justify-content:center;gap:18px 20px;}
   .visibility-logo-item{flex:0 1 42%;min-width:120px;}
