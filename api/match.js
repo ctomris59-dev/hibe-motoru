@@ -54,6 +54,7 @@ export default async function handler(req, res) {
 
   const { sektor, olcek, hedef, programlar, lang = 'tr' } = req.body || {};
   const english = lang === 'en';
+  const italian = lang === 'it';
 
   if (!Array.isArray(programlar) || programlar.length === 0) {
     return res.status(400).json({ hata: 'Geçerli bir program listesi gönderilmedi.' });
@@ -75,9 +76,9 @@ export default async function handler(req, res) {
   }));
 
   const kriterMetni = [
-    sektor ? `${english ? 'Sector' : 'Sektör'}: ${sektor}` : null,
-    olcek ? `${english ? 'Company size' : 'Şirket ölçeği'}: ${olcek}` : null,
-    hedef ? `${english ? 'Investment objective' : 'Yatırım amacı'}: ${hedef}` : null
+    sektor ? `${english ? 'Sector' : italian ? 'Settore' : 'Sektör'}: ${sektor}` : null,
+    olcek ? `${english ? 'Company size' : italian ? 'Dimensione aziendale' : 'Şirket ölçeği'}: ${olcek}` : null,
+    hedef ? `${english ? 'Investment objective' : italian ? 'Obiettivo di investimento' : 'Yatırım amacı'}: ${hedef}` : null
   ].filter(Boolean).join('\n');
 
   const prompt = english ? `You are a grant and incentive advisor. Based on the company profile below, select and score the MOST SUITABLE programmes from the provided list.
@@ -96,6 +97,23 @@ PROGRAMME LIST:
 ${JSON.stringify(programOzetleri)}
 
 Output format (only this, nothing else):
+[{"id":123,"skor":85,"gerekce":"..."}]`
+  : italian ? `Sei un consulente specializzato in sovvenzioni e incentivi. In base al profilo aziendale seguente, seleziona e assegna un punteggio ai programmi PIÙ ADATTI tra quelli forniti.
+
+PROFILO AZIENDALE:
+${kriterMetni}
+
+REGOLE:
+1. Restituisci solo i programmi realmente pertinenti (massimo 15 programmi, minimo 0 — restituisci un array vuoto se nessuno è pertinente).
+2. Assegna a ogni programma un punteggio di idoneità da 0 a 100. 70+ indica una forte corrispondenza, 40-69 una possibile corrispondenza; non restituire punteggi inferiori a 40.
+3. Per ogni programma scrivi una motivazione concreta in ITALIANO di MASSIMO 12 parole (esempio: "Adatto a progetti R&S delle PMI e coerente con il settore").
+4. Ordina dal punteggio più alto al più basso.
+5. Restituisci solo JSON, senza altro testo o markdown.
+
+ELENCO PROGRAMMI:
+${JSON.stringify(programOzetleri)}
+
+Formato di output (solo questo, nient'altro):
 [{"id":123,"skor":85,"gerekce":"..."}]`
   : `Sen bir hibe/teşvik danışmanısın. Aşağıdaki firma profiline göre, verilen program listesinden EN UYGUN olanları seç ve puanla.
 
