@@ -52,7 +52,8 @@ export default async function handler(req, res) {
     return res.status(500).json({ hata: 'Sunucu yapılandırma hatası: GEMINI_API_KEY tanımlı değil.' });
   }
 
-  const { sektor, olcek, hedef, programlar } = req.body || {};
+  const { sektor, olcek, hedef, programlar, lang = 'tr' } = req.body || {};
+  const english = lang === 'en';
 
   if (!Array.isArray(programlar) || programlar.length === 0) {
     return res.status(400).json({ hata: 'Geçerli bir program listesi gönderilmedi.' });
@@ -74,12 +75,29 @@ export default async function handler(req, res) {
   }));
 
   const kriterMetni = [
-    sektor ? `Sektör: ${sektor}` : null,
-    olcek ? `Şirket ölçeği: ${olcek}` : null,
-    hedef ? `Yatırım amacı: ${hedef}` : null
+    sektor ? `${english ? 'Sector' : 'Sektör'}: ${sektor}` : null,
+    olcek ? `${english ? 'Company size' : 'Şirket ölçeği'}: ${olcek}` : null,
+    hedef ? `${english ? 'Investment objective' : 'Yatırım amacı'}: ${hedef}` : null
   ].filter(Boolean).join('\n');
 
-  const prompt = `Sen bir hibe/teşvik danışmanısın. Aşağıdaki firma profiline göre, verilen program listesinden EN UYGUN olanları seç ve puanla.
+  const prompt = english ? `You are a grant and incentive advisor. Based on the company profile below, select and score the MOST SUITABLE programmes from the provided list.
+
+COMPANY PROFILE:
+${kriterMetni}
+
+RULES:
+1. Return only genuinely relevant programmes (maximum 15 programmes, minimum 0 — return an empty array if none are relevant).
+2. Give each programme a suitability score from 0 to 100. 70+ is a strong match, 40-69 is a possible match, and do not return scores below 40.
+3. For each programme, write a concrete reason in ENGLISH using NO MORE THAN 12 words (example: "Suitable for SME-scale R&D projects and aligned with your sector").
+4. Sort from highest to lowest score.
+5. Return JSON only; do not add any other text or markdown.
+
+PROGRAMME LIST:
+${JSON.stringify(programOzetleri)}
+
+Output format (only this, nothing else):
+[{"id":123,"skor":85,"gerekce":"..."}]`
+  : `Sen bir hibe/teşvik danışmanısın. Aşağıdaki firma profiline göre, verilen program listesinden EN UYGUN olanları seç ve puanla.
 
 FİRMA PROFİLİ:
 ${kriterMetni}
