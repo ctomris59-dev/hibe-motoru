@@ -189,7 +189,7 @@
     "son": "Süresiz",
     "aciklama": "Türk markalarının küresel piyasalarda bilinirliğini artırmaya yönelik en kapsamlı marka hibesi.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri",
-    "linkKontrol": "2026-09-07T12:11:29.863Z"
+    "linkKontrol": "2026-10-05T14:17:34.080Z"
   },
   {
     "id": 26,
@@ -317,7 +317,7 @@
     "son": "Süresiz",
     "aciklama": "Teminat sorunu yaşayan KOBİ'lere banka kredisi için kefalet. Yüzlerce anlaşmalı banka üzerinden.",
     "url": "https://www.kgf.com.tr/urunler/kgf-kefalet-kredisi",
-    "linkKontrol": "2026-09-07T12:11:30.807Z"
+    "linkKontrol": "2026-10-05T14:17:34.942Z"
   },
   {
     "id": 35,
@@ -333,7 +333,7 @@
     "son": "Süresiz",
     "aciklama": "T.C. Hazine desteğiyle ihracatçı firmalar, KOBİ'ler ve turizm sektörüne özel kefalet imkânı.",
     "url": "https://www.kgf.com.tr/urunler/hazine-destekli-kefalet",
-    "linkKontrol": "2026-09-07T12:11:31.685Z"
+    "linkKontrol": "2026-10-05T14:17:35.781Z"
   },
   {
     "id": 36,
@@ -350,7 +350,7 @@
     "son": "Süresiz",
     "aciklama": "Savunma sanayii ana yüklenicilerine tedarikçi konumundaki firmalara özel kefalet.",
     "url": "https://www.kgf.com.tr/urunler/savunma-sanayii-programi",
-    "linkKontrol": "2026-09-07T12:11:32.527Z"
+    "linkKontrol": "2026-10-05T14:17:36.605Z"
   },
   {
     "id": 37,
@@ -1158,7 +1158,7 @@
     "son": "Süresiz",
     "aciklama": "Tekirdağ, Edirne ve Kırklareli'nde yatırım yapmak isteyen firmalara izin/ruhsat, teşvik belgesi, arazi tahsisi og proje hazırlama konularında ücretsiz danışmanlık.",
     "url": "https://www.trakyaka.org.tr/tr/33631/YATIRIM-DESTEK-OFISLERI",
-    "linkKontrol": "2026-09-07T12:11:28.051Z"
+    "linkKontrol": "2026-10-05T14:17:31.055Z"
   },
   {
     "id": 111,
@@ -1862,7 +1862,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "Sanayide yeşil dönüşümü desteklemeye yönelik TÜBİTAK 1832 çağrısı.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1832",
-    "id": 184
+    "id": 184,
+    "linkKontrol": "2026-10-05T14:16:48.075Z"
   },
   {
     "baslik": "Giresun Tarımına Dev Destek: 68 Projeye Hibe Müjdesi!",
@@ -1877,7 +1878,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "Giresun'da tarım projelerine yönelik hibe desteği.",
     "url": "https://giresun.tarimorman.gov.tr/",
-    "id": 185
+    "id": 185,
+    "linkKontrol": "2026-10-05T14:16:50.599Z"
   },
   {
     "baslik": "Bakan Yumaklı'dan hibe müjdesi: '3 bin 180 projeye 11,3 milyar lira destek sağlayacağız'",
@@ -1908,7 +1910,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "TR33 Bölgesi'nde Girişimci ve Güçlü Sivil Toplum Mali Destek Programı (GİSEP) kapsamında hibe desteği.",
     "url": "https://www.aydin.gov.tr/",
-    "id": 187
+    "id": 187,
+    "linkKontrol": "2026-10-05T14:16:52.810Z"
   },
   {
     "baslik": "KUDAKA’dan Coğrafi İşaretli Ürünlere 75 Milyon TL’lik Mali Destek",
@@ -1922,8 +1925,9 @@
     "durum": "tarih belirtilmemiş",
     "son": "Belirtilmemiş",
     "aciklama": "KUDAKA tarafından coğrafi işaretli ürünlere yönelik 75 milyon TL'lik mali destek.",
-    "url": "https://www.kudaka.org.tr/",
-    "id": 188
+    "url": "https://www.google.com/search?q=KUDAKA%E2%80%99dan%20Co%C4%9Frafi%20%C4%B0%C5%9Faretli%20%C3%9Cr%C3%BCnlere%2075%20Milyon%20TL%E2%80%99lik%20Mali%20Destek%20Kalk%C4%B1nma%20Ajans%C4%B1%20ba%C5%9Fvuru%202026",
+    "id": 188,
+    "linkKontrol": "2026-10-05T14:16:53.221Z"
   },
   {
     "baslik": "2026 Mobil Uygulama Teşvikleri Artırıldı",
@@ -1939,7 +1943,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "2026 yılı için mobil uygulama geliştirmeye yönelik teşvikler artırıldı.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri",
-    "id": 189
+    "id": 189,
+    "linkKontrol": "2026-10-05T14:16:59.114Z"
   },
   {
     "baslik": "GIDA İHRACATÇILARINA TURQUALİTY’DEN YÜZDE 50 DESTEK",
@@ -1954,7 +1959,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "Gıda ihracatçılarına TURQUALITY programı kapsamında %50 destek.",
     "url": "https://ticaret.gov.tr/destekler/ihracat-destekleri/turquality-programi",
-    "id": 190
+    "id": 190,
+    "linkKontrol": "2026-10-05T14:17:02.859Z"
   },
   {
     "baslik": "Refinansman Kefalet Programı Hayata Geçirildi",
@@ -1969,7 +1975,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "KOBİ'lerin finansman maliyetlerini düşürmeye yönelik refinansman kefalet programı.",
     "url": "https://www.kgf.com.tr/index.php/tr/urunlerimiz/kredi-garantisi/refinansman-kefalet-programi",
-    "id": 191
+    "id": 191,
+    "linkKontrol": "2026-10-05T14:17:04.022Z"
   },
   {
     "baslik": "Tarımsal kredilere KGF’den kefalet desteği",
@@ -1984,7 +1991,8 @@
     "son": "Belirtilmemiş",
     "aciklama": "Tarımsal krediler için KGF tarafından kefalet desteği.",
     "url": "https://www.kgf.com.tr/index.php/tr/urunlerimiz/tarimsal-krediler",
-    "id": 192
+    "id": 192,
+    "linkKontrol": "2026-10-05T14:17:05.007Z"
   },
   {
     "baslik": "Türk Eximbank, ihracatçılara 59 milyar dolar destek verecek",
@@ -1998,8 +2006,9 @@
     "durum": "tarih belirtilmemiş",
     "son": "Belirtilmemiş",
     "aciklama": "Türk Eximbank'ın ihracatçılara yönelik 59 milyar dolarlık destek hedefi.",
-    "url": "https://www.eximbank.gov.tr/tr/urun-ve-hizmetlerimiz/krediler/ihracat-kredileri",
-    "id": 193
+    "url": "https://www.google.com/search?q=T%C3%BCrk%20Eximbank%2C%20ihracat%C3%A7%C4%B1lara%2059%20milyar%20dolar%20destek%20verecek%20T%C3%BCrk%20Eximbank%20ba%C5%9Fvuru%202026",
+    "id": 193,
+    "linkKontrol": "2026-10-05T14:17:17.319Z"
   },
   {
     "baslik": "Türk Eximbank’tan yılın ilk yarısında ihracata 32 milyar dolarlık destek",
@@ -2013,7 +2022,23 @@
     "durum": "tarih belirtilmemiş",
     "son": "Belirtilmemiş",
     "aciklama": "Türk Eximbank'ın yılın ilk yarısında ihracata sağladığı 32 milyar dolarlık destek.",
-    "url": "https://www.eximbank.gov.tr/tr/urun-ve-hizmetlerimiz/krediler/ihracat-kredileri",
-    "id": 194
+    "url": "https://www.google.com/search?q=T%C3%BCrk%20Eximbank%E2%80%99tan%20y%C4%B1l%C4%B1n%20ilk%20yar%C4%B1s%C4%B1nda%20ihracata%2032%20milyar%20dolarl%C4%B1k%20destek%20T%C3%BCrk%20Eximbank%20ba%C5%9Fvuru%202026",
+    "id": 194,
+    "linkKontrol": "2026-10-05T14:17:29.510Z"
+  },
+  {
+    "baslik": "KOSGEB Destekleri 2026: Geri Ödemesiz Destekler, Başvuru Takvimi ve Yeşil Sanayi Programı Rehberi",
+    "tur": "Hibe",
+    "kaynak": "KOSGEB",
+    "grup": "Hibe Programları",
+    "sektor": [
+      "Tüm Sektörler"
+    ],
+    "tutar": "Belirtilmemiş",
+    "durum": "açık",
+    "son": "2026-12-31",
+    "aciklama": "KOSGEB'in 2026 yılı için sunduğu geri ödemesiz destekler, başvuru takvimi ve yeşil sanayi programı hakkında rehber niteliğinde bilgi.",
+    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7785/kosgeb-destekleri-2026-geri-odemesiz-destekler-basvuru-takvimi-ve-yesil-sanayi-programi-rehberi",
+    "id": 195
   }
 ]
