@@ -2043,51 +2043,6 @@
     "linkKontrol": "2026-11-02T14:22:41.343Z"
   },
   {
-    "baslik": "KOSGEB Girişimci Destek Programı 2026: 264 bin TL hibe, 2,25 milyon TL destek!",
-    "tur": "Hibe",
-    "kaynak": "İstanbul Ticaret Gazetesi",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "264 bin TL hibe, 2,25 milyon TL destek",
-    "durum": "açık",
-    "son": "2026-10-13",
-    "aciklama": "KOSGEB'in yenilenen girişimci destek programı kapsamında sunulan hibeler ve destek miktarları hakkında bilgi.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7780/girisimci-destek-programi",
-    "id": 196
-  },
-  {
-    "baslik": "Üreten KOBİ’lere Güçlü Destek, Yeni Başvuru Dönemi Başladı",
-    "tur": "Hibe",
-    "kaynak": "Kosgeb",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "İmalat Sanayi"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-06",
-    "aciklama": "Üreten KOBİ'lere yönelik yeni başvuru dönemi açılan destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7779/ureten-kobi-destek-programi",
-    "id": 197
-  },
-  {
-    "baslik": "KOBİ’lerin Büyümesine Güçlü Destek, Yeni Başvuru Dönemi Başladı!",
-    "tur": "Hibe",
-    "kaynak": "Kosgeb",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-08-22",
-    "aciklama": "KOBİ'lerin büyümesine yönelik yeni başvuru dönemi açılan destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7782/kobi-buyume-destek-programi",
-    "id": 198
-  },
-  {
     "baslik": "\"Anadoludakiler Mali Destek Programı\" başvuru süresi uzatıldı",
     "tur": "Hibe",
     "kaynak": "İhlas Haber Ajansı",
@@ -2096,43 +2051,10 @@
       "Tüm Sektörler"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-11-09",
     "aciklama": "Anadoludakiler Mali Destek Programı'nın başvuru süresinin uzatılması.",
     "url": "https://www.yatirimadestek.gov.tr/",
     "id": 199
-  },
-  {
-    "baslik": "Türkiye Cumhuriyeti Finansmanıyla Tarım, Turizm, Sanayi Hibe Programları ve Girişimcilik Projesi Başlıyor",
-    "tur": "Hibe",
-    "kaynak": "Haber Kıbrıs",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tarım",
-      "Turizm",
-      "Sanayi",
-      "Girişimcilik"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-10-20",
-    "aciklama": "Türkiye Cumhuriyeti finansmanıyla tarım, turizm, sanayi ve girişimcilik alanlarında yeni hibe programları ve projeler başlıyor.",
-    "url": "https://www.yatirimadestek.gov.tr/",
-    "id": 200
-  },
-  {
-    "baslik": "SOSGİP Mali Destek Programı için son başvuru tarihi uzatıldı",
-    "tur": "Hibe",
-    "kaynak": "Bölgenin Sesi Gazetesi",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Sosyal Girişimcilik"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-10-01",
-    "aciklama": "SOSGİP Mali Destek Programı için son başvuru tarihinin uzatılması.",
-    "url": "https://www.yatirimadestek.gov.tr/",
-    "id": 201
   }
 ]
