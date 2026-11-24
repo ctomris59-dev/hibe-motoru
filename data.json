@@ -2059,66 +2059,6 @@
     "linkKontrol": "2026-11-16T14:24:20.009Z"
   },
   {
-    "baslik": "KOSGEB Girişimci Destek Programı 2026: 264 bin TL hibe, 2,25 milyon TL destek!",
-    "tur": "Hibe",
-    "kaynak": "İstanbul Ticaret Gazetesi",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "264 bin TL hibe, 2,25 milyon TL destek",
-    "durum": "açık",
-    "son": "2026-10-13",
-    "aciklama": "KOSGEB'in yenilenen girişimci destek programı kapsamında sunulan hibeler ve destek miktarları hakkında bilgi.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7700/girisimci-destek-programi",
-    "id": 200
-  },
-  {
-    "baslik": "Üreten KOBİ’lere Güçlü Destek, Yeni Başvuru Dönemi Başladı",
-    "tur": "Hibe",
-    "kaynak": "Kosgeb",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "İmalat Sanayii"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-06",
-    "aciklama": "Üretim yapan KOBİ'lere yönelik yeni başvuru dönemi açılan destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7699/ureten-kobi-destek-programi",
-    "id": 201
-  },
-  {
-    "baslik": "KOBİ'lerin Büyümesine Güçlü Destek, Yeni Başvuru Dönemi Başladı!",
-    "tur": "Hibe",
-    "kaynak": "Kosgeb",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-08-22",
-    "aciklama": "KOBİ'lerin büyümesini desteklemeye yönelik yeni başvuru dönemi açılan program.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7703/kobi-buyume-destek-programi",
-    "id": 202
-  },
-  {
-    "baslik": "KOBİ'lerin Küresel Rekabet Gücünü Artıracak Destek Programına Başvurular Başladı!",
-    "tur": "Hibe",
-    "kaynak": "Kosgeb",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Tüm Sektörler"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-09-07",
-    "aciklama": "KOBİ'lerin küresel rekabet gücünü artırmayı hedefleyen destek programı.",
-    "url": "https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/7704/kuresel-rekabet-gucu-destek-programi",
-    "id": 203
-  },
-  {
     "baslik": "1707 - Sipariş Ar-Ge 2026 Yılı 2. Dönem Çağrı Sonuçları Açıklandı",
     "tur": "Hibe",
     "kaynak": "TÜBİTAK",
@@ -2127,27 +2067,11 @@
       "Ar-Ge"
     ],
     "tutar": "Belirtilmemiş",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-11-20",
     "aciklama": "Sipariş Ar-Ge projeleri için 2026 yılı 2. dönem çağrı sonuçları.",
     "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1707",
     "id": 204
-  },
-  {
-    "baslik": "1501-Sanayi Ar-Ge Projeleri Destekleme Programı 2026 Yılı 1. Çağrısı Sonuçları Açıklandı",
-    "tur": "Hibe",
-    "kaynak": "TÜBİTAK",
-    "grup": "Hibe Programları",
-    "sektor": [
-      "Ar-Ge",
-      "Sanayi"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-09-04",
-    "aciklama": "Sanayi Ar-Ge projeleri için 2026 yılı 1. çağrı sonuçları.",
-    "url": "https://tubitak.gov.tr/tr/destekler/sanayi/ulusal-destek-programlari/1501",
-    "id": 205
   },
   {
     "baslik": "Verimli sulamaya yüzde 70’e kadar hibe: Kimler yararlanabiliyor?",
@@ -2158,26 +2082,10 @@
       "Tarım"
     ],
     "tutar": "Yüzde 70'e kadar",
-    "durum": "açık",
+    "durum": "kapandı",
     "son": "2026-11-23",
     "aciklama": "Verimli sulama sistemleri yatırımlarına yönelik hibe desteği.",
     "url": "https://www.tarimorman.gov.tr/Sayfalar/Destekler/Sulama-Sistemleri-Destekleri",
     "id": 206
-  },
-  {
-    "baslik": "Kırsal kalkınma desteklerinde başvuru süresi uzatıldı",
-    "tur": "Hibe",
-    "kaynak": "TRT Haber",
-    "grup": "Tarım Destekleri",
-    "sektor": [
-      "Tarım",
-      "Kırsal Kalkınma"
-    ],
-    "tutar": "Belirtilmemiş",
-    "durum": "açık",
-    "son": "2026-06-06",
-    "aciklama": "Kırsal kalkınma destek programları için başvuru süresinin uzatılması.",
-    "url": "https://www.tarimorman.gov.tr/Sayfalar/Destekler/Kırsal-Kalkınma-Yatırım-Programı",
-    "id": 207
   }
 ]
